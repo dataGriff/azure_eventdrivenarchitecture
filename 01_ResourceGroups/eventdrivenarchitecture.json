@@ -1,0 +1,215 @@
+{
+  "properties": {
+    "lenses": {
+      "0": {
+        "order": 0,
+        "parts": {
+          "0": {
+            "position": {
+              "x": 0,
+              "y": 0,
+              "colSpan": 3,
+              "rowSpan": 9
+            },
+            "metadata": {
+              "inputs": [],
+              "type": "Extension/HubsExtension/PartType/MarkdownPart",
+              "settings": {
+                "content": {
+                  "settings": {
+                    "content": "* [Event Driven Architecture Course](https://github.com/griff182uk/azure_eventdrivenarchitecture)",
+                    "title": "Event Driven Architecture",
+                    "subtitle": "",
+                    "markdownSource": 1,
+                    "markdownUri": null
+                  }
+                }
+              }
+            }
+          },
+          "1": {
+            "position": {
+              "x": 3,
+              "y": 0,
+              "colSpan": 3,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-customer-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-customer-rg/overview"
+            }
+          },
+          "2": {
+            "position": {
+              "x": 6,
+              "y": 0,
+              "colSpan": 3,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-leads-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-leads-rg/overview"
+            }
+          },
+          "3": {
+            "position": {
+              "x": 9,
+              "y": 0,
+              "colSpan": 3,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-salesfiles-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-salesfiles-rg/overview"
+            }
+          },
+          "4": {
+            "position": {
+              "x": 12,
+              "y": 0,
+              "colSpan": 3,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-sales-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-sales-rg/overview"
+            }
+          },
+          "5": {
+            "position": {
+              "x": 3,
+              "y": 3,
+              "colSpan": 12,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-broker-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-broker-rg/overview"
+            }
+          },
+          "6": {
+            "position": {
+              "x": 3,
+              "y": 6,
+              "colSpan": 6,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-databricks-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-databricks-rg/overview"
+            }
+          },
+          "7": {
+            "position": {
+              "x": 9,
+              "y": 6,
+              "colSpan": 6,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-lake-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-lake-rg/overview"
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "model": {
+        "timeRange": {
+          "value": {
+            "relative": {
+              "duration": 24,
+              "timeUnit": 1
+            }
+          },
+          "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+        }
+      }
+    }
+  },
+  "name": "eventdrivenarchitecture",
+  "type": "Microsoft.Portal/dashboards",
+  "location": "INSERT LOCATION",
+  "tags": {
+    "hidden-title": "eventdrivenarchitecture"
+  },
+  "apiVersion": "2015-08-01-preview"
+}
