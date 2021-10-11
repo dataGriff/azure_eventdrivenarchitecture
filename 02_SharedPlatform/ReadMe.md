@@ -14,4 +14,9 @@ az deployment group create --name "brokerDeployment" --resource-group "events-br
 az deployment group create --name "brokerDeployment" --resource-group "events-lake-rg" --template-file "02_SharedPlatform\lake.bicep" --parameters namespace="griff"
 ```
 
+
+```bash
+az deployment group create --name "brokerDeployment" --resource-group "events-databricks-rg" --template-file "02_SharedPlatform\databricks.bicep" --parameters namespace="griff"
+```
+
 1. Upload the eventdrivenarchitecture.json dashboard file to your azure portal. 
