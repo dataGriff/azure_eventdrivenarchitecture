@@ -28,11 +28,16 @@ resource resourceGroup5 'Microsoft.Resources/resourceGroups@2021-01-01' = {
 }
 
 resource resourceGroup6 'Microsoft.Resources/resourceGroups@2021-01-01' = {
-  name: 'events-lake-rg'
+  name: 'events-schemaregistry-rg'
   location: location
 }
 
 resource resourceGroup7 'Microsoft.Resources/resourceGroups@2021-01-01' = {
+  name: 'events-lake-rg'
+  location: location
+}
+
+resource resourceGroup8 'Microsoft.Resources/resourceGroups@2021-01-01' = {
   name: 'events-databricks-rg'
   location: location
 }

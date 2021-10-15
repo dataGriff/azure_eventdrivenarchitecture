@@ -9,6 +9,7 @@
 * [Bicep](https://learn.hashicorp.com/collections/terraform/azure-get-started)
 * [Azure Terraform](https://learn.hashicorp.com/collections/terraform/azure-get-started)
 * [Databricks Bicep](https://towardsdatascience.com/creating-azure-databricks-with-bicep-and-azure-devops-yaml-pipelines-4bf85be30cc7)
+* [Dynamically Add Partitions in Premium or Dedicated](https://docs.microsoft.com/en-us/azure/event-hubs/dynamically-add-partitions)
 ## 1. Create Resource Groups
 
 ## 2. Shared Infrastructure

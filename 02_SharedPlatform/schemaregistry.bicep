@@ -9,7 +9,7 @@ param locationshortcode string = 'eun'
 
 //namespace
 resource eventHubNamespace 'Microsoft.EventHub/namespaces@2021-01-01-preview' = {
-  name: 'events001-ehns-${locationshortcode}-${namespace}'
+  name: 'schemaregistry-ehns-${locationshortcode}-${namespace}'
   location: resourceGroup().location
   sku: {
     name: 'Standard'
@@ -21,20 +21,5 @@ resource eventHubNamespace 'Microsoft.EventHub/namespaces@2021-01-01-preview' = 
     isAutoInflateEnabled: true
     kafkaEnabled: true
     maximumThroughputUnits: 20
-  }
-}
-
-//storage account
-resource eventstorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
-  name: 'events001sa${locationshortcode}${namespace}'
-  location: resourceGroup().location
-  kind: 'StorageV2'
-  sku: {
-    name: 'Standard_LRS'
-    tier: 'Standard'
-  }
-  properties: {
-    minimumTlsVersion: 'TLS1_2'
-    supportsHttpsTrafficOnly: true
   }
 }

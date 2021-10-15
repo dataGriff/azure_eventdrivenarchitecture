@@ -1,9 +1,6 @@
 @description('Unique postfix for your resources to ensure globally unique')
 param namespace string = 'griff'
 
-@description('Full region name')
-param location string = 'northeurope'
-
 @description('Short region name')
 param locationshortcode string = 'eun'
 
@@ -11,11 +8,11 @@ param locationshortcode string = 'eun'
 param sku string = 'premium'
 
 var databricksWorkspaceName = 'events-dbw-${locationshortcode}-${namespace}'
-var managedResourceGroupName = 'databricks-rg-${databricksWorkspaceName}-${uniqueString(databricksWorkspaceName, resourceGroup().id)}'
+var managedResourceGroupName = '${databricksWorkspaceName}-rg-${uniqueString(databricksWorkspaceName, resourceGroup().id)}'
 
 resource databricks 'Microsoft.Databricks/workspaces@2018-04-01' = {
   name: databricksWorkspaceName
-  location: location
+  location: resourceGroup().location
   sku: {
     name: sku
   }
