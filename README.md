@@ -13,6 +13,8 @@
 * [Dynamically Add Partitions in Premium or Dedicated](https://docs.microsoft.com/en-us/azure/event-hubs/dynamically-add-partitions)
 * [Python Integration](https://azuresdkdocs.blob.core.windows.net/$web/python/azure-schemaregistry-avroserializer/latest/index.html#event-hubs-sending-integration)
 * [Schema Reg Compare](https://www.syntio.net/en/labs-musings/schema-registry-comparison)
+* [Schema Registry Spark](https://www.rakirahman.me/azure-schemaregistry-spark/)
+* [Event Hub Spark](https://github.com/Azure/azure-event-hubs-spark)
 ## 1. Create Resource Groups
 
 ## 2. Shared Infrastructure
