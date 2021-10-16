@@ -5,6 +5,7 @@ from azure.eventhub import EventHubProducerClient, EventData
 from azure.schemaregistry import SchemaRegistryClient
 from azure.schemaregistry.serializer.avroserializer import AvroSerializer
 from azure.identity import DefaultAzureCredential
+
 faker = Faker()
 
 guid = uuid.uuid4()
