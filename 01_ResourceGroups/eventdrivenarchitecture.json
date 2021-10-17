@@ -9,7 +9,7 @@
               "x": 0,
               "y": 0,
               "colSpan": 3,
-              "rowSpan": 9
+              "rowSpan": 11
             },
             "metadata": {
               "inputs": [],
@@ -31,6 +31,29 @@
             "position": {
               "x": 3,
               "y": 0,
+              "colSpan": 12,
+              "rowSpan": 2
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-schemaregistry-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-schemaregistry-rg/overview"
+            }
+          },
+          "2": {
+            "position": {
+              "x": 3,
+              "y": 2,
               "colSpan": 3,
               "rowSpan": 3
             },
@@ -50,10 +73,10 @@
               "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-customer-rg/overview"
             }
           },
-          "2": {
+          "3": {
             "position": {
               "x": 6,
-              "y": 0,
+              "y": 2,
               "colSpan": 3,
               "rowSpan": 3
             },
@@ -73,10 +96,10 @@
               "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-leads-rg/overview"
             }
           },
-          "3": {
+          "4": {
             "position": {
               "x": 9,
-              "y": 0,
+              "y": 2,
               "colSpan": 3,
               "rowSpan": 3
             },
@@ -96,10 +119,10 @@
               "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-salesfiles-rg/overview"
             }
           },
-          "4": {
+          "5": {
             "position": {
               "x": 12,
-              "y": 0,
+              "y": 2,
               "colSpan": 3,
               "rowSpan": 3
             },
@@ -119,10 +142,10 @@
               "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-sales-rg/overview"
             }
           },
-          "5": {
+          "6": {
             "position": {
               "x": 3,
-              "y": 3,
+              "y": 5,
               "colSpan": 12,
               "rowSpan": 3
             },
@@ -142,10 +165,10 @@
               "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-broker-rg/overview"
             }
           },
-          "6": {
+          "7": {
             "position": {
               "x": 3,
-              "y": 6,
+              "y": 8,
               "colSpan": 6,
               "rowSpan": 3
             },
@@ -165,10 +188,10 @@
               "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-databricks-rg/overview"
             }
           },
-          "7": {
+          "8": {
             "position": {
               "x": 9,
-              "y": 6,
+              "y": 8,
               "colSpan": 6,
               "rowSpan": 3
             },
