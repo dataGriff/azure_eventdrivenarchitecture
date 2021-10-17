@@ -24,7 +24,7 @@
 ## 2. Shared Infrastructure
 ## 3. Schema Registry
 
-## 3. Publishers
-## 4. Consumers
+## 4. Publishers
+## 5. Consumers
 
-## 5. Data Lake
+## 6. Data Lake
