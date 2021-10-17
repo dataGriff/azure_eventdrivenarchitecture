@@ -10,6 +10,7 @@ az account set --subscription "{your subscription name}"
 az deployment group create --name "brokerDeployment" --resource-group "events-schemaregistry-rg" --template-file "02_SharedPlatform\schemaregistry.bicep" --parameters namespace="griff"
 ```
 
+We may want to add lifecyce policiies to the storage account so ensures delete or move to archival tiers
 ```bash
 az deployment group create --name "brokerDeployment" --resource-group "events-broker-rg" --template-file "02_SharedPlatform\broker.bicep" --parameters namespace="griff"
 ```
