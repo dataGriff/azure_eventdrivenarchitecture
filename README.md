@@ -15,6 +15,10 @@
 * [Schema Reg Compare](https://www.syntio.net/en/labs-musings/schema-registry-comparison)
 * [Schema Registry Spark](https://www.rakirahman.me/azure-schemaregistry-spark/)
 * [Event Hub Spark](https://github.com/Azure/azure-event-hubs-spark)
+* [Create Function Python](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-python)
+* [Install Azure Function Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v3%2Cwindows%2Ccsharp%2Cportal%2Cbash%2Ckeda#install-the-azure-functions-core-tools)
+* [Azure Functions VS Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
+* [Python Schema Registry](https://pypi.org/project/azure-schemaregistry-avroserializer/)
 ## 1. Create Resource Groups
 
 ## 2. Shared Infrastructure
