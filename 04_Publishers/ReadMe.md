@@ -16,6 +16,15 @@ so data is bullet proof.
 az deployment group create --name "eventHubDeployment" --resource-group "events-broker-rg" --template-file "04_Publishers\platform\eventhub.bicep" --parameters namespace="griff2" event="customer"
 ```
 
+```bash
+az deployment group create --name "eventHubDeployment" --resource-group "events-broker-rg" --template-file "04_Publishers\platform\eventhub.bicep" --parameters namespace="griff2" event="lead"
+```
+
+```bash
+az deployment group create --name "eventHubDeployment" --resource-group "events-broker-rg" --template-file "04_Publishers\platform\eventhub.bicep" --parameters namespace="griff2" event="sale"
+```
+
+
 ```
 venv\scripts\activate
 ```
