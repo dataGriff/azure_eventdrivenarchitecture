@@ -1,0 +1,23 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workflows_salesfiles_la_eun_griff_name": {
+            "value": "salesfiles-la-eun-griff"
+        },
+        "workflows_salesfiles-la-eun-griff_parameters_$connections": {
+            "value": {
+                "azureblob": {
+                    "connectionId": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-salesfiles-rg/providers/Microsoft.Web/connections/azureblob-2",
+                    "connectionName": "azureblob-2",
+                    "id": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/providers/Microsoft.Web/locations/northeurope/managedApis/azureblob"
+                },
+                "onedrive": {
+                    "connectionId": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-salesfiles-rg/providers/Microsoft.Web/connections/onedrive",
+                    "connectionName": "onedrive",
+                    "id": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/providers/Microsoft.Web/locations/northeurope/managedApis/onedrive"
+                }
+            }
+        }
+    }
+}

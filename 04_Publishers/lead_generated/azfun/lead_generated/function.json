@@ -1,0 +1,15 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "type": "eventHubTrigger",
+      "name": "events",
+      "direction": "in",
+      "eventHubName": "customer",
+      "connection": "events001ehnseungriff2_RootManageSharedAccessKey_EVENTHUB",
+      "cardinality": "many",
+      "consumerGroup": "lead",
+      "dataType": "binary"
+    }
+  ]
+}

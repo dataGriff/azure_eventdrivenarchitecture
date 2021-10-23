@@ -24,6 +24,10 @@ az deployment group create --name "eventHubDeployment" --resource-group "events-
 az deployment group create --name "eventHubDeployment" --resource-group "events-broker-rg" --template-file "04_Publishers\platform\eventhub.bicep" --parameters namespace="griff2" event="sale"
 ```
 
+```bash
+az deployment group create --name "salesFileDeployment" --resource-group "events-salesfiles-rg" --template-file "04_Publishers\lead_purchased\infra\storage.bicep" --parameters namespace="griff2"
+```
+
 
 ```
 venv\scripts\activate
