@@ -50,23 +50,14 @@ eventhub_consumer = EventHubConsumerClient.from_connection_string(
 # CREATE AN AVRO SERIALIZER INSTANCE
 schema_registry_client = SchemaRegistryClient(fully_qualified_namespace, token_credential)
 avro_serializer = AvroSerializer(client=schema_registry_client
-, group_name=group_name, auto_register_schemas=True)
+, group_name=group_name)
+##, auto_register_schemas=True)
 
 
 # CONSUME
 with eventhub_consumer, avro_serializer:
     try:
-        eventhub_consumer.receive(on_event=on_event, starting_position="-1")
+        eventhub_consumer.receive(on_event=on_event)
+        # starting_position="-1",  # "-1" is from the beginning of the partition.
     except KeyboardInterrupt:
         print('Quit')
-# try:
-#     with eventhub_consumer, avro_serializer:
-#         try:
-#             eventhub_consumer.receive(
-#                 on_event=on_event#,
-#                # starting_position="-1",  # "-1" is from the beginning of the partition.
-#             )
-#         except:
-#             raise ValueError("Issue")
-# except KeyboardInterrupt:
-#     print('Quit')
