@@ -28,6 +28,8 @@ az deployment group create --name "eventHubDeployment" --resource-group "events-
 az deployment group create --name "salesFileDeployment" --resource-group "events-salesfiles-rg" --template-file "04_Publishers\lead_purchased\infra\storage.bicep" --parameters namespace="griff2"
 ```
 
+Remember to add app setting in portal for function event hub connection
+
 
 ```
 venv\scripts\activate

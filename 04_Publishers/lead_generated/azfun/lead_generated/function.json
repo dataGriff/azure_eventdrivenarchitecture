@@ -3,11 +3,11 @@
   "bindings": [
     {
       "type": "eventHubTrigger",
-      "name": "events",
+      "name": "event",
       "direction": "in",
       "eventHubName": "customer",
       "connection": "events001ehnseungriff2_RootManageSharedAccessKey_EVENTHUB",
-      "cardinality": "many",
+      "cardinality": "one",
       "consumerGroup": "lead",
       "dataType": "binary"
     }

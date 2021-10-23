@@ -25,7 +25,7 @@ param eventhubpartitions int = 4
 param eventhubretentiondays int = 7
 
 var storageaccount = 'events001sa${locationshortcode}${namespace}'
-var ehnamespace = 'events001-ehns-${locationshortcode}-${namespace}' 
+var ehnamespace = 'events001-ehns-${locationshortcode}-${namespace}'
 
 //Storage Account Container
 resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2019-06-01' = {
@@ -37,10 +37,16 @@ resource immutable 'Microsoft.Storage/storageAccounts/blobServices/containers/im
   properties: {
     immutabilityPeriodSinceCreationInDays: immutabilitydays
   }
+  dependsOn: [
+    container
+    eventhub
+    send
+    listen
+  ]
 }
 
 //Event Hub with Capture
-resource symbolicname 'Microsoft.EventHub/namespaces/eventhubs@2021-06-01-preview' = {
+resource eventhub 'Microsoft.EventHub/namespaces/eventhubs@2021-06-01-preview' = {
   name: '${ehnamespace}/${event}'
   properties: {
     captureDescription: {
@@ -61,4 +67,33 @@ resource symbolicname 'Microsoft.EventHub/namespaces/eventhubs@2021-06-01-previe
     messageRetentionInDays: eventhubretentiondays
     partitionCount: eventhubpartitions
   }
+  dependsOn: [
+    container
+  ]
+}
+
+resource send 'Microsoft.EventHub/namespaces/eventhubs/authorizationRules@2021-01-01-preview' = {
+  parent: eventhub
+  name: 'send'
+  properties: {
+    rights: [
+      'Send'
+    ]
+  }
+  dependsOn: [
+    eventhub
+  ]
+}
+
+resource listen 'Microsoft.EventHub/namespaces/eventhubs/authorizationRules@2021-01-01-preview' = {
+  parent: eventhub
+  name: 'listen'
+  properties: {
+    rights: [
+      'Listen'
+    ]
+  }
+  dependsOn: [
+    eventhub
+  ]
 }
