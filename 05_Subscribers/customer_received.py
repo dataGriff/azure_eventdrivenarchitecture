@@ -5,11 +5,8 @@ from azure.schemaregistry.serializer.avroserializer import AvroSerializer
 from azure.identity import DefaultAzureCredential
 
 fully_qualified_namespace = 'schemaregistry-ehns-eun-griff.servicebus.windows.net'
-
-
 group_name = "schema_registry"
 format = "Avro"
-
 eventhub_conn_Str = 'Endpoint=sb://events001-ehns-eun-griff2.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=DoiIfBBzWOtUxesDVC70HQSiVTjRAiiIPKEKB8anep4='
 
 token_credential = DefaultAzureCredential()

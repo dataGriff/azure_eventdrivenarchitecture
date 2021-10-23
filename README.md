@@ -72,3 +72,4 @@ This demo will involve three teams:
 * Have to be owner of schema to delete in registry I think even though this not stated easily. Even when I am god mode. 
 * When make immutable cannot deploy capture again as keeps trying to override avro file in there.
 * Need to sort out dependency of container being deployed before event hub for capture.
+* When an event fails once read from a consumer group, how do you handle? Write a checkpoint on error? 

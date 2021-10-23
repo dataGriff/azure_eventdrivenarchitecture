@@ -3,3 +3,7 @@
 # Manually managing azure-functions-worker may cause unexpected issues
 
 azure-functions
+azure-eventhub 
+azure-schemaregistry
+azure-identity
+azure-schemaregistry-avroserializer
