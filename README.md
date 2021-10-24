@@ -80,6 +80,7 @@ This demo will involve three teams:
 * Possibly change leads into same as sales and take from files so don't do consumers too early.
 * Use key vault more, as you are currently not using it :)
 * Add tests to confirm all infrastructure in place. 
+* For the customers that generate leads - it would be good to send the customers who didn't generate a lead to another event hub to represent abandoned leads!
 ## Foibles
 
 * Have to be owner of schema to delete in registry I think even though this not stated easily. Even when I am god mode. 
