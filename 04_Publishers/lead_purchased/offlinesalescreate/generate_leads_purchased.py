@@ -1,5 +1,5 @@
 from io import BytesIO
-import random
+import csv, uuid, random, datetime
 from operator import attrgetter
 from avro.datafile import DataFileReader
 from avro.io import DatumReader
@@ -17,7 +17,7 @@ token_credential = DefaultAzureCredential()
 
 ##for storage account to read
 conn_str = 'DefaultEndpointsProtocol=https;AccountName=events001saeungriff2;AccountKey=9edptIYkUwq7SVVqwuyz8mPgffjja1mXR7f1L/tWN3wpaI6H0941KcVIGuXGCC1sz9ktappJdn7ai5OLV9G38w==;EndpointSuffix=core.windows.net'
-container_name = 'customer'
+container_name = 'lead'
 container = ContainerClient.from_connection_string(conn_str, container_name=container_name)
 
 blob_service_client = BlobServiceClient.from_connection_string(conn_str)
@@ -45,11 +45,40 @@ stream = BytesIO()
 downloader.download_to_stream(stream) # also tried readinto(stream)
 
 reader = DataFileReader(stream, DatumReader())
-for event_data in reader:
-    body = (event_data["Body"])
-    deserialized_data = avro_serializer.deserialize(body)
-    customer_guid = deserialized_data.get("customer_guid")
-    print(customer_guid)
-reader.close()
+
+
+
+
+directory = 'C:\\Users\\griff\\OneDrive\\Data\\sales' 
+print("Set constant values for mock file names...")
+partner_id = random.randint(1,25)
+date =  datetime.date.today()
+print("Completed setting constant values.")
+
+print("Set simple csv schema...")
+header = ['lead_guid', 'purchase_date']
+print("Set simple csv schema done.")
+
+print("Start creating csv file...")
+with open(f'{directory}/sale_partner{partner_id}_{uuid.uuid4()}.csv', 'w'
+                , encoding='UTF8', newline='') as f:
+    print("Start creating csv header...")
+    writer = csv.writer(f)
+    writer.writerow(header)
+    print("Completed creating csv header.")
+
+    print(f"Start inserting sales rows...")
+    for event_data in reader:
+        body = (event_data["Body"])
+        deserialized_data = avro_serializer.deserialize(body)
+        lead_guid = deserialized_data.get("lead_guid")
+        purchase_date = datetime.datetime.utcnow()
+        data = [[lead_guid, purchase_date]]
+        print(data)
+        writer.writerows(data)
+    reader.close()
+
+print(f"Completed inserting sales rows.")
+print("Completed creating csv file.")
 
  
