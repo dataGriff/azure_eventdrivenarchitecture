@@ -40,7 +40,7 @@ sale_schema_definition = """
  "name": "Sale.Created",
  "fields": [
      {"name": "sale_guid", "type": "string"},
-     {"name": "sale_date", "type": "string"},
+     {"name": "purchase_date", "type": "string"},
      {"name": "lead_guid", "type": "string"}
  ]
 }
