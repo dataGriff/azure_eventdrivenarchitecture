@@ -40,21 +40,25 @@ Event Driven Architecture Dictionary
 * [Install Azure Function Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v3%2Cwindows%2Ccsharp%2Cportal%2Cbash%2Ckeda#install-the-azure-functions-core-tools)
 * [Azure Functions VS Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
 * [Python Schema Registry](https://pypi.org/project/azure-schemaregistry-avroserializer/)
-
+* [Python Event Hub Trigger Not Firing](https://docs.microsoft.com/en-us/answers/questions/339501/azure-function-not-being-triggered-with-eventhubtr.html)
 
 ## Demo
 
 This demo will involve three teams:
-1. Platform Team 
+1. **Platform Team**
 * Provide a cloud infrastructure.
 * Provide shared infrastructure such as storage accounts and namespaces. 
 * Provide template deployment pipelines for integrating into shared infrastructure for event producers and event consumers.
-2. Customer Team
+
+
+
+2. **Customer Team**
 * Produce Customer Created Event
 * Subscribe to Lead Generated Event
 * Subscribe to Lead Sold Event
 * Produce Customer Sale Confirmation Sent Event
-3. Sales Team
+
+3. **Sales Team**
 * Produce Lead Generated Event
 * Produce Lead Sold Event
 
@@ -74,6 +78,7 @@ This demo will involve three teams:
 * Perform same demo using confluent kafka instead of event hubs.
 * Possibly change leads into same as sales and take from files so don't do consumers too early.
 * Use key vault more, as you are currently not using it :)
+* Add tests to confirm all infrastructure in place. 
 ## Foibles
 
 * Have to be owner of schema to delete in registry I think even though this not stated easily. Even when I am god mode. 

@@ -10,6 +10,10 @@ pip install azure-eventhub
 pip install azure.functions
 ```
 
+```
+pip install azure-storage-blob
+```
+
 Lets make the storage immutable and add/remove a lock on the storage during deploy
 so data is bullet proof.
 ```bash
@@ -46,7 +50,8 @@ venv\scripts\activate
 
 to get functions working remember to install all pre-reqs
 also close and reopen vs code when done
-add python packages requitred to requitements.txt file (e.g gaker)
+add python packages requitred to requitements.txt file (e.g faker)
 
 
 customer-azfun-eun-griff
+lead-azfun-eun-griff
