@@ -75,6 +75,7 @@ This demo will involve three teams:
 
 ## TODO
 
+* Format schemas as could events
 * Convert deployments into yaml pipelines.
 * Perform same demo using confluent kafka instead of event hubs.
 * Possibly change leads into same as sales and take from files so don't do consumers too early.
