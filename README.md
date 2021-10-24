@@ -10,7 +10,7 @@ Event Driven Architecture Dictionary
 * Consumer
 * Event Broker
 * Event Broker Log
-* Partition
+* **Partition** - Important note that consumer groups to partitions should not have more than a 1:1 mapping. Therefore it is important for standard event hubs for example to start with the right amount of partitions if you expect multiple consumers in the future. With premium event hubs and kafka I believe you can dynamically add partitions and therefore consumers.
 * Schema Registry
 * Topic 
 * **Event Storming** - This is the collaborative design of discovering events within and across business domains. This design process should involve all domain experts, business and technical, to derive a common model of the processes and a common language. Event storming is particularly important to get a business-wide view of the events as it can influence schema design to ensure data communication pathways remain robust even with consumer agnostic approachs to event publication by the producer. 
@@ -56,6 +56,7 @@ This demo will involve three teams:
 * Produce Customer Created Event
 * Subscribe to Lead Generated Event
 * Subscribe to Lead Sold Event
+* Customer Purchased Event
 * Produce Customer Sale Confirmation Sent Event
 
 3. **Sales Team**
