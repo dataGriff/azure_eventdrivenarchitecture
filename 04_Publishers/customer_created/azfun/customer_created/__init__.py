@@ -36,6 +36,7 @@ def main(mytimer: func.TimerRequest) -> None:
     group_name = "schema_registry"
     format = "Avro"
 
+    ## this is connection to send event hubs to
     eventhub_conn_Str = 'Endpoint=sb://events001-ehns-eun-griff2.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=DoiIfBBzWOtUxesDVC70HQSiVTjRAiiIPKEKB8anep4='
 
     eventhub_producer = EventHubProducerClient.from_connection_string(
@@ -43,6 +44,7 @@ def main(mytimer: func.TimerRequest) -> None:
         eventhub_name="customer"
     )
 
+    ##this is aprg with permissions on the schema registry that needs to be setup
     tenant_id = "2f9c669b-996b-42d4-8bb2-e94d28032233"
     client_id = "7fd5c6cb-875e-4a63-a02e-0fa55df44884"
     client_secret = "BBv7Q~E33I9DeX9g-hVUBuwiQEKal~vYFrSAt  "

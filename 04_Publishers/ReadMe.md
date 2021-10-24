@@ -16,6 +16,11 @@ so data is bullet proof.
 az deployment group create --name "eventHubDeployment" --resource-group "events-broker-rg" --template-file "04_Publishers\platform\eventhub.bicep" --parameters namespace="griff2" event="customer"
 ```
 
+This is subscriber but needed as we're using it to regenerate leads with consistent lead guid
+```bash
+az deployment group create --name "consumerDeployment" --resource-group "events-broker-rg" --template-file "05_Subscribers\platform\consumer.bicep" --parameters namespace="griff2" event="customer" consumer="lead"
+```
+
 ```bash
 az deployment group create --name "eventHubDeployment" --resource-group "events-broker-rg" --template-file "04_Publishers\platform\eventhub.bicep" --parameters namespace="griff2" event="lead"
 ```

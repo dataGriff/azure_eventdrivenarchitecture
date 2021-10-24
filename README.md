@@ -15,6 +15,7 @@ Event Driven Architecture Dictionary
 * Topic 
 * **Event Storming** - This is the collaborative design of discovering events within and across business domains. This design process should involve all domain experts, business and technical, to derive a common model of the processes and a common language. Event storming is particularly important to get a business-wide view of the events as it can influence schema design to ensure data communication pathways remain robust even with consumer agnostic approachs to event publication by the producer. 
 * **Streaming** - Streaming is the idea that data in an event driven architecture there is constantly "data-in-motion" as opposed to "data-at-rest". Applications and data pipelines are able to receive data from a dedicated consumer group without the need for watermarking as the event broker will guarantee at least once delivery and push data to its destination.
+* **Immutable Log** - Log not a queue. 
 
 
 
@@ -67,6 +68,12 @@ This demo will involve three teams:
 
 ## 6. Data Lake
 
+## TODO
+
+* Convert deployments into yaml pipelines.
+* Perform same demo using confluent kafka instead of event hubs.
+* Possibly change leads into same as sales and take from files so don't do consumers too early.
+* Use key vault more, as you are currently not using it :)
 ## Foibles
 
 * Have to be owner of schema to delete in registry I think even though this not stated easily. Even when I am god mode. 
