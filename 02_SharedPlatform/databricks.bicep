@@ -20,6 +20,9 @@ resource databricks 'Microsoft.Databricks/workspaces@2018-04-01' = {
     managedResourceGroupId: subscriptionResourceId('Microsoft.Resources/resourceGroups', managedResourceGroupName)
     authorizations: []
   }
+  tags:  {
+    'Team' : 'Platform'
+  }
 }
 
 output databricksWorkspaceName string = databricksWorkspaceName

@@ -20,6 +20,9 @@ resource datalake 'Microsoft.Storage/storageAccounts@2021-02-01' = {
     supportsHttpsTrafficOnly: true
     isHnsEnabled: true
   }
+  tags:  {
+    'Team' : 'Platform'
+  }
 }
 
 //container

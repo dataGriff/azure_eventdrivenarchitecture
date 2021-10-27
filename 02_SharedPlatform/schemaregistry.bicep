@@ -22,4 +22,7 @@ resource eventHubNamespace 'Microsoft.EventHub/namespaces@2021-01-01-preview' = 
     kafkaEnabled: true
     maximumThroughputUnits: 20
   }
+  tags:  {
+    'Team' : 'Platform'
+  }
 }

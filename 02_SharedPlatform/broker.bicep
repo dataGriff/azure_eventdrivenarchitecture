@@ -22,6 +22,9 @@ resource eventHubNamespace 'Microsoft.EventHub/namespaces@2021-01-01-preview' = 
     kafkaEnabled: true
     maximumThroughputUnits: 20
   }
+  tags:  {
+    'Team' : 'Platform'
+  }
 }
 
 //storage account
@@ -36,5 +39,8 @@ resource eventstorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   properties: {
     minimumTlsVersion: 'TLS1_2'
     supportsHttpsTrafficOnly: true
+  }
+  tags:  {
+    'Team' : 'Platform'
   }
 }
