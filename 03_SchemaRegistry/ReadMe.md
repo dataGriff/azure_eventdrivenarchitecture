@@ -4,7 +4,7 @@ In this section we are just going to explore some registry concepts and implemen
 
 For this section you will need to make sure you have python installed as per the pre-requisites. 
 
-**You must have completed [02_SharedPlatform](..\03_SharedPlatform\ReadMe.md)before continuing with the below.** 
+**You must have completed [02_SharedPlatform](..\02_SharedPlatform\ReadMe.md) before continuing with the below.** 
 
 ## Create an App Reg
 
@@ -100,3 +100,9 @@ We are now going to demonstrate a forward compatible schema in the schema regist
 * Schema 3 added a mandatory field which is a valid forward compatible change to make so uploaded fine.
 * Schema 4 removed a field which is a an invalid forward compatible change to make so did not upload.
 * Schema 5 attempted to rename a mandatory field which is an invalid forward compatible change to make so did not upload.
+
+1. Deactive your python environment by executing the following in your terminal:
+
+```py
+venv\scripts\activate
+```

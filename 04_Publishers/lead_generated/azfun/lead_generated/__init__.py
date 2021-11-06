@@ -11,9 +11,9 @@ from azure.identity import ClientSecretCredential
 
 def main(event: func.EventHubEvent):
 
+    ## Set Schema Registry Credentials
     fully_qualified_namespace = 'schemaregistry-ehns-eun-griff.servicebus.windows.net'
     group_name = "schema_registry"
-
     tenant_id = "2f9c669b-996b-42d4-8bb2-e94d28032233"
     client_id = "7fd5c6cb-875e-4a63-a02e-0fa55df44884"
     client_secret = "BBv7Q~E33I9DeX9g-hVUBuwiQEKal~vYFrSAt  "

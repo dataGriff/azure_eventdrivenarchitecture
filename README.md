@@ -86,6 +86,7 @@ This demo will involve three teams:
 * For the customers that generate leads - it would be good to send the customers who didn't generate a lead to another event hub to represent abandoned leads!
 * Need to create local storages for each of the areas as they will have implementation in their local areas. Events are things that have happened but need local storage to happen first really before raising event. e.g. a customer is actually only created once created in a store somewhere.
 * Add lifecycle policies to the storage accounts for capture.
+* Add and remove lock on resource group deploys. 
 ## Foibles
 
 * Have to be owner of schema to delete in registry I think even though this not stated easily. Even when I am god mode. 
