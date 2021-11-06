@@ -1,6 +1,7 @@
 import datetime
 import logging
 import uuid
+import os
 from faker import Faker
 
 import azure.functions as func
@@ -10,12 +11,14 @@ from azure.schemaregistry.serializer.avroserializer import AvroSerializer
 from azure.identity import ClientSecretCredential
 
 def main(mytimer: func.TimerRequest) -> None:
+    
     utc_timestamp = datetime.datetime.utcnow().replace(
         tzinfo=datetime.timezone.utc).isoformat()
 
     if mytimer.past_due:
         logging.info('The timer is past due!')
 
+    ## Generate Fake Customer Data
     faker = Faker()
     guid = uuid.uuid4()
     date = datetime.datetime.utcnow()
@@ -25,42 +28,49 @@ def main(mytimer: func.TimerRequest) -> None:
     logging.info(f'Email is {email}')
 
     data = {
-        'customer_guid': str(guid),
-        'created_date' : str(date),
+        'id': str(guid),
+        'date' : str(date),
         'email':  email
     }
 
-
+    ## Setup Schema Registry Connection Details
     fully_qualified_namespace = 'schemaregistry-ehns-eun-griff.servicebus.windows.net'
-
-    group_name = "schema_registry"
+    group_name = "myschemagroup"
     format = "Avro"
-
-    ## this is connection to send event hubs to
-    eventhub_conn_Str = 'Endpoint=sb://events001-ehns-eun-griff2.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=DoiIfBBzWOtUxesDVC70HQSiVTjRAiiIPKEKB8anep4='
-
-    eventhub_producer = EventHubProducerClient.from_connection_string(
-        conn_str=eventhub_conn_Str,
-        eventhub_name="customer"
-    )
-
     ##this is aprg with permissions on the schema registry that needs to be setup
-    tenant_id = "2f9c669b-996b-42d4-8bb2-e94d28032233"
-    client_id = "7fd5c6cb-875e-4a63-a02e-0fa55df44884"
-    client_secret = "BBv7Q~E33I9DeX9g-hVUBuwiQEKal~vYFrSAt  "
-    token_credential = ClientSecretCredential(tenant_id, client_id, client_secret)
+    tenant_id = os.environ["tenant_id"]
+    schemareg_client_id = os.environ["schemareg_client_id"]
+    schemareg_client_secret = os.environ["schemareg_client_secret"]
+    token_credential = ClientSecretCredential(tenant_id, schemareg_client_id, schemareg_client_secret)
+    ## Set Publisher Connection Details
+    conn_eventhub_publish = os.environ["conn_eventhub_publish"]
 
-    schema_string = """
-    {"namespace": "example.avro",
+    ## Set Schema
+    schema_string = """{
+    "namespace": "example.avro",
     "type": "record",
     "name": "Customer.Created",
     "fields": [
-        {"name": "customer_guid", "type": "string"},
-        {"name": "created_date", "type": "string"},
-        {"name": "email", "type": "string"}
+        {
+            "name": "id",
+            "type": [
+                "string"
+            ]
+        },
+        {
+            "name": "date",
+            "type": [
+                "string"
+            ]
+        },
+        {
+            "name": "email",
+            "type": [
+                "string"
+            ]
+        }
     ]
-    }
-    """
+    }"""
 
     logging.info('Get schema reg client...')
     schema_registry_client = SchemaRegistryClient(fully_qualified_namespace, token_credential)
@@ -71,6 +81,11 @@ def main(mytimer: func.TimerRequest) -> None:
     logging.info('Get payload...')
     payload = avro_serializer.serialize(data, schema=schema_string)
     logging.info(f'Encoded bytes are: {payload}')
+
+    eventhub_producer = EventHubProducerClient.from_connection_string(
+        conn_str=conn_eventhub_publish,
+        eventhub_name="customer"
+    )
 
     with eventhub_producer, avro_serializer:
         logging.info('Start sending event hub packet')

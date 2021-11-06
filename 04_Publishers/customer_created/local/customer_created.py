@@ -12,15 +12,15 @@ guid = uuid.uuid4()
 date = datetime.datetime.utcnow()
 email = faker.email()
 data = {
-        'customer_guid': str(guid),
-        'created_date' : str(date),
+        'id': str(guid),
+        'date' : str(date),
         'email':  email
     }
 
 
 fully_qualified_namespace = 'schemaregistry-ehns-eun-griff.servicebus.windows.net'
 
-group_name = "schema_registry"
+group_name = "myschemagroup"
 format = "Avro"
 
 eventhub_conn_Str = 'Endpoint=sb://events001-ehns-eun-griff2.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=DoiIfBBzWOtUxesDVC70HQSiVTjRAiiIPKEKB8anep4='
@@ -32,17 +32,31 @@ eventhub_producer = EventHubProducerClient.from_connection_string(
 
 token_credential = DefaultAzureCredential()
 
-schema_string = """
-{"namespace": "example.avro",
- "type": "record",
- "name": "Customer.Created",
- "fields": [
-     {"name": "customer_guid", "type": "string"},
-     {"name": "created_date", "type": "string"},
-     {"name": "email", "type": "string"}
- ]
-}
-"""
+schema_string = """{
+    "namespace": "example.avro",
+    "type": "record",
+    "name": "Customer.Created",
+    "fields": [
+        {
+            "name": "id",
+            "type": [
+                "string"
+            ]
+        },
+        {
+            "name": "date",
+            "type": [
+                "string"
+            ]
+        },
+        {
+            "name": "email",
+            "type": [
+                "string"
+            ]
+        }
+    ]
+    }"""
 
 schema_registry_client = SchemaRegistryClient(fully_qualified_namespace, token_credential)
 avro_serializer = AvroSerializer(client=schema_registry_client, group_name=group_name, auto_register_schemas=True)
