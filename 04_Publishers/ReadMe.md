@@ -21,6 +21,7 @@ pip install faker
 pip install azure-eventhub
 pip install azure.functions
 pip install azure-storage-blob
+pip install azure-cosmos
 ```
 
 ### Deploy Event Hub for Publishing Customer Created Event Using the Platform Team Provided Template
@@ -47,6 +48,12 @@ az deployment group create --name "eventHubDeployment" --resource-group "events-
 2. Go into your Azure portal and confirm you can see the "customer" event hub on your events namespace and "customer" container in the events storage account. Confirm that both the event hub and the container have the properties expected from the above. 
 
 **Remember**, this deployment lives with the local customer team, but as the publisher pattern is so common it can utilise a centrally provided platform template for the event publisher objects, that is the event hub and storage container.
+
+1. We're also going to want to have a cosmos db account to store customers that are created, as we can only provide an event in past tense once it has actually occured in the local system. To create the cosmos account, paste the code below into the terminal, again replacing {youruniqueid} with your own unique id.
+
+```bash
+az deployment group create --name "cosmosDeployment" --resource-group "events-customer-rg" --template-file "04_Publishers\platform\cosmos.bicep" --parameters namespace="{youruniqueid}" teamName="customer"
+```
 
 ### Deploy Resources to Start Customer Created Events
 

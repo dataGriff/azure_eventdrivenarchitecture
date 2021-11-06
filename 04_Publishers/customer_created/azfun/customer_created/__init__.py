@@ -9,6 +9,7 @@ from azure.eventhub import EventHubProducerClient, EventData
 from azure.schemaregistry import SchemaRegistryClient
 from azure.schemaregistry.serializer.avroserializer import AvroSerializer
 from azure.identity import ClientSecretCredential
+from azure.cosmos import CosmosClient, PartitionKey
 
 def main(mytimer: func.TimerRequest) -> None:
     
@@ -34,9 +35,8 @@ def main(mytimer: func.TimerRequest) -> None:
     }
 
     ## Setup Schema Registry Connection Details
-    fully_qualified_namespace = 'schemaregistry-ehns-eun-griff.servicebus.windows.net'
+    fully_qualified_namespace =  os.environ["schemareg_namespace"]
     group_name = "myschemagroup"
-    format = "Avro"
     ##this is aprg with permissions on the schema registry that needs to be setup
     tenant_id = os.environ["tenant_id"]
     schemareg_client_id = os.environ["schemareg_client_id"]
@@ -87,13 +87,39 @@ def main(mytimer: func.TimerRequest) -> None:
         eventhub_name="customer"
     )
 
+    print("Create cosmos client...")
+    endpoint = os.environ["cosmos_endpoint"]
+    key = os.environ["cosmos_key"]
+    client = CosmosClient(endpoint, key)
+    print("Created cosmos client.")
+
+    print("Create database...")
+    database_name = 'customer'
+    database = client.create_database_if_not_exists(id=database_name)
+    print("Database created.")
+
+    print("Create container...")
+    container_name = 'customer_created'
+    container = database.create_container_if_not_exists(
+        id=container_name, 
+        partition_key=PartitionKey(path="/id")
+    )
+    print("Container created.")
+
+
     with eventhub_producer, avro_serializer:
+        try:
+            container.create_item(body=data)
+        except:
+            raise ValueError('ERROR: Customer was not created.')
+        logging.info('SUCCESS: Customer was created.')
         logging.info('Start sending event hub packet')
         event_data_batch = eventhub_producer.create_batch()
         payload_bytes = avro_serializer.serialize(data, schema=schema_string)
         event_data_batch.add(EventData(body=payload_bytes))
         eventhub_producer.send_batch(event_data_batch)
-        logging.info('Event hub packet sent')
+        logging.info('Event hub packet sent.')
+
 
     logging.info(f'Python timer trigger function ran at {utc_timestamp}')
 
