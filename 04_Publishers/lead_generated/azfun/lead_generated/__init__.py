@@ -9,6 +9,7 @@ from azure.eventhub import EventHubProducerClient, EventData
 from azure.schemaregistry import SchemaRegistryClient
 from azure.schemaregistry.serializer.avroserializer import AvroSerializer
 from azure.identity import ClientSecretCredential
+from azure.cosmos import CosmosClient, PartitionKey
 
 def main(event: func.EventHubEvent):
     class Customer ():
@@ -104,13 +105,38 @@ def main(event: func.EventHubEvent):
         logging.info('Get schema serialiazer for publish...')
         publish_avro_serializer = AvroSerializer(client=publish_schema_registry_client, group_name=publish_schema_group, auto_register_schemas=True)
 
+        print("Create cosmos client...")
+        endpoint = os.environ["cosmos_endpoint"]
+        key = os.environ["cosmos_key"]
+        client = CosmosClient(endpoint, key)
+        print("Created cosmos client.")
+
+        print("Create database...")
+        database_name = 'lead'
+        database = client.create_database_if_not_exists(id=database_name)
+        print("Database created.")
+
+        print("Create container...")
+        container_name = 'lead_generated'
+        container = database.create_container_if_not_exists(
+            id=container_name, 
+            partition_key=PartitionKey(path="/customer_id")
+        )
+        print("Container created.")
+
+
         with eventhub_producer, publish_avro_serializer:
+            try:
+                container.create_item(body=data)
+            except:
+                raise ValueError('ERROR: Lead was not generated.')
+            logging.info('SUCCESS: Lead was generated.')
             logging.info('Start sending event hub packet')
             event_data_batch = eventhub_producer.create_batch()
             payload_bytes = publish_avro_serializer.serialize(data, schema=schema_string)
             event_data_batch.add(EventData(body=payload_bytes))
             eventhub_producer.send_batch(event_data_batch)
-            logging.info('Event hub packet sent')
+            logging.info('Event hub packet sent.')
 
     else:
         logging.info('This customer has not taken a lead. More fool them!')

@@ -86,6 +86,12 @@ az deployment group create --name "eventHubDeployment" --resource-group "events-
 
 2. Replace the {youruniqueid} with the uniqueid you have been using for your shared resources and then press return execute.
 
+3. Cosmos deploy
+
+```bash
+az deployment group create --name "cosmosDeployment" --resource-group "events-customer-rg" --template-file "04_Publishers\platform\cosmos.bicep" --parameters namespace="{youruniqueid}" teamName="lead"
+```
+
 ## Deploy Resources to Generate Lead Generated Event
 
 This is an azure function triggered by an event hub source, in this case the customer created event hub.

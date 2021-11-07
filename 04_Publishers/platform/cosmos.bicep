@@ -1,5 +1,5 @@
-@description('Cosmos DB account name, max length 44 characters, lowercase')
-param accountName string = 'customer-cosdb-eun-griff2'
+@description('Your unique namespace')
+param namespace string
 
 @description('Location for the Cosmos DB account.')
 param location string = resourceGroup().location
@@ -16,6 +16,8 @@ param teamName string
   'Strong'
 ])
 param defaultConsistencyLevel string = 'Session'
+
+var accountName =  '${teamName}-cosdb-eun-${namespace}'
 
 resource cosmos 'Microsoft.DocumentDB/databaseAccounts@2021-04-15' = {
   name: accountName
