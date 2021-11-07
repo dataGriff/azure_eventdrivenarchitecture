@@ -27,6 +27,34 @@ resource eventHubNamespace 'Microsoft.EventHub/namespaces@2021-01-01-preview' = 
   }
 }
 
+//auth rule send
+resource send 'Microsoft.EventHub/namespaces/authorizationRules@2021-06-01-preview' = {
+  parent: eventHubNamespace
+  name: 'send'
+  properties: {
+    rights: [
+      'Send'
+    ]
+  }
+  dependsOn: [
+    eventHubNamespace
+  ]
+}
+
+//auth rule send
+resource listen 'Microsoft.EventHub/namespaces/authorizationRules@2021-06-01-preview' = {
+  parent: eventHubNamespace
+  name: 'listen'
+  properties: {
+    rights: [
+      'Listen'
+    ]
+  }
+  dependsOn: [
+    eventHubNamespace
+  ]
+}
+
 //storage account
 resource eventstorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   name: 'events001sa${locationshortcode}${namespace}'
