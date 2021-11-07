@@ -41,9 +41,12 @@ Event Driven Architecture Dictionary
 * [Azure Functions VS Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
 * [Python Schema Registry](https://pypi.org/project/azure-schemaregistry-avroserializer/)
 * [Python Event Hub Trigger Not Firing](https://docs.microsoft.com/en-us/answers/questions/339501/azure-function-not-being-triggered-with-eventhubtr.html)
-* ([Compatibility](https://stevenheidel.medium.com/backward-vs-forward-compatibility-9c03c3db15c9#:~:text=Backward%20compatibility%20means%20that%20readers,writers%20with%20a%20newer%20schema))
+* ([Compatibility](https://stevenheidel.medium.com/backward-vs-forward-compatibility-9c03c3db15c9#:~:text=Backward%20compatibility%20means%20that%20readers,writers%2*0with%20a%20newer%20schema))
 * [Event Hub Quotas](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-quotas)
-
+* [Function Checkpoint Storage](https://shervyna.medium.com/event-triggered-azure-function-replays-retries-a3cb1efd17b5)
+* [How to Kill Function Checkpoints](https://stackoverflow.com/questions/46199269/how-to-go-back-to-a-checkpoint-with-azure-eventhub-trigger-to-functions)
+* I had to actually delete the container...
+* Remember on function - Go to diagnose and solve problems and guess what, it does that for things like funtion not triggering!!!
 ## Demo
 
 This demo will involve three teams:

@@ -57,20 +57,42 @@ az deployment group create --name "cosmosDeployment" --resource-group "events-cu
 
 ### Deploy Resources to Start Customer Created Events
 
-
+This is a timer trigger based function.
+Remember the requirements added to txt file which is for all the python packages required.
 
 ## Lead Generated
 
 ### Deploy Event Hub for Publishing Lead Generated Event Using the Platform Team Provided Template
 
-This is subscriber but needed as we're using it to regenerate leads with consistent lead guid
-```bash
-az deployment group create --name "consumerDeployment" --resource-group "events-broker-rg" --template-file "05_Subscribers\platform\consumer.bicep" --parameters namespace="griff2" event="customer" consumer="lead"
-```
+We're actually going to source the lead generated event from the customer created event, with every customer we get having a chance of being a lead for the sales team. We therefore first need to deploy a new consumer group on the customer event hub for the leads to subscribe from.
+
+1. In your Visual Studio code terminal, copy and paste in the following code:
 
 ```bash
-az deployment group create --name "eventHubDeployment" --resource-group "events-broker-rg" --template-file "04_Publishers\platform\eventhub.bicep" --parameters namespace="griff2" event="lead"
+az deployment group create --name "consumerDeployment" --resource-group "events-broker-rg" --template-file "05_Subscribers\platform\consumer.bicep" --parameters namespace="{youruniqueid}" event="customer" consumer="lead"
 ```
+
+2. Replace the {youruniqueid} with the uniqueid you have been using for your shared resources and then press return execute.
+
+3. Go to the customer created event hub and look at the consumer groups. You should see "lead" which will represent the dedicated set of data for consumption for leads to be consume. 
+
+Now to deploy the event hub we will publish the leads to...
+
+1. In your Visual Studio code terminal, copy and paste in the following code:
+
+```bash
+az deployment group create --name "eventHubDeployment" --resource-group "events-broker-rg" --template-file "04_Publishers\platform\eventhub.bicep" --parameters namespace="{youruniqueid}" event="lead"
+```
+
+2. Replace the {youruniqueid} with the uniqueid you have been using for your shared resources and then press return execute.
+
+## Deploy Resources to Generate Lead Generated Event
+
+This is an azure function triggered by an event hub source, in this case the customer created event hub.
+Remember to update function.json file
+Also update local_settings for your app setting values (e.g. os['setting]) and these need updating in the app settings in portal too.
+Also need all packages in the requirements.txt.
+
 
 ## Sale Confirmed
 

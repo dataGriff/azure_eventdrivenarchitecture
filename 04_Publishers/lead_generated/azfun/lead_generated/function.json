@@ -6,7 +6,7 @@
       "name": "event",
       "direction": "in",
       "eventHubName": "customer",
-      "connection": "events001ehnseungriff2_RootManageSharedAccessKey_EVENTHUB",
+      "connection": "conn_eventhub_consume",
       "cardinality": "one",
       "consumerGroup": "lead",
       "dataType": "binary"
