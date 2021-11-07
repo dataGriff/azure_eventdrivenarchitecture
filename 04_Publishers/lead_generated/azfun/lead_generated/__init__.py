@@ -120,7 +120,7 @@ def main(event: func.EventHubEvent):
         container_name = 'lead_generated'
         container = database.create_container_if_not_exists(
             id=container_name, 
-            partition_key=PartitionKey(path="/customer_id")
+            partition_key=PartitionKey(path="/id")
         )
         print("Container created.")
 
@@ -128,7 +128,7 @@ def main(event: func.EventHubEvent):
         with eventhub_producer, publish_avro_serializer:
             try:
                 container.create_item(body=data)
-            except:
+            except e:
                 raise ValueError('ERROR: Lead was not generated.')
             logging.info('SUCCESS: Lead was generated.')
             logging.info('Start sending event hub packet')
