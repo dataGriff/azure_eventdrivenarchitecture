@@ -26,7 +26,7 @@ az account set --subscription "{your subscription name}"
 Once deployed confirm you can see the event hub namespace **schemaregistry-ehns-eun-{my unique namespace}** in the portal in the **events-schemaregistry-rg** resource group. You should also the resource is tagged with Team: Platform.
 
 ```bash
-az deployment group create --name "brokerDeployment" --resource-group "events-schemaregistry-rg" --template-file "02_SharedPlatform\schemaregistry.bicep" --parameters namespace="{my unique namespace}"
+az deployment group create --name "schemaRegistryDeployment" --resource-group "events-schemaregistry-rg" --template-file "02_SharedPlatform\schemaregistry.bicep" --parameters namespace="{my unique namespace}"
 ```
 
 **Note** - this schema registry could be a part of the event broker namespace itself, we have just kept it separate for now to show scalability and to highlight it as a key component on the estate.
@@ -42,14 +42,14 @@ az deployment group create --name "brokerDeployment" --resource-group "events-br
 Once deployed confirm you can see the data lake storage account **lakesaeun{my unique namespace}** in the portal in the **events-lake-rg** resource group. You should also the resource is tagged with Team: Platform.
 
 ```bash
-az deployment group create --name "brokerDeployment" --resource-group "events-lake-rg" --template-file "02_SharedPlatform\lake.bicep" --parameters namespace="{my unique namespace}"
+az deployment group create --name "lakeDeployment" --resource-group "events-lake-rg" --template-file "02_SharedPlatform\lake.bicep" --parameters namespace="{my unique namespace}"
 ```
 
 9. Deploy the data lake shared infrastructure by running the following command in the terminal, replacing the namespace parameter {my unique namespace} with the same unique name you used above.
 Once deployed confirm you can see the data lake storage account **events-dbw-eun-{my unique namespace}** in the portal in the **events-databricks-rg** resource group. You should also the resource is tagged with Team: Platform.
 
 ```bash
-az deployment group create --name "brokerDeployment" --resource-group "events-databricks-rg" --template-file "02_SharedPlatform\databricks.bicep" --parameters namespace="{my unique namespace}"
+az deployment group create --name "databricksDeployment" --resource-group "events-databricks-rg" --template-file "02_SharedPlatform\databricks.bicep" --parameters namespace="{my unique namespace}"
 ```
 
 10. You have now played the role of the platform team and deployed all the shared assets for the business value teams to utilize. 
