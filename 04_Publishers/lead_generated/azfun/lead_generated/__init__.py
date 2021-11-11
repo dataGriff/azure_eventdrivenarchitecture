@@ -74,19 +74,19 @@ def main(event: func.EventHubEvent):
             "name": "Lead.Generated",
             "fields": [
                 {
+                    "name": "id",
+                    "type": [
+                        "string"
+                    ]
+                },
+                {
+                    "name": "date",
+                    "type": [
+                        "string"
+                    ]
+                },
+                {
                     "name": "customer_id",
-                    "type": [
-                        "string"
-                    ]
-                },
-                {
-                    "name": "lead_id",
-                    "type": [
-                        "string"
-                    ]
-                },
-                {
-                    "name": "lead_date",
                     "type": [
                         "string"
                     ]
@@ -96,10 +96,9 @@ def main(event: func.EventHubEvent):
 
         lead_id = str(uuid.uuid4()),
         data = {
-        'customer_id': str(customer_id),
-        'lead_id':  lead_id,
-        'lead_date' : str(datetime.datetime.utcnow()),
-        'id':  lead_id
+        'id': str(customer_id),
+        'date':  lead_id,
+        'customer_id' : str(datetime.datetime.utcnow()),
         }
 
         logging.info('Get schema reg client for publish...')
@@ -122,7 +121,7 @@ def main(event: func.EventHubEvent):
         container_name = 'lead_generated'
         container = database.create_container_if_not_exists(
             id=container_name, 
-            partition_key=PartitionKey(path="/customer_id")
+            partition_key=PartitionKey(path="/id")
         )
         print("Container created.")
 
