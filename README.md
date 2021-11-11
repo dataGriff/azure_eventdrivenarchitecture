@@ -72,9 +72,9 @@ This demo will involve three teams:
 ## 1. Create Resource Groups
 
 [Resource Groups](01_ResourceGroups/ReadMe.md)
-## 2. Shared Infrastructure
+## 2. Shared Platform
 
-[Shared Infrastructure](02_SharedInfrastructure/ReadMe.md)
+[Shared Platform][02_SharedPlatform](02_SharedPlatform/ReadMe.md)
 ## 3. Schema 
 
 [SchemaRegistry](03_SchemaRegistry/ReadMe.md)
