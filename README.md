@@ -74,7 +74,7 @@ This demo will involve three teams:
 [Resource Groups](01_ResourceGroups/ReadMe.md)
 ## 2. Shared Platform
 
-[Shared Platform][02_SharedPlatform](02_SharedPlatform/ReadMe.md)
+[Shared Platform](02_SharedPlatform/ReadMe.md)
 ## 3. Schema 
 
 [SchemaRegistry](03_SchemaRegistry/ReadMe.md)
