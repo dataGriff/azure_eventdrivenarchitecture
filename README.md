@@ -47,6 +47,7 @@ Event Driven Architecture Dictionary
 * [How to Kill Function Checkpoints](https://stackoverflow.com/questions/46199269/how-to-go-back-to-a-checkpoint-with-azure-eventhub-trigger-to-functions)
 * I had to actually delete the container...
 * Remember on function - Go to diagnose and solve problems and guess what, it does that for things like funtion not triggering!!!
+* [Cosmos Required id](https://www.pmichaels.net/tag/the-input-content-is-invalid-because-the-required-properties-id-are-missing/)
 ## Demo
 
 This demo will involve three teams:

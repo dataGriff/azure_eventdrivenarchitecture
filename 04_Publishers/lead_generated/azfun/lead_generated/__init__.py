@@ -94,10 +94,12 @@ def main(event: func.EventHubEvent):
             ]
             }"""
 
+        lead_id = str(uuid.uuid4()),
         data = {
         'customer_id': str(customer_id),
-        'lead_id':  str(uuid.uuid4()),
+        'lead_id':  lead_id,
         'lead_date' : str(datetime.datetime.utcnow()),
+        'id':  lead_id
         }
 
         logging.info('Get schema reg client for publish...')
@@ -120,7 +122,7 @@ def main(event: func.EventHubEvent):
         container_name = 'lead_generated'
         container = database.create_container_if_not_exists(
             id=container_name, 
-            partition_key=PartitionKey(path="/id")
+            partition_key=PartitionKey(path="/customer_id")
         )
         print("Container created.")
 
@@ -128,7 +130,7 @@ def main(event: func.EventHubEvent):
         with eventhub_producer, publish_avro_serializer:
             try:
                 container.create_item(body=data)
-            except e:
+            except:
                 raise ValueError('ERROR: Lead was not generated.')
             logging.info('SUCCESS: Lead was generated.')
             logging.info('Start sending event hub packet')
