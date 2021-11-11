@@ -2,7 +2,7 @@
 
 In this section we will be taking the role of the Platform team and deploying all the shared resources for the event driven architecture.
 
-**You must have completed [01_ResourceGroups](..\01_ResourceGroups\ReadMe.md)before continuing with the below.** 
+**You must have completed [01_ResourceGroups](\..\01_ResourceGroups\ReadMe.md)before continuing with the below.** 
 
 1. Open up the azure_eventdrivenarchitecture repo in visual studio code.
 
