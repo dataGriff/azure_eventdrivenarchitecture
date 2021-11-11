@@ -4,7 +4,7 @@ In this section we are just going to deploy some publishers into our estate in a
 
 We will be simulating a customer and sales team during this exercise, but also utilising standard deployment pipelines provided by platform, for both publishers and subscribers. Deploying the shared common event broker interface resource upfront allows the platform team to also provide templates for the publisher and consumer pattern on the technology that has been chosen, which is used below. 
 
-**You must have completed [03_SchemaRegistry](..\03_SchemaRegistry\ReadMe.md)before continuing with the below.** 
+**You must have completed [03_SchemaRegistry](../03_SchemaRegistry/ReadMe.md) before continuing with the below.** 
 
 ## Install Python Packages
 

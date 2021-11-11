@@ -71,10 +71,16 @@ This demo will involve three teams:
 
 ## 1. Create Resource Groups
 
+[Resource Groups](../01_ResourceGroups/ReadMe.md)
 ## 2. Shared Infrastructure
-## 3. Schema Registry
 
+[Shared Infrastructure](../02_SharedInfrastructure/ReadMe.md)
+## 3. Schema 
+
+[SchemaRegistry](../03_SchemaRegistry/ReadMe.md)
 ## 4. Publishers
+
+[Publishers](../04_Publishers/ReadMe.md)
 ## 5. Consumers
 
 ## 6. Data Lake

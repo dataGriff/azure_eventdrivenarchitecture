@@ -4,7 +4,7 @@ In this section we are just going to explore some registry concepts and implemen
 
 For this section you will need to make sure you have python installed as per the pre-requisites. 
 
-**You must have completed [02_SharedPlatform](..\02_SharedPlatform\ReadMe.md) before continuing with the below.** 
+**You must have completed [02_SharedPlatform](../02_SharedPlatform/ReadMe.md) before continuing with the below.** 
 
 ## Create an App Reg
 
