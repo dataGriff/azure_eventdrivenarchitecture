@@ -20,3 +20,4 @@
 * I had to actually delete the container...
 * Remember on function - Go to diagnose and solve problems and guess what, it does that for things like funtion not triggering!!!
 * [Cosmos Required id](https://www.pmichaels.net/tag/the-input-content-is-invalid-because-the-required-properties-id-are-missing/)
+* [PyPi Azure Schema Registry](https://pypi.org/project/azure-schemaregistry/)

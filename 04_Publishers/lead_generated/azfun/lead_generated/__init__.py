@@ -7,7 +7,7 @@ import os
 
 from azure.eventhub import EventHubProducerClient, EventData
 from azure.schemaregistry import SchemaRegistryClient
-from azure.schemaregistry.serializer.avroserializer import AvroSerializer
+#from azure.schemaregistry.serializer.avroserializer import AvroSerializer
 from azure.identity import ClientSecretCredential
 from azure.cosmos import CosmosClient, PartitionKey
 
@@ -47,16 +47,16 @@ def main(event: func.EventHubEvent):
 
     ## Attempt to deserialize customer created data
     ## (once we've established we have a new customer we can try to generate a lead)
-    try:
-        source_deserialized_data = source_avro_serializer.deserialize(source_bytes_payload)
-        print('The dict data after deserialization is {}'.format(source_deserialized_data))
-        email = source_deserialized_data.get("email")
-        customer_id = source_deserialized_data.get("id")
-        created_date = source_deserialized_data.get("date")
-        customer = Customer(customer_id, created_date, email)
-        customer.get_customer_details()
-    except:
-        raise ValueError("This source payload is invalid.")
+    #try:
+    source_deserialized_data = source_avro_serializer.deserialize(source_bytes_payload)
+    logging.info('The dict data after deserialization is {}'.format(source_deserialized_data))
+    email = source_deserialized_data.get("email")
+    customer_id = source_deserialized_data.get("id")
+    created_date = source_deserialized_data.get("date")
+    customer = Customer(customer_id, created_date, email)
+    customer.get_customer_details()
+   # except:
+      #  raise ValueError("This source payload is invalid.")
 
     # generate lead randomly for 1 in 3 customers...
     lead_dice = random.randint(1,3)
@@ -96,9 +96,9 @@ def main(event: func.EventHubEvent):
 
         lead_id = str(uuid.uuid4()),
         data = {
-        'id': str(customer_id),
-        'date':  lead_id,
-        'customer_id' : str(datetime.datetime.utcnow()),
+        'id': lead_id,
+        'date':  str(datetime.datetime.utcnow()),
+        'customer_id' : str(customer_id) 
         }
 
         logging.info('Get schema reg client for publish...')

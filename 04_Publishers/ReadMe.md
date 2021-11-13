@@ -89,7 +89,7 @@ az deployment group create --name "eventHubDeployment" --resource-group "events-
 3. Cosmos deploy
 
 ```bash
-az deployment group create --name "cosmosDeployment" --resource-group "events-lead-rg" --template-file "04_Publishers\platform\cosmos.bicep" --parameters namespace="{youruniqueid}" teamName="lead"
+az deployment group create --name "cosmosDeployment" --resource-group "events-leads-rg" --template-file "04_Publishers\platform\cosmos.bicep" --parameters namespace="{youruniqueid}" teamName="lead"
 ```
 
 ## Deploy Resources to Generate Lead Generated Event

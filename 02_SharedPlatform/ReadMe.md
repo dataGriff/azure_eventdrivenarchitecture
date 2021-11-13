@@ -2,20 +2,20 @@
 
 In this section we will be taking the role of the Platform team and deploying all the shared resources for the event driven architecture.
 
-**You must have completed [01_ResourceGroups](../01_ResourceGroups/ReadMe.md)before continuing with the below.** 
+**You must have completed [01_ResourceGroups](../01_ResourceGroups/ReadMe.md) before continuing with the below.**
 
 1. Open up the azure_eventdrivenarchitecture repo in visual studio code.
 
-2. Open up the Terminal by goig to view > terminal. 
+2. Open up the Terminal by goign to view > terminal in the visual studio code menu.
 
-3. Ensure that command prompt is chosen.
+3. Ensure that command prompt is chosen on the right dropdown menu of the terminal.
 
 4. Login to Azure running the Azure CLI command below in the terminal.
-
 
 ```bash
 az login
 ```
+
 5. Set the azure subscription you are going to be using by running the command below in the terminal, replacing {your subscription name} with your subscription name.
 
 ```bash
@@ -52,4 +52,4 @@ Once deployed confirm you can see the data lake storage account **events-dbw-eun
 az deployment group create --name "databricksDeployment" --resource-group "events-databricks-rg" --template-file "02_SharedPlatform\databricks.bicep" --parameters namespace="{my unique namespace}"
 ```
 
-10. You have now played the role of the platform team and deployed all the shared assets for the business value teams to utilize. 
+10. You have now played the role of the platform team and deployed all the shared assets for the business value teams to utilize.
