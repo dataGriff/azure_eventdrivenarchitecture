@@ -6,6 +6,10 @@ We will be simulating a customer and sales team during this exercise, but also u
 
 **You must have completed [03_SchemaRegistry](../03_SchemaRegistry/ReadMe.md) before continuing with the below.** 
 
+**Need to mention function checkpoint stored in storage**
+**Need to handle duplicates locally**
+**Only create event if not exists etc**
+
 ## Install Python Packages
 
 1. Activate the python environment by running the following.

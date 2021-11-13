@@ -7,7 +7,7 @@ import os
 
 from azure.eventhub import EventHubProducerClient, EventData
 from azure.schemaregistry import SchemaRegistryClient
-#from azure.schemaregistry.serializer.avroserializer import AvroSerializer
+from azure.schemaregistry.serializer.avroserializer import AvroSerializer
 from azure.identity import ClientSecretCredential
 from azure.cosmos import CosmosClient, PartitionKey
 
@@ -37,36 +37,57 @@ def main(event: func.EventHubEvent):
     ## Connect to Schema Registry
     logging.info('Get schema reg client for source...')
     source_schema_registry_client = SchemaRegistryClient(fully_qualified_namespace, token_credential)
-    logging.info('Get schema serialiazer for source...')
-    source_avro_serializer = AvroSerializer(client=source_schema_registry_client
-    , group_name=source_schema_group)
+    try:
+        logging.info('Get schema serialiazer for source...')
+        source_avro_serializer = AvroSerializer(client=source_schema_registry_client
+        , group_name=source_schema_group)
+    except:
+        logging.info('Failed to get schema serialiazer for source...')
+        logging.raiseExceptions
+        raise ValueError('ERROR: Failed to get schema serializer for source.')
 
     ## This event comes from the event hub subcription of the function
     ## Which is listening to customer creation
-    source_bytes_payload =  event.get_body()
+    try:
+        logging.info('Get event bytes payload..')
+        source_bytes_payload =  event.get_body()
+    except:
+        logging.info('Failed to get events bytes payload...')
+        logging.raiseExceptions
+        raise ValueError('ERROR: Failed to get events payload.')
 
     ## Attempt to deserialize customer created data
     ## (once we've established we have a new customer we can try to generate a lead)
-    #try:
-    source_deserialized_data = source_avro_serializer.deserialize(source_bytes_payload)
-    logging.info('The dict data after deserialization is {}'.format(source_deserialized_data))
-    email = source_deserialized_data.get("email")
-    customer_id = source_deserialized_data.get("id")
-    created_date = source_deserialized_data.get("date")
-    customer = Customer(customer_id, created_date, email)
-    customer.get_customer_details()
-   # except:
-      #  raise ValueError("This source payload is invalid.")
+    try:
+        logging.info('Deserialize data..')
+        source_deserialized_data = source_avro_serializer.deserialize(source_bytes_payload)
+        logging.info('The dict data after deserialization is {}'.format(source_deserialized_data))
+        logging.info('Get customer details..')
+        email = source_deserialized_data.get("email")
+        customer_id = source_deserialized_data.get("id")
+        created_date = source_deserialized_data.get("date")
+        customer = Customer(customer_id, created_date, email)
+        customer.get_customer_details()
+    except:
+        logging.info('Failed to deserialize data...')
+        logging.raiseExceptions
+        raise ValueError('ERROR: Failed to deserialize.')
 
     # generate lead randomly for 1 in 3 customers...
     lead_dice = random.randint(1,3)
     if(lead_dice) == 2:
         logging.info('This customer has taken a lead (the fools!)...')
 
-        eventhub_producer = EventHubProducerClient.from_connection_string(
-            conn_str=conn_eventhub_publish,
-            eventhub_name="lead"
-        )
+        try:
+            logging.info('Get event hub producer client...')
+            eventhub_producer = EventHubProducerClient.from_connection_string(
+                conn_str=conn_eventhub_publish,
+                eventhub_name="lead"
+            )
+        except: 
+            logging.info('Failed to get event hub producer client...')
+            logging.raiseExceptions
+            raise ValueError('ERROR: Failed to get event hub producer client.')
 
         schema_string = """{
             "namespace": "example.avro",
@@ -94,42 +115,53 @@ def main(event: func.EventHubEvent):
             ]
             }"""
 
-        lead_id = str(uuid.uuid4()),
+        guid = uuid.uuid4()
+        date = datetime.datetime.utcnow()
+        customer_id = customer_id
+        logging.info(f'Guid is {guid}')
+        logging.info(f'Date is {date}')
+        logging.info(f'customer_id is {customer_id}')
+
         data = {
-        'id': lead_id,
-        'date':  str(datetime.datetime.utcnow()),
-        'customer_id' : str(customer_id) 
+            'id': str(guid),
+            'date' : str(date),
+            'customer_id':  customer_id
         }
+
+        logging.info(f'Data is {data}')
 
         logging.info('Get schema reg client for publish...')
         publish_schema_registry_client = SchemaRegistryClient(fully_qualified_namespace, token_credential)
         logging.info('Get schema serialiazer for publish...')
         publish_avro_serializer = AvroSerializer(client=publish_schema_registry_client, group_name=publish_schema_group, auto_register_schemas=True)
 
-        print("Create cosmos client...")
+        logging.info("Create cosmos client...")
         endpoint = os.environ["cosmos_endpoint"]
         key = os.environ["cosmos_key"]
         client = CosmosClient(endpoint, key)
-        print("Created cosmos client.")
+        logging.info("Created cosmos client.")
 
-        print("Create database...")
+        logging.info("Create database...")
         database_name = 'lead'
         database = client.create_database_if_not_exists(id=database_name)
-        print("Database created.")
+        logging.info("Database created.")
 
-        print("Create container...")
+        logging.info("Create container...")
         container_name = 'lead_generated'
         container = database.create_container_if_not_exists(
             id=container_name, 
             partition_key=PartitionKey(path="/id")
         )
-        print("Container created.")
+        logging.info("Container created.")
 
 
         with eventhub_producer, publish_avro_serializer:
             try:
+                logging.info("Generate lead....")
                 container.create_item(body=data)
             except:
+                logging.info("Failed to generate lead....")
+                logging.raiseExceptions
                 raise ValueError('ERROR: Lead was not generated.')
             logging.info('SUCCESS: Lead was generated.')
             logging.info('Start sending event hub packet')

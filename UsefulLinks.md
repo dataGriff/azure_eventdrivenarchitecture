@@ -21,3 +21,5 @@
 * Remember on function - Go to diagnose and solve problems and guess what, it does that for things like funtion not triggering!!!
 * [Cosmos Required id](https://www.pmichaels.net/tag/the-input-content-is-invalid-because-the-required-properties-id-are-missing/)
 * [PyPi Azure Schema Registry](https://pypi.org/project/azure-schemaregistry/)
+* [PyPi Azure Schema Registry Serializer](https://pypi.org/project/azure-schemaregistry-avroserializer/)
+* [Python Functions ](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-python?tabs=azurecli-linux%2Capplication-level)

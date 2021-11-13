@@ -6,5 +6,5 @@ azure-functions
 azure-eventhub 
 azure-schemaregistry
 azure-identity
-azure-schemaregistry-avroserializer
 azure-cosmos
+azure-schemaregistry-avroserializer
