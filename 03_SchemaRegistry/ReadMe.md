@@ -2,15 +2,15 @@
 
 In this section we are just going to explore some registry concepts and implementation before we carry on as the value stream teams using our new shared components of the event driven architecture!
 
-For this section you will need to make sure you have python installed as per the pre-requisites. 
+For this section you will need to make sure you have python installed as per the pre-requisites.
 
-**You must have completed [02_SharedPlatform](../02_SharedPlatform/ReadMe.md) before continuing with the below.** 
+**You must have completed [02_SharedPlatform](../02_SharedPlatform/ReadMe.md) before continuing with the below.**
 
 ## Create an App Reg
 
-We are going to be creating an application registration that we will use for the majority of our authentication against our new estate for the following exercises. We will also store these credentials in local environment variables for easier local development too. 
+We are going to be creating an application registration that we will use for the majority of our authentication against our new estate for the following exercises. We will also store these credentials in local environment variables for easier local development too.
 
-1. In the Azure Portal go into application registrations in Azure Active directory (you can also find a link to this on your dashboard). 
+1. In the Azure Portal go into application registrations in Azure Active directory (you can also find a link to this on your dashboard).
 2. Create a new app registration called aprg-events-admin.
 
 ## Setup Local Environment Variables
@@ -26,7 +26,7 @@ token_credential = DefaultAzureCredential()
 1. Edit the environment variables for your account on your local machine.
 2. First add a variable for AZURE_CLIENT_ID from your new application registration.
 3. Then add a variable for AZURE_TENANT_ID from your new application registration.
-4. Next we need to generate a secret from our application registration and add this to our environment variables. 
+4. Next we need to generate a secret from our application registration and add this to our environment variables.
 5. Once you have copied this value, paste it into a new local environment variable called AZURE_CLIENT_SECRET.
 
 ## Create a Python Environment
@@ -59,17 +59,18 @@ We are first going to demonstrate a backward compatible schema in the schema reg
 ).
 
 1. Navigate to your schema registry event hub namespace in the Azure portal (schemaregistry-ehns-eun-{youruniqueid}).
-1. Under entities on the left hand side menu choose "Schema Registry". 
+1. Under entities on the left hand side menu choose "Schema Registry".
 2. Select +Schema Group.
-3. Call the schema group "myschemagroup", leave serialization type as avro, and choose backward compatibility. 
-4. Look at the code in this file [register_schemas_backward](.\register_schemas_backward.py). This is going to upload the schemas present in the script and there are comments on why some will succed and some will not based on backward compatible schemas as per the schema registry [documentation](https://docs.microsoft.com/en-us/azure/event-hubs/schema-registry-overview#backward-compatibility). 
+3. Call the schema group "myschemagroup", leave serialization type as avro, and choose backward compatibility.
+4. Look at the code in this file [register_schemas_backward](./register_schemas_backward.py). This is going to upload the schemas present in the script and there are comments on why some will succed and some will not based on backward compatible schemas as per the schema registry [documentation](https://docs.microsoft.com/en-us/azure/event-hubs/schema-registry-overview#backward-compatibility).
 5. Now execute the below in the terminal.
 
 ```
 03_SchemaRegistry\register_schemas_backward.py
 ```
 
-1. We will see in the terminal output that schema attempts 1, 2 and 4 were able to be uploaded bu schemas 3 and 5 were not. 
+1. We will see in the terminal output that schema attempts 1, 2 and 4 were able to be uploaded bu schemas 3 and 5 were not.
+
 * Schema 1 was the initiali schema and valid so uploaded fine.
 * Schema 2 added an optional field which is a valid backward compatible change to make so uploaded fine.
 * Schema 3 added a mandatory field which is an invalid backward compatible change to make so did not upload.
@@ -84,17 +85,18 @@ We are now going to demonstrate a forward compatible schema in the schema regist
 ).
 
 1. Navigate to your schema registry event hub namespace in the Azure portal (schemaregistry-ehns-eun-{youruniqueid}).
-1. Under entities on the left hand side menu choose "Schema Registry". 
+1. Under entities on the left hand side menu choose "Schema Registry".
 2. Select +Schema Group.
-3. Call the schema group "myschemagroup", leave serialization type as avro, and choose forward compatibility. 
-4. Look at the code in this file [register_schemas_backward](.\register_schemas_backward.py). This is going to upload the schemas present in the script and there are comments on why some will succed and some will not based on backward compatible schemas as per the schema registry [documentation](https://docs.microsoft.com/en-us/azure/event-hubs/schema-registry-overview#forward-compatibility). 
+3. Call the schema group "myschemagroup", leave serialization type as avro, and choose forward compatibility.
+4. Look at the code in this file [register_schemas_backward](./register_schemas_backward.py). This is going to upload the schemas present in the script and there are comments on why some will succed and some will not based on backward compatible schemas as per the schema registry [documentation](https://docs.microsoft.com/en-us/azure/event-hubs/schema-registry-overview#forward-compatibility).
 5. Now execute the below in the terminal.
 
 ```
 03_SchemaRegistry\register_schemas_forward.py
 ```
 
-1. We will see in the terminal output that schema attempts 1, 2 and 3 were able to be uploaded but schemas 4 and 5 were not. 
+1. We will see in the terminal output that schema attempts 1, 2 and 3 were able to be uploaded but schemas 4 and 5 were not.
+
 * Schema 1 was the initial schema and valid so uploaded fine.
 * Schema 2 added an optional field which is a valid forward compatible change to make so uploaded fine.
 * Schema 3 added a mandatory field which is a valid forward compatible change to make so uploaded fine.
@@ -103,6 +105,6 @@ We are now going to demonstrate a forward compatible schema in the schema regist
 
 1. Deactive your python environment by executing the following in your terminal:
 
-```py
-venv\scripts\activate
+```bash
+venv\scripts\deactivate
 ```
