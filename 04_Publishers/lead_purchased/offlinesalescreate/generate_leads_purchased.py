@@ -10,7 +10,7 @@ from azure.identity import DefaultAzureCredential
 
 ##for schema reg
 fully_qualified_namespace = 'schemaregistry-ehns-eun-griff.servicebus.windows.net'
-group_name = "schema_registry"
+group_name = "myschemagroup"
 format = "Avro"
 eventhub_conn_Str = 'Endpoint=sb://events001-ehns-eun-griff2.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=DoiIfBBzWOtUxesDVC70HQSiVTjRAiiIPKEKB8anep4='
 token_credential = DefaultAzureCredential()
@@ -56,7 +56,7 @@ date =  datetime.date.today()
 print("Completed setting constant values.")
 
 print("Set simple csv schema...")
-header = ['lead_guid', 'purchase_date']
+header = ['lead_id', 'purchase_date']
 print("Set simple csv schema done.")
 
 print("Start creating csv file...")
@@ -71,9 +71,9 @@ with open(f'{directory}/sale_partner{partner_id}_{uuid.uuid4()}.csv', 'w'
     for event_data in reader:
         body = (event_data["Body"])
         deserialized_data = avro_serializer.deserialize(body)
-        lead_guid = deserialized_data.get("lead_guid")
+        lead_id = deserialized_data.get("id")
         purchase_date = datetime.datetime.utcnow()
-        data = [[lead_guid, purchase_date]]
+        data = [[lead_id, purchase_date]]
         print(data)
         writer.writerows(data)
     reader.close()

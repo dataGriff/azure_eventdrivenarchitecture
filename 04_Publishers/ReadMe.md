@@ -64,6 +64,15 @@ az deployment group create --name "cosmosDeployment" --resource-group "events-cu
 This is a timer trigger based function.
 Remember the requirements added to txt file which is for all the python packages required.
 
+Once your function is deployed, you need to add the app config for the following:
+* Cosmos url
+* Cosmos key
+* Event hub connection for publishing - will come from send customer event hub SAS key.
+* Event hub namespace for schema registration
+* Tenant id for schema registration
+* Client id for schema registration
+* Client secret for schema registration
+
 ## Lead Generated
 
 ### Deploy Event Hub for Publishing Lead Generated Event Using the Platform Team Provided Template
@@ -103,6 +112,19 @@ Remember to update function.json file
 Also update local_settings for your app setting values (e.g. os['setting]) and these need updating in the app settings in portal too.
 Also need all packages in the requirements.txt.
 
+Don't forget if you have redeployed event hub the partition location will be wrong so you might need to delete the checkpoin in the storage account associated with the function.
+
+
+Once your function is deployed, you need to add the app config for the following:
+* Cosmos url
+* Cosmos key
+* Event hub connection for consuming - will come from listen customer event hub SAS key.
+* Event hub connection for publishing - will come from send lead event hub SAS key.
+* Event hub namespace for schema registration
+* Tenant id for schema registration
+* Client id for schema registration
+* Client secret for schema registration
+
 
 ## Sale Confirmed
 
@@ -112,6 +134,14 @@ az deployment group create --name "eventHubDeployment" --resource-group "events-
 
 ```bash
 az deployment group create --name "salesFileDeployment" --resource-group "events-salesfiles-rg" --template-file "04_Publishers\lead_purchased\infra\storage.bicep" --parameters namespace="griff2"
+```
+
+```bash
+az deployment group create --resource-group events-salesfiles-rg --template-file 04_publishers\lead_purchased\logicapp\salesfiles-la-eun-griff.definition.json
+```
+
+```bash
+04_Publishers\lead_purchased\offlinesalescreate\generate_leads_purchased.py
 ```
 
 **Remember to add app setting in portal for function event hub connection!!!**

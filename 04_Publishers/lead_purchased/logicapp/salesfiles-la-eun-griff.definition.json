@@ -2,32 +2,50 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "workflows_salesfiles_la_eun_griff_name": {
+        "logic_app_name": {
             "defaultValue": "salesfiles-la-eun-griff",
             "type": "string"
         },
+        "region": {
+        "defaultValue": "northeurope",
+        "type": "string"
+        },
+        "resourceGroupName": {
+        "defaultValue": "events-salesfiles-rg",
+        "type": "string"
+        },
+        "filePath": {
+        "defaultValue": "/Data/sales",
+        "type": "string"
+        }
+    },
+    "variables": {
+        "subscriptionId" : "[subscription().subscriptionId]",
+        "blobId" : "[concat('/subscriptions/',variables('subscriptionId'),'/providers/Microsoft.Web/locations/',parameters('region'),'/managedApis/azureblob')]",
+        "onedriveId": "[concat('/subscriptions/',variables('subscriptionId'),'/providers/Microsoft.Web/locations/',parameters('region'),'/managedApis/onedrive')]",
+        "blobConnId" : "[concat('/subscriptions/',variables('subscriptionId'),'/resourceGroups/',parameters('resourceGroupName'),'/providers/Microsoft.Web/connections/azureblob')]",
+        "onedriveConnId": "[concat('/subscriptions/',variables('subscriptionId'),'/resourceGroups/',parameters('resourceGroupName'),'/providers/Microsoft.Web/connections/onedrive')]",
         "workflows_salesfiles-la-eun-griff_parameters_$connections": {
-            "defaultValue": {
                 "azureblob": {
-                    "connectionId": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-salesfiles-rg/providers/Microsoft.Web/connections/azureblob-2",
-                    "connectionName": "azureblob-2",
-                    "id": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/providers/Microsoft.Web/locations/northeurope/managedApis/azureblob"
+                    "connectionId": "[variables('blobConnId')]",
+                    "connectionName": "azureblob",
+                    "id": "[variables('blobId')]"
                 },
                 "onedrive": {
-                    "connectionId": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-salesfiles-rg/providers/Microsoft.Web/connections/onedrive",
+                    "connectionId": "[variables('onedriveConnId')]",
                     "connectionName": "onedrive",
-                    "id": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/providers/Microsoft.Web/locations/northeurope/managedApis/onedrive"
-                }
-            },
-            "type": "Object"
+                    "id": "[variables('onedriveId')]"
+                
+            }
         }
+
     },
     "resources": [
         {
             "apiVersion": "2017-07-01",
             "dependsOn": [],
-            "location": "northeurope",
-            "name": "[parameters('workflows_salesfiles_la_eun_griff_name')]",
+            "location": "[parameters('region')]",
+            "name": "[parameters('logic_app_name')]",
             "properties": {
                 "definition": {
                     "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
@@ -36,14 +54,14 @@
                         "$connections": {
                             "defaultValue": {
                                 "azureblob": {
-                                    "connectionId": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-salesfiles-rg/providers/Microsoft.Web/connections/azureblob-2",
-                                    "connectionName": "azureblob-2",
-                                    "id": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/providers/Microsoft.Web/locations/northeurope/managedApis/azureblob"
+                                    "connectionId": "[variables('blobConnId')]",
+                                    "connectionName": "azureblob",
+                                    "id": "[variables('blobId')]"
                                 },
                                 "onedrive": {
-                                    "connectionId": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/events-salesfiles-rg/providers/Microsoft.Web/connections/onedrive",
+                                    "connectionId": "[variables('onedriveConnId')]",
                                     "connectionName": "onedrive",
-                                    "id": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/providers/Microsoft.Web/locations/northeurope/managedApis/onedrive"
+                                    "id": "[variables('onedriveId')]"
                                 }
                             },
                             "type": "Object"
@@ -60,7 +78,7 @@
                                 "interval": 1
                             },
                             "metadata": {
-                                "D661F37995A7EB81!167740": "/Data/sales"
+                                "D661F37995A7EB81!167740": "[parameters('filePath')]"
                             },
                             "type": "ApiConnection",
                             "inputs": {
@@ -113,7 +131,7 @@
                 },
                 "parameters": {
                     "$connections": {
-                        "value": "[parameters('workflows_salesfiles-la-eun-griff_parameters_$connections')]"
+                        "value": "[variables('workflows_salesfiles-la-eun-griff_parameters_$connections')]"
                     }
                 },
                 "state": "Enabled"
@@ -122,6 +140,5 @@
             "tags": {},
             "type": "Microsoft.Logic/workflows"
         }
-    ],
-    "variables": {}
+    ]
 }
