@@ -17,14 +17,16 @@ This demo will involve three teams:
 
 2. **Customer Team**
 * Produce Customer Created Event
-* Subscribe to Lead Generated Event
-* Subscribe to Lead Sold Event
-* Customer Purchased Event
-* Produce Customer Sale Confirmation Sent Event
+* Subscribe to Lead Purchased Event
+* Produce Customer Purchased Event
 
-3. **Sales Team**
+1. **Lead Team**
 * Produce Lead Generated Event
-* Produce Lead Sold Event
+* Subscribe to Sale Confirmed Event
+* Produce Lead Purchased Event
+
+1. **Sales Team**
+* Produce Sale Confirmed Event
 
 ## 1. Create Resource Groups
 
