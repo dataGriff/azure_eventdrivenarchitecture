@@ -136,6 +136,12 @@ az deployment group create --name "eventHubDeployment" --resource-group "events-
 az deployment group create --name "salesFileDeployment" --resource-group "events-salesfiles-rg" --template-file "04_Publishers\lead_purchased\infra\storage.bicep" --parameters namespace="griff2"
 ```
 
+* Create logic app with managed identity
+* Add as storage blob data contributor to blob account
+* You can do below by adding API connection in all services (not add resource)
+* Create blob storage api connection
+* Create one drive api connection
+
 ```bash
 az deployment group create --resource-group events-salesfiles-rg --template-file 04_publishers\lead_purchased\logicapp\salesfiles-la-eun-griff.definition.json
 ```
