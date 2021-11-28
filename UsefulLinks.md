@@ -23,3 +23,4 @@
 * [PyPi Azure Schema Registry](https://pypi.org/project/azure-schemaregistry/)
 * [PyPi Azure Schema Registry Serializer](https://pypi.org/project/azure-schemaregistry-avroserializer/)
 * [Python Functions ](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-python?tabs=azurecli-linux%2Capplication-level)
+* [Create List Dictionaries from CSV Python](https://stackoverflow.com/questions/3428532/how-to-import-a-csv-file-using-python-with-headers-intact-where-first-column-is?rq=1)

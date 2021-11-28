@@ -128,12 +128,17 @@ Once your function is deployed, you need to add the app config for the following
 
 ## Sale Confirmed
 
+
+```bash
+az deployment group create --name "salesFileDeployment" --resource-group "events-salesfiles-rg" --template-file "04_Publishers\lead_purchased\infra\storage.bicep" --parameters namespace="griff2"
+```
+
 ```bash
 az deployment group create --name "eventHubDeployment" --resource-group "events-broker-rg" --template-file "04_Publishers\platform\eventhub.bicep" --parameters namespace="griff2" event="sale"
 ```
 
 ```bash
-az deployment group create --name "salesFileDeployment" --resource-group "events-salesfiles-rg" --template-file "04_Publishers\lead_purchased\infra\storage.bicep" --parameters namespace="griff2"
+az deployment group create --name "cosmosDeployment" --resource-group "events-sales-rg" --template-file "04_Publishers\platform\cosmos.bicep" --parameters namespace="griff2" teamName="sale"
 ```
 
 * Create logic app with managed identity
