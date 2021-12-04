@@ -32,7 +32,7 @@ def main(event: func.EventHubEvent):
     schemareg_client_secret = os.environ["schemareg_client_secret"]
     token_credential = ClientSecretCredential(tenant_id, schemareg_client_id, schemareg_client_secret)
     ## Set Publisher Connection Details
-    conn_eventhub_publish = os.environ["conn_eventhub_publish"]
+    conn_eventhub_publish = os.environ["conn_lead_generated"]
 
     ## Connect to Schema Registry
     logging.info('Get schema reg client for source...')

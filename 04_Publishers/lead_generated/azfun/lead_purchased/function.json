@@ -5,8 +5,8 @@
       "type": "eventHubTrigger",
       "name": "event",
       "direction": "in",
-      "eventHubName": "customer",
-      "connection": "conn_customer_created",
+      "eventHubName": "sale",
+      "connection": "conn_sale_confirmation",
       "cardinality": "one",
       "consumerGroup": "lead",
       "dataType": "binary"
