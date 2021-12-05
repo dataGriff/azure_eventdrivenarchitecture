@@ -57,6 +57,7 @@ This demo will involve three teams:
 * Add lifecycle policies to the storage accounts for capture.
 * Add and remove lock on resource group deploys. 
 * Generate lead unsuccesful event?
+* Hub per aggregate or event?? Is a customer a purchaser? Who gets in touch with a customer all teams or just crm? 
 ## Foibles
 
 * Have to be owner of schema to delete in registry I think even though this not stated easily. Even when I am god mode. 
