@@ -6,6 +6,15 @@ param namespace string = 'griff'
 @description('Short region name')
 param locationshortcode string = 'eun'
 
+@description('Short region name')
+param daysToDeleteData int = 7
+
+@description('Short region name')
+param daysToArchiveData int = 5
+
+@description('Short region name')
+param daysToCoolData int = 3
+
 
 //namespace
 resource eventHubNamespace 'Microsoft.EventHub/namespaces@2021-01-01-preview' = {
@@ -72,3 +81,35 @@ resource eventstorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
     'Team' : 'Platform'
   }
 }
+
+resource lifecycle 'Microsoft.Storage/storageAccounts/managementPolicies@2019-04-01' = {
+  name: 'default'
+  parent: eventstorage
+  properties: {
+    policy: {
+      rules: [
+        {
+          definition: {
+            actions: {
+              baseBlob: {
+                delete: {
+                  daysAfterModificationGreaterThan: daysToDeleteData
+                }
+                tierToArchive: {
+                  daysAfterModificationGreaterThan: daysToArchiveData
+                }
+                tierToCool: {
+                  daysAfterModificationGreaterThan: daysToCoolData
+                }
+              }
+            }
+          }
+          enabled: true
+          name: 'eventsLifecycle'
+          type: 'Lifecycle'
+        }
+      ]
+    }
+  }
+}
+
