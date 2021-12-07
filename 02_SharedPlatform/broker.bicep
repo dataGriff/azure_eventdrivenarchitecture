@@ -103,6 +103,11 @@ resource lifecycle 'Microsoft.Storage/storageAccounts/managementPolicies@2019-04
                 }
               }
             }
+            filters: {
+              blobTypes: [
+                'blockBlob'
+              ]
+            }
           }
           enabled: true
           name: 'eventsLifecycle'
