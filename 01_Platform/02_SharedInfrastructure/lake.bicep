@@ -1,5 +1,13 @@
 targetScope = 'resourceGroup'
 
+@description('Environment for your resources')
+@allowed([
+  'dv'
+  'qa'
+  'lv'
+])
+param environment string = 'dv'
+
 @description('Unique postfix for your resources to ensure globally unique')
 param namespace string = 'griff'
 
@@ -8,7 +16,7 @@ param locationshortcode string = 'eun'
 
 //storage account
 resource datalake 'Microsoft.Storage/storageAccounts@2021-02-01' = {
-  name: 'lakesa${locationshortcode}${namespace}'
+  name: '${environment}lakesa${locationshortcode}${namespace}'
   location: resourceGroup().location
   kind: 'StorageV2'
   sku: {

@@ -1,13 +1,21 @@
 targetScope = 'resourceGroup'
 
+@description('Environment for your resources')
+@allowed([
+  'dv'
+  'qa'
+  'lv'
+])
+param environment string = 'dv'
+
 @description('Unique postfix for your resources to ensure globally unique')
-param namespace string = 'griff2'
+param namespace string = 'griff'
 
 @description('Short region name')
 param locationshortcode string = 'eun'
 
-@description('Event name for hub and container')
-param event string
+@description('This will be the event hub name and for the corresponding container. This is usually the aggregate that events are being recorded against.')
+param eventhubname string
 
 @description('Duration immutability lasts for in days')
 param immutabilitydays int = 7
@@ -24,16 +32,15 @@ param eventhubpartitions int = 4
 @description('Event hub retention in days')
 param eventhubretentiondays int = 7
 
-var storageaccount = 'events001sa${locationshortcode}${namespace}'
-var ehnamespace = 'events001-ehns-${locationshortcode}-${namespace}'
+var storageaccount = '${environment}events001sa${locationshortcode}${namespace}'
+var ehnamespace = '${environment}-events001-ehns-${locationshortcode}-${namespace}'
 
-//Storage Account Container
 resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2019-06-01' = {
-  name: '${storageaccount}/default/${event}'
+  name: '${storageaccount}/default/${eventhubname}'
 }
 
 resource immutable 'Microsoft.Storage/storageAccounts/blobServices/containers/immutabilityPolicies@2019-04-01' = {
-  name: '${storageaccount}/default/${event}/default'
+  name: '${storageaccount}/default/${eventhubname}/default'
   properties: {
     immutabilityPeriodSinceCreationInDays: immutabilitydays
   }
@@ -47,14 +54,14 @@ resource immutable 'Microsoft.Storage/storageAccounts/blobServices/containers/im
 
 //Event Hub with Capture
 resource eventhub 'Microsoft.EventHub/namespaces/eventhubs@2021-06-01-preview' = {
-  name: '${ehnamespace}/${event}'
+  name: '${ehnamespace}/${eventhubname}'
   properties: {
     captureDescription: {
       destination: {
         name: 'EventHubArchive.AzureBlockBlob'
         properties: {
           archiveNameFormat: '{EventHub}/{Year}/{Month}/{Day}/{Hour}/{EventHub}_{Year}_{Month}_{Day}_{Hour}_{Minute}_{Second}_{PartitionId}_{Namespace}'
-          blobContainer: event
+          blobContainer: eventhubname
           storageAccountResourceId: '/subscriptions/${subscription().subscriptionId}/resourceGroups/${resourceGroup().name}/providers/Microsoft.Storage/storageAccounts/${storageaccount}'
         }
       }
@@ -80,9 +87,6 @@ resource send 'Microsoft.EventHub/namespaces/eventhubs/authorizationRules@2021-0
       'Send'
     ]
   }
-  dependsOn: [
-    eventhub
-  ]
 }
 
 resource listen 'Microsoft.EventHub/namespaces/eventhubs/authorizationRules@2021-01-01-preview' = {
@@ -93,7 +97,4 @@ resource listen 'Microsoft.EventHub/namespaces/eventhubs/authorizationRules@2021
       'Listen'
     ]
   }
-  dependsOn: [
-    eventhub
-  ]
 }

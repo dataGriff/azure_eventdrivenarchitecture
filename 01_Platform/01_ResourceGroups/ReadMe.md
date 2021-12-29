@@ -26,7 +26,7 @@ az account set --subscription "{your subscription name}"
 6. Deploy the resource groups for the architecture by running he command below in the terminal.
 
 ```bash
-az deployment sub create --name eventResourceGroups --location northeurope --template-file 01_ResourceGroups\main.bicep
+az deployment sub create --name eventResourceGroups --location northeurope --template-file 01_Platform\01_ResourceGroups\resourcegroups.bicep
 ```
 
 7. To upload your dashboard overview of the architecture, go to the azure portal and choose dashboard from the left menu.

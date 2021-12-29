@@ -1,0 +1,284 @@
+{
+  "properties": {
+    "lenses": {
+      "0": {
+        "order": 0,
+        "parts": {
+          "0": {
+            "position": {
+              "x": 0,
+              "y": 0,
+              "colSpan": 3,
+              "rowSpan": 8
+            },
+            "metadata": {
+              "inputs": [],
+              "type": "Extension/HubsExtension/PartType/MarkdownPart",
+              "settings": {
+                "content": {
+                  "settings": {
+                    "content": "\n* [Event Driven Architecture Course](https://github.com/griff182uk/azure_eventdrivenarchitecture)\n* [App Registrations](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)",
+                    "title": "Event Driven Architecture",
+                    "subtitle": "",
+                    "markdownSource": 1,
+                    "markdownUri": null
+                  }
+                }
+              }
+            }
+          },
+          "1": {
+            "position": {
+              "x": 3,
+              "y": 0,
+              "colSpan": 2,
+              "rowSpan": 2
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-account-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-account-rg/overview"
+            }
+          },
+          "2": {
+            "position": {
+              "x": 5,
+              "y": 0,
+              "colSpan": 2,
+              "rowSpan": 2
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-product-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-product-rg/overview"
+            }
+          },
+          "3": {
+            "position": {
+              "x": 7,
+              "y": 0,
+              "colSpan": 2,
+              "rowSpan": 2
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-salesfiles-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-salesfiles-rg/overview"
+            }
+          },
+          "4": {
+            "position": {
+              "x": 9,
+              "y": 0,
+              "colSpan": 2,
+              "rowSpan": 8
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-schemaregistry-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-schemaregistry-rg/overview"
+            }
+          },
+          "5": {
+            "position": {
+              "x": 3,
+              "y": 2,
+              "colSpan": 2,
+              "rowSpan": 2
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-contact-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-contact-rg/overview"
+            }
+          },
+          "6": {
+            "position": {
+              "x": 5,
+              "y": 2,
+              "colSpan": 2,
+              "rowSpan": 2
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-leads-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-leads-rg/overview"
+            }
+          },
+          "7": {
+            "position": {
+              "x": 7,
+              "y": 2,
+              "colSpan": 2,
+              "rowSpan": 2
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-sales-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-sales-rg/overview"
+            }
+          },
+          "8": {
+            "position": {
+              "x": 3,
+              "y": 4,
+              "colSpan": 6,
+              "rowSpan": 2
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-broker-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-broker-rg/overview"
+            }
+          },
+          "9": {
+            "position": {
+              "x": 3,
+              "y": 6,
+              "colSpan": 3,
+              "rowSpan": 2
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-databricks-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-databricks-rg/overview"
+            }
+          },
+          "10": {
+            "position": {
+              "x": 6,
+              "y": 6,
+              "colSpan": 3,
+              "rowSpan": 2
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-lake-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-lake-rg/overview"
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "model": {
+        "timeRange": {
+          "value": {
+            "relative": {
+              "duration": 24,
+              "timeUnit": 1
+            }
+          },
+          "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+        }
+      }
+    }
+  },
+  "name": "dev_eventdrivenarchitecture",
+  "type": "Microsoft.Portal/dashboards",
+  "location": "INSERT LOCATION",
+  "tags": {
+    "hidden-title": "dev_eventdrivenarchitecture"
+  },
+  "apiVersion": "2015-08-01-preview"
+}

@@ -4,7 +4,7 @@ In this section we are just going to explore some registry concepts and implemen
 
 For this section you will need to make sure you have python installed as per the pre-requisites.
 
-**You must have completed [02_SharedPlatform](../02_SharedPlatform/ReadMe.md) before continuing with the below.**
+**You must have completed [02_SharedPlatform](../02_SharedInfrastructure/ReadMe.md) before continuing with the below.**
 
 ## Create an App Reg
 
@@ -66,7 +66,7 @@ We are first going to demonstrate a backward compatible schema in the schema reg
 5. Now execute the below in the terminal.
 
 ```
-03_SchemaRegistry\register_schemas_backward.py
+01_Platform\03_SchemaRegistry\register_schemas_backward.py
 ```
 
 1. We will see in the terminal output that schema attempts 1, 2 and 4 were able to be uploaded bu schemas 3 and 5 were not.
@@ -92,7 +92,7 @@ We are now going to demonstrate a forward compatible schema in the schema regist
 5. Now execute the below in the terminal.
 
 ```
-03_SchemaRegistry\register_schemas_forward.py
+01_Platform\03_SchemaRegistry\register_schemas_forward.py
 ```
 
 1. We will see in the terminal output that schema attempts 1, 2 and 3 were able to be uploaded but schemas 4 and 5 were not.

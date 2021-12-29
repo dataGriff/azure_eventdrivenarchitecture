@@ -1,5 +1,13 @@
 targetScope = 'resourceGroup'
 
+@description('Environment for your resources')
+@allowed([
+  'dv'
+  'qa'
+  'lv'
+])
+param environment string = 'dv'
+
 @description('Unique postfix for your resources to ensure globally unique')
 param namespace string = 'griff'
 
@@ -15,10 +23,11 @@ param daysToArchiveData int = 5
 @description('Short region name')
 param daysToCoolData int = 3
 
+var daysToRestoreFiles = daysToDeleteData - 1
+var daysToRestoreContainer = daysToCoolData
 
-//namespace
 resource eventHubNamespace 'Microsoft.EventHub/namespaces@2021-01-01-preview' = {
-  name: 'events001-ehns-${locationshortcode}-${namespace}'
+  name: '${environment}-events001-ehns-${locationshortcode}-${namespace}'
   location: resourceGroup().location
   sku: {
     name: 'Standard'
@@ -36,7 +45,6 @@ resource eventHubNamespace 'Microsoft.EventHub/namespaces@2021-01-01-preview' = 
   }
 }
 
-//auth rule send
 resource send 'Microsoft.EventHub/namespaces/authorizationRules@2021-06-01-preview' = {
   parent: eventHubNamespace
   name: 'send'
@@ -45,12 +53,8 @@ resource send 'Microsoft.EventHub/namespaces/authorizationRules@2021-06-01-previ
       'Send'
     ]
   }
-  dependsOn: [
-    eventHubNamespace
-  ]
 }
 
-//auth rule send
 resource listen 'Microsoft.EventHub/namespaces/authorizationRules@2021-06-01-preview' = {
   parent: eventHubNamespace
   name: 'listen'
@@ -59,14 +63,10 @@ resource listen 'Microsoft.EventHub/namespaces/authorizationRules@2021-06-01-pre
       'Listen'
     ]
   }
-  dependsOn: [
-    eventHubNamespace
-  ]
 }
 
-//storage account
 resource eventstorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
-  name: 'events001sa${locationshortcode}${namespace}'
+  name: '${environment}events001sa${locationshortcode}${namespace}'
   location: resourceGroup().location
   kind: 'StorageV2'
   sku: {
@@ -118,3 +118,27 @@ resource lifecycle 'Microsoft.Storage/storageAccounts/managementPolicies@2019-04
   }
 }
 
+resource blobservice 'Microsoft.Storage/storageAccounts/blobServices@2021-06-01' = {
+  name: 'default'
+  parent: eventstorage
+  properties: {
+    automaticSnapshotPolicyEnabled: true
+    changeFeed: {
+      enabled: true
+      retentionInDays: daysToRestoreContainer
+    }
+    containerDeleteRetentionPolicy: {
+      days: daysToDeleteData
+      enabled: true
+    }
+    deleteRetentionPolicy: {
+      days: daysToDeleteData
+      enabled: true
+    }
+    isVersioningEnabled: true
+    restorePolicy: {
+      days: daysToRestoreFiles
+      enabled: true
+    }
+  }
+}

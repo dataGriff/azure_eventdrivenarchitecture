@@ -1,5 +1,13 @@
-@description('Your unique namespace')
-param namespace string
+@description('Environment for your resources')
+@allowed([
+  'dv'
+  'qa'
+  'lv'
+])
+param environment string = 'dv'
+
+@description('Unique postfix for your resources to ensure globally unique')
+param namespace string = 'griff'
 
 @description('Location for the Cosmos DB account.')
 param location string = resourceGroup().location
@@ -17,7 +25,7 @@ param teamName string
 ])
 param defaultConsistencyLevel string = 'Session'
 
-var accountName =  '${teamName}-cosdb-eun-${namespace}'
+var accountName =  '${environment}-${teamName}-cosdb-eun-${namespace}'
 
 resource cosmos 'Microsoft.DocumentDB/databaseAccounts@2021-04-15' = {
   name: accountName
