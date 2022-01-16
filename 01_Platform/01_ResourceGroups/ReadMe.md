@@ -1,7 +1,7 @@
 # Setup Resource Groups
 
 In this section we will create the resource group shell of our estate using bicep and then create an azure dashboard displaying all the components.
-The resource groups would normally be deployed by the respective teams (platform, customer and sales) but doing this for the workshop simply makes the estate easier to navigate from the offset.
+The resource groups would normally be deployed by the respective teams (platform, customer, product and sales) but doing this for the workshop simply makes the estate easier to navigate from the offset.
 
 **You must have all the pre-requisites completed before carrying out the below.**
 
@@ -10,6 +10,8 @@ The resource groups would normally be deployed by the respective teams (platform
 2. Open up the Terminal by goig to view > terminal in the visual studio code menu.
 
 3. Ensure that command prompt is chosen in the right of the terminal.
+
+![Terminal Command Prompt](../../Images/TerminalCommandPrompt.PNG)
 
 4. Login to Azure running the Azure CLI command below in the terminal.
 
@@ -31,17 +33,29 @@ az deployment sub create --name eventResourceGroups --location northeurope --tem
 
 7. To upload your dashboard overview of the architecture, go to the azure portal and choose dashboard from the left menu.
 
-8. Select new dashboard and then upload file.
+![Dashboard](../../Images/Dashboard.PNG)
 
-9. Upload the 01_ResourceGroups\eventdrivenarchitecture.json file.
+8. Select new dashboard and then upload.
 
-10. You should now see the empty resource group shell of the entire estate. Confirm you can see the following resource groups and also the team name tags on each one.
+![Dashboard](../../Images/DashboardUpload.PNG)
 
-* events-schemaregistry-rg (Team: Platform)
-* events-customer-rg (Team: Customer)
-* events-leads-rg (Team: Sales)
-* events-salesfiles-rg (Team: Sales)
-* events-sales-rg (Team: Sales)
-* events-broker-rg (Team: Platform)
-* events-databricks-rg (Team: Platform)
-* events-lake-rg (Team: Platform)
+9. Upload the 01_ResourceGroups\dv_eventdrivenarchitecture.json file from this repository.
+
+10. You should now see the empty resource group shell of the entire development (dv) estate. Confirm you can see the following resource groups and also the team name tags on each one.
+
+* dv-events-schemaregistry-rg (team: platform)
+* dv-events-broker-rg (team: platform)
+* dv-events-databricks-rg (team: platform)
+* dv-events-lake-rg (team: platform)
+* dv-events-product-rg (team: product)
+* dv-events-account-rg (team: customer)
+* dv-events-contact-rg (team: customer)
+* dv-events-leads-rg (team: conversions)
+* dv-events-salesfiles-rg (team: conversions)
+* dv-events-sales-rg (team: conversions)
+
+![Dashboard](../../Images/DashboardUploaded.PNG)
+
+To confirm tags, click on a resource group and you should see the team tag at the top of the page.
+
+![Resource Group Tagged](../../Images/ResourceGroupTagged.PNG)
