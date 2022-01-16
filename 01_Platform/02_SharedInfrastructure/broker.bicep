@@ -9,7 +9,7 @@ targetScope = 'resourceGroup'
 param environment string = 'dv'
 
 @description('Unique postfix for your resources to ensure globally unique')
-param namespace string = 'griff'
+param namespace string
 
 @description('Short region name')
 param locationshortcode string = 'eun'
@@ -41,7 +41,7 @@ resource eventHubNamespace 'Microsoft.EventHub/namespaces@2021-01-01-preview' = 
     maximumThroughputUnits: 20
   }
   tags:  {
-    'Team' : 'Platform'
+    'team' : 'platform'
   }
 }
 
@@ -78,7 +78,7 @@ resource eventstorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
     supportsHttpsTrafficOnly: true
   }
   tags:  {
-    'Team' : 'Platform'
+    'team' : 'platform'
   }
 }
 

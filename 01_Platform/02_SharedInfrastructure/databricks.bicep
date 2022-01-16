@@ -7,7 +7,7 @@
 param environment string = 'dv'
 
 @description('Unique postfix for your resources to ensure globally unique')
-param namespace string = 'griff'
+param namespace string
 
 @description('Short region name')
 param locationshortcode string = 'eun'
@@ -29,7 +29,7 @@ resource databricks 'Microsoft.Databricks/workspaces@2018-04-01' = {
     authorizations: []
   }
   tags:  {
-    'Team' : 'Platform'
+    'team' : 'platform'
   }
 }
 

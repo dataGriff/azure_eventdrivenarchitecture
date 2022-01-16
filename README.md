@@ -8,24 +8,27 @@
 
 ## Demo
 
-This demo will involve three teams:
+This demo will involve four teams:
 
 1. **Platform Team**
 * Provide a cloud infrastructure.
 * Provide shared infrastructure such as storage accounts and namespaces. 
 * Provide template deployment pipelines for integrating into shared infrastructure for event producers and event consumers.
 
+2. **Product Team**
+* Produce Customer Created Event
+* Subscribe to Lead Purchased Event
+* Produce Customer Purchased Event
+
 2. **Customer Team**
 * Produce Customer Created Event
 * Subscribe to Lead Purchased Event
 * Produce Customer Purchased Event
 
-1. **Lead Team**
+1. **Conversions Team**
 * Produce Lead Generated Event
 * Subscribe to Sale Confirmed Event
 * Produce Lead Purchased Event
-
-1. **Sales Team**
 * Produce Sale Confirmed Event
 
 ## 1. Create Resource Groups

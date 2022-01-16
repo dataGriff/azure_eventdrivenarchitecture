@@ -3,6 +3,8 @@
 In this section we will create the resource group shell of our estate using bicep and then create an azure dashboard displaying all the components.
 The resource groups would normally be deployed by the respective teams (platform, customer, product and sales) but doing this for the workshop simply makes the estate easier to navigate from the offset.
 
+If you ever need to quickly cleanup the entire estate and remove all the resource groups and resource, please use the script and instructions found [here](./cleanup.ps1).
+
 **You must have all the pre-requisites completed before carrying out the below.**
 
 1. Open up the azure_eventdrivenarchitecture repo in visual studio code.
