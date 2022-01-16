@@ -8,5 +8,5 @@ I had to open up a specific powershell 7 app from my machine
 Also restart pshell session in Vs code
 
 ```bash
-az deployment group create --name "cosmosDeployment" --resource-group "dv-events-account-rg" --template-file "01_Platform\04_DedicatedResource\cosmos.bicep" --parameters namespace="{youruniqueid}" teamName="customer"
+az deployment group create --name "cosmosDeployment" --resource-group "dv-events-account-rg" --template-file "01_Platform\04_DedicatedResource\cosmos.bicep" --parameters namespace="{youruniqueid}" target='account' teamName="customer"
 ```

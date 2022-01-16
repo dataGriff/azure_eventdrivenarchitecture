@@ -12,6 +12,9 @@ param namespace string = 'griff'
 @description('Location for the Cosmos DB account.')
 param location string = resourceGroup().location
 
+@description('The target aggregate domain for the cosmos db account.')
+param target string
+
 @description('Name of team that owns cosmos db account.')
 param teamName string
 
@@ -25,7 +28,7 @@ param teamName string
 ])
 param defaultConsistencyLevel string = 'Session'
 
-var accountName =  '${environment}-${teamName}-cosdb-eun-${namespace}'
+var accountName =  '${environment}-${target}-cosdb-eun-${namespace}'
 
 resource cosmos 'Microsoft.DocumentDB/databaseAccounts@2021-04-15' = {
   name: accountName
