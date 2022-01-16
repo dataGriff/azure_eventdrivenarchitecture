@@ -6,11 +6,11 @@ For this section you will need to make sure you have python installed as per the
 
 **You must have completed [02_SharedPlatform](../02_SharedInfrastructure/ReadMe.md) before continuing with the below.**
 
-## Create an App Reg
+## Create an App Reg in Azure
 
 We are going to be creating an application registration that we will use for the majority of our authentication against our new estate for the following exercises. We will also store these credentials in local environment variables for easier local development too.
 
-1. In the Azure Portal go into application registrations in Azure Active directory (you can also find a link to this on your dashboard).
+1. In the Azure Portal go into application registrations in Azure Active directory (you can also find a link to this on your dashboard in the markdown on the left).
 2. Create a new app registration called aprg-events-admin.
 
 ## Setup Local Environment Variables
@@ -29,6 +29,15 @@ token_credential = DefaultAzureCredential()
 4. Next we need to generate a secret from our application registration and add this to our environment variables.
 5. Once you have copied this value, paste it into a new local environment variable called AZURE_CLIENT_SECRET.
 
+![Environment Variables](../../Images/EnvironmentVariables.PNG)
+
+## Grant the App Reg Permissions on Schema Registry
+
+Might be a delay after added before works.
+
+![Schema Reg Permissions](../../Images/AppRegAddingSchemaRegRole.PNG)
+
+
 ## Create a Python Environment
 
 1. Open your Visual Studio code terminal.
@@ -38,7 +47,7 @@ token_credential = DefaultAzureCredential()
 python -m venv venv
 ```
 
-**Note** : We will be using a single virtual environment for this entire implementation, but remember we are actually imitating a number of teams so the environment should actually be split per each teams implementation and what packages and dependencies they need along to carry out their function.
+**Important Note** : We will be using a single virtual environment for this entire implementation, but remember we are actually imitating a number of teams so the environment should actually be split per each teams implementation and what packages and dependencies they need along to carry out their function.
 
 3. Activate the python environment by running the following.
 
@@ -58,15 +67,23 @@ pip install azure-schemaregistry azure-identity
 We are first going to demonstrate a backward compatible schema in the schema registry. A backwards compatible schema ensures that readers on new versions of schemas can consume older versions of schemas that are published.  Schema compatibility is described in more detail in this blog post [here]([Compatibility](https://stevenheidel.medium.com/backward-vs-forward-compatibility-9c03c3db15c9#:~:text=Backward%20compatibility%20means%20that%20readers,writers%20with%20a%20newer%20schema.)
 ).
 
-1. Navigate to your schema registry event hub namespace in the Azure portal (schemaregistry-ehns-eun-{youruniqueid}).
+1. Navigate to your schema registry event hub namespace in the Azure portal (dv-schemaregistry-ehns-eun-{youruniqueid}).
 1. Under entities on the left hand side menu choose "Schema Registry".
 2. Select +Schema Group.
-3. Call the schema group "myschemagroup", leave serialization type as avro, and choose backward compatibility.
+
+![Add Schema Group](../../Images/SchemaGroupAdd.PNG)
+
+3. Call the schema group "myschemagroup", leave serialization type as avro, and choose **backward** compatibility.
+
+![Name Schema Group](../../Images/SchemaGroupAddBackward.PNG)
+
+![Schema Group Added](../../Images/SchemaGroupAdded.PNG)
+
 4. Look at the code in this file [register_schemas_backward](./register_schemas_backward.py). This is going to upload the schemas present in the script and there are comments on why some will succed and some will not based on backward compatible schemas as per the schema registry [documentation](https://docs.microsoft.com/en-us/azure/event-hubs/schema-registry-overview#backward-compatibility).
-5. Now execute the below in the terminal.
+5. Now execute the below in the terminal, replacing {youruniquenamespace} with your unique value first.
 
 ```
-01_Platform\03_SchemaRegistry\register_schemas_backward.py
+01_Platform\03_SchemaRegistry\register_schemas_backward.py dv-schemaregistry-ehns-eun-{youruniquenamespace}.servicebus.windows.net
 ```
 
 1. We will see in the terminal output that schema attempts 1, 2 and 4 were able to be uploaded bu schemas 3 and 5 were not.
@@ -87,12 +104,20 @@ We are now going to demonstrate a forward compatible schema in the schema regist
 1. Navigate to your schema registry event hub namespace in the Azure portal (schemaregistry-ehns-eun-{youruniqueid}).
 1. Under entities on the left hand side menu choose "Schema Registry".
 2. Select +Schema Group.
-3. Call the schema group "myschemagroup", leave serialization type as avro, and choose forward compatibility.
-4. Look at the code in this file [register_schemas_backward](./register_schemas_backward.py). This is going to upload the schemas present in the script and there are comments on why some will succed and some will not based on backward compatible schemas as per the schema registry [documentation](https://docs.microsoft.com/en-us/azure/event-hubs/schema-registry-overview#forward-compatibility).
+
+![Add Schema Group](../../Images/SchemaGroupAdd.PNG)
+
+3. Call the schema group "myschemagroup", leave serialization type as avro, and choose **forward** compatibility.
+
+![Name Schema Group](../../Images/SchemaGroupAddForward.PNG)
+
+![Schema Group Added](../../Images/SchemaGroupAdded.PNG)
+
+4. Look at the code in this file [register_schemas_forward](./register_schemas_forward.py). This is going to upload the schemas present in the script and there are comments on why some will succed and some will not based on backward compatible schemas as per the schema registry [documentation](https://docs.microsoft.com/en-us/azure/event-hubs/schema-registry-overview#forward-compatibility).
 5. Now execute the below in the terminal.
 
 ```
-01_Platform\03_SchemaRegistry\register_schemas_forward.py
+01_Platform\03_SchemaRegistry\register_schemas_forward.py dv-schemaregistry-ehns-eun-{youruniquenamespace}.servicebus.windows.net
 ```
 
 1. We will see in the terminal output that schema attempts 1, 2 and 3 were able to be uploaded but schemas 4 and 5 were not.

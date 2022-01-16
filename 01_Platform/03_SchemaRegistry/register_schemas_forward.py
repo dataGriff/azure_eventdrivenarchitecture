@@ -1,7 +1,10 @@
 from azure.identity._credentials.default import DefaultAzureCredential
 from schemaregister import *
+import sys
 
-fully_qualified_namespace = 'schemaregistry-ehns-eun-griff.servicebus.windows.net'
+fully_qualified_namespace = sys.argv[1].replace("'", "")
+
+print(f'Schemas to be uploaded to namespace {fully_qualified_namespace}...')
 
 group_name = "myschemagroup"
 format = "Avro"
