@@ -1,21 +1,5 @@
 Import-Module Az.EventHub
 
-# $subscription = "dataGriff Teaching"
-# $environment = "dv"
-# $uniqueNamespace = "griff"
-# $region = "northeurope"
-# $regionshortcode = "eun"
-# $eventhubname = "demo"
-# $namespaceidentifier = "events001"
-
-# $keyvaultname = "$environment-$eventhubname-kv-$regionshortcode-$uniqueNamespace"
-# $resourcegroupname = "$environment-events-account-rg"
-
-# $namespace = "$environment-$namespaceidentifier-ehns-$regionshortcode-$uniqueNamespace"
-# $namespaceresourcegroup = "$environment-events-broker-rg"
-
-# $publishsecretname = "eh-$eventhubname-publish"
-# $consumesecretname = "eh-$eventhubname-consume"
 # $cosmossecretname = "cos-readwrite"
 
 function Connect-Azure
@@ -40,11 +24,15 @@ function Connect-Azure
         [Parameter(Mandatory = $true)]
         [String]$subscription
     )
+    Write-Host("Start Connect-Azure...")
+
     if ([string]::IsNullOrEmpty($(Get-AzContext).Account))
     {    
         Connect-AzAccount
     }
     Set-AzContext -Subscription $subscription
+
+    Write-Host("Completed Connect-Azure.")
 }
 
 function Get-AzureRegionShortCode
@@ -70,11 +58,15 @@ function Get-AzureRegionShortCode
         [String]$region
     )
 
+    Write-Host("Start Get-AzureRegionShortCode...")
+
     switch ( $region )
         {
             'northeurope' { $regionshortcode = 'eun'}
             'westeurope' { $regionshortcode = 'euw'}
         }
+
+    Write-Host("Completed Get-AzureRegionShortCode.")
              
     return $regionshortcode
 }
@@ -91,6 +83,27 @@ function Publish-KeyVaultEventHub
     .PARAMETER Subscription
     Name of Azure subscription to connect to.
 
+    .PARAMETER environment
+    The environment code to deploy to which is either dv (development), qa or lv (live).
+
+    .PARAMETER uniqueNamespace
+    This is the unique namespace for your azure estate to ensure global uniqueness. e.g. griff.
+
+    .PARAMETER region
+    The full name of the azure region. e.g. northeurope.
+
+    .PARAMETER eventhubname
+    The name of the event hub you want to retrieve the connection string to publish to or consume from.
+
+    .PARAMETER eventhubnamespaceidentifier
+    The name identifier of the event hub namespace. e.g. events001. The namespace name will be constructed as follows:  "$environment-$eventhubnamespaceidentifier-ehns-$regionshortcode-$uniqueNamespace"
+
+    .PARAMETER target
+    The name of the area that is wanting to publish to or consume from the event hub. e.g. accout, lead, sale.
+
+    .PARAMETER sendlisten
+    Whether the goal is to publish to the event hub ('send') or consume from the event hub ('listen').
+
     .EXAMPLE
     $subscription = "dataGriff Teaching"
     $environment = "dv"
@@ -99,7 +112,7 @@ function Publish-KeyVaultEventHub
     $eventhubname = "demo"
     $eventhubnamespaceidentifier = "events001"
     $target = "account"
-    $sendlisten = 'send'
+    $sendlisten = 'listen'
 
     Publish-KeyVaultEventHub -subscription $subscription `
         -environment $environment `
@@ -116,6 +129,7 @@ function Publish-KeyVaultEventHub
         [Parameter(Mandatory = $true)]
         [String]$subscription,    
         [Parameter(Mandatory = $true)]
+        [ValidateSet("dv","qa","lv")]
         [String]$environment,
         [Parameter(Mandatory = $true)]
         [String]$uniqueNamespace,
@@ -133,85 +147,66 @@ function Publish-KeyVaultEventHub
 
     )
 
+    Write-Host("Start Publish-KeyVaultEventHub...")
+
     Connect-Azure -subscription $subscription
 
     $regionshortcode = (Get-AzureRegionShortCode $region)
 
     $keyvaultname = "$environment-$target-kv-$regionshortcode-$uniqueNamespace"
-    Write-Output("Key Vault name is $keyvaultname.")
+    Write-Host("Key Vault name is $keyvaultname.")
     $resourcegroupname = "$environment-events-$target-rg"
-    Write-Output("Key Vault resource group is $resourcegroupname.")
+    Write-Host("Key Vault resource group is $resourcegroupname.")
 
     $eventhubnamespace = "$environment-$eventhubnamespaceidentifier-ehns-$regionshortcode-$uniqueNamespace"
-    Write-Output("Event hub namespace is $eventhubnamespace.")
+    Write-Host("Event hub namespace is $eventhubnamespace.")
     $eventhubnamespaceresourcegroup = "$environment-events-broker-rg"
-    Write-Output("Event hub namespace resource group is $eventhubnamespaceresourcegroup.")
+    Write-Host("Event hub namespace resource group is $eventhubnamespaceresourcegroup.")
 
     if($sendlisten -eq 'send')
     {
         $secretname = "eh-$eventhubname-publish"
-        Write-Output("Publish secret name is $secretname.")
+        Write-Host("Publish secret name is $secretname.")
     }
     if($sendlisten -eq 'listen')
     {
         $secretname = "eh-$eventhubname-consume"
-        Write-Output("Consumer secret name is $secretname.")
+        Write-Host("Consumer secret name is $secretname.")
     }
 
-    Write-Output("Check if key vault $keyvaultname exists...")
+    Write-Host("Check if key vault $keyvaultname exists...")
     if(-not(Get-AzKeyVault -VaultName $keyvaultname))
     {
-        Write-Output("Key vault $keyvaultname does not exist so deploy...")
+        Write-Host("Key vault $keyvaultname does not exist so deploy...")
         New-AzKeyVault -Name $keyvaultname `
         -ResourceGroupName $resourcegroupname `
         -Location $region
-        Write-Output("Key vault $keyvaultname deployed.")
+        Write-Host("Key vault $keyvaultname deployed.")
     }
     else {
-        Write-Output("Key vault $keyvaultname already exists.")
+        Write-Host("Key vault $keyvaultname already exists.")
     }
 
-    Write-Output("Get $sendlisten key for event hub $eventhubname on namespace $eventhubnamespace...")
+    Write-Host("Get $sendlisten key for event hub $eventhubname on namespace $eventhubnamespace...")
     $key = (Get-AzEventHubKey -ResourceGroupName $eventhubnamespaceresourcegroup `
         -NamespaceName $eventhubnamespace `
         -EventHubName $eventhubname `
         -AuthorizationRuleName $sendlisten)
-    Write-Output("Got $sendlisten key for event hub $eventhubname on namespace $eventhubnamespace.")
+    Write-Host("Got $sendlisten key for event hub $eventhubname on namespace $eventhubnamespace.")
 
-    Write-Output("Set key to be secure text...")
+    Write-Host("Set key to be secure text...")
     $secretvalue = ConvertTo-SecureString $key.PrimaryConnectionString -AsPlainText -Force
-    Write-Output("Set key to be secure text.")
+    Write-Host("Set key to be secure text.")
 
-    Write-Output("Add secret $secretname to key vault $keyvaultname...")
+    Write-Host("Add secret $secretname to key vault $keyvaultname...")
     Set-AzKeyVaultSecret -VaultName $keyvaultname `
     -Name $secretname `
     -SecretValue $secretvalue
-    Write-Output("Added secret $secretname to key vault $keyvaultname.")
+    Write-Host("Added secret $secretname to key vault $keyvaultname.")
+
+    Write-Host("Completed Publish-KeyVaultEventHub.")
 
 }
-
-$subscription = "dataGriff Teaching"
-$environment = "dv"
-$uniqueNamespace = "griff"
-$region = "northeurope"
-$eventhubname = "demo"
-$eventhubnamespaceidentifier = "events001"
-$target = "account"
-$sendlisten = 'listen'
-
-Publish-KeyVaultEventHub -subscription $subscription `
-    -environment $environment `
-    -uniqueNamespace $uniqueNamespace `
-    -region $region `
-    -eventhubname $eventhubname `
-    -eventhubnamespaceidentifier $eventhubnamespaceidentifier `
-    -target $target `
-    -sendlisten $sendlisten
-
-
-
-
-## Publish Event Hub Consumer
 
 ## Publish Local Cosmos
 
