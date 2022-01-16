@@ -67,6 +67,69 @@ function Get-AzureRegionShortCode {
     return $regionshortcode
 }
 
+function Publish-KeyVault {
+    <#
+    .SYNOPSIS
+    Returns a region shortcode string for region.
+
+    .DESCRIPTION
+    Returns a region shortcode string for region.
+
+    .PARAMETER Region
+    Name of Azure region.
+
+    .EXAMPLE
+    $subscription = 'datagriff Teaching'
+    $region = 'northeurope'
+    $resourcegroupname = 'dv-events-account-rg'
+    $keyvaultname = 'dv-account-kv-eun-griff'
+    $teamname = 'customer'
+
+    Publish-KeyVault -subscription $subscription `
+        -region $region `
+        -resourcegroupname $resourcegroupname `
+        -keyvaultname $keyvaultname `
+        -teamname $teamname
+
+#>
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true)]
+        [String]$subscription,
+        [Parameter(Mandatory = $true)]
+        [ValidateSet("northeurope", "westeurope")]
+        [String]$region,
+        [Parameter(Mandatory = $true)]
+        [String]$resourcegroupname,
+        [Parameter(Mandatory = $true)]
+        [String]$keyvaultname,
+        [Parameter(Mandatory = $true)]
+        [String]$teamname
+    )
+
+    Write-Host("Start Publish-KeyVault...")
+
+    Write-Host("Check if key vault $keyvaultname exists...")
+    if (-not(Get-AzKeyVault -VaultName $keyvaultname)) {
+        Write-Host("Key vault $keyvaultname does not exist so deploy...")
+        New-AzKeyVault -Name $keyvaultname `
+            -ResourceGroupName $resourcegroupname `
+            -Location $region
+            -Tags @{team=$teamname}
+        Write-Host("Key vault $keyvaultname deployed.")
+    }
+    else {
+        Write-Host("Key vault $keyvaultname already exists.")
+        Write-Host("Updating Key vault $keyvaultname tags...")
+        Update-AzKeyVault -Name $keyvaultname `
+        -ResourceGroupName $resourcegroupname `
+        -Tags @{team=$teamname}
+    }
+
+    Write-Host("End Publish-KeyVault.")
+}
+
+
 function Publish-KeyVaultEventHub {
     <#
     .SYNOPSIS
@@ -108,6 +171,7 @@ function Publish-KeyVaultEventHub {
     $eventhubnamespaceidentifier = "events001"
     $target = "account"
     $sendlisten = 'listen'
+    $teamname = 'customer'
 
     Publish-KeyVaultEventHub -subscription $subscription `
         -environment $environment `
@@ -116,7 +180,8 @@ function Publish-KeyVaultEventHub {
         -eventhubname $eventhubname `
         -eventhubnamespaceidentifier $eventhubnamespaceidentifier `
         -target $target `
-        -sendlisten $sendlisten
+        -sendlisten $sendlisten `
+        -teamname $teamname
 
 #>
     [CmdletBinding()]
@@ -129,6 +194,7 @@ function Publish-KeyVaultEventHub {
         [Parameter(Mandatory = $true)]
         [String]$uniqueNamespace,
         [Parameter(Mandatory = $true)]
+        [ValidateSet("northeurope", "westeurope")]
         [String]$region,
         [Parameter(Mandatory = $true)]
         [String]$eventhubname,
@@ -138,7 +204,10 @@ function Publish-KeyVaultEventHub {
         [String]$target,
         [Parameter(Mandatory = $true)]
         [ValidateSet("send", "listen")]
-        [String]$sendlisten
+        [String]$sendlisten,
+        [Parameter(Mandatory = $true)]
+        [ValidateSet("customer", "conversions","platform","product")]
+        [String]$teamname
 
     )
 
@@ -167,17 +236,11 @@ function Publish-KeyVaultEventHub {
         Write-Host("Consumer secret name is $secretname.")
     }
 
-    Write-Host("Check if key vault $keyvaultname exists...")
-    if (-not(Get-AzKeyVault -VaultName $keyvaultname)) {
-        Write-Host("Key vault $keyvaultname does not exist so deploy...")
-        New-AzKeyVault -Name $keyvaultname `
-            -ResourceGroupName $resourcegroupname `
-            -Location $region
-        Write-Host("Key vault $keyvaultname deployed.")
-    }
-    else {
-        Write-Host("Key vault $keyvaultname already exists.")
-    }
+    Publish-KeyVault -subscription $subscription `
+        -region $region `
+        -resourcegroupname $resourcegroupname `
+        -keyvaultname $keyvaultname `
+        -teamname $teamname
 
     Write-Host("Get $sendlisten key for event hub $eventhubname on namespace $eventhubnamespace...")
     $key = (Get-AzEventHubKey -ResourceGroupName $eventhubnamespaceresourcegroup `
@@ -231,12 +294,14 @@ function Publish-KeyVaultCosmos {
     $uniqueNamespace = "griff"
     $region = "northeurope"
     $target = "account"
+    $teamname = "customer"
 
     Publish-KeyVaultCosmos -subscription $subscription `
         -environment $environment `
         -uniqueNamespace $uniqueNamespace `
         -region $region `
-        -target $target
+        -target $target `
+        -teamname $teamname
 
 #>
     [CmdletBinding()]
@@ -251,7 +316,10 @@ function Publish-KeyVaultCosmos {
         [Parameter(Mandatory = $true)]
         [String]$region,
         [Parameter(Mandatory = $true)]
-        [String]$target
+        [String]$target,
+        [Parameter(Mandatory = $true)]
+        [ValidateSet("customer", "conversions","platform","product")]
+        [String]$teamname
     )
 
     Write-Host("Start Publish-KeyVaultCosmos...")
@@ -271,17 +339,11 @@ function Publish-KeyVaultCosmos {
     $secretname = "cosdb-$target-conn"
     Write-Host("Connection string secret name is $secretname.")
 
-    Write-Host("Check if key vault $keyvaultname exists...")
-    if (-not(Get-AzKeyVault -VaultName $keyvaultname)) {
-        Write-Host("Key vault $keyvaultname does not exist so deploy...")
-        New-AzKeyVault -Name $keyvaultname `
-            -ResourceGroupName $resourcegroupname `
-            -Location $region
-        Write-Host("Key vault $keyvaultname deployed.")
-    }
-    else {
-        Write-Host("Key vault $keyvaultname already exists.")
-    }
+    Publish-KeyVault -subscription $subscription `
+        -region $region `
+        -resourcegroupname $resourcegroupname `
+        -keyvaultname $keyvaultname `
+        -teamname $teamname
 
     Write-Host("Get connection string for cosmos account $accountName...")
     $key = (Get-AzCosmosDBAccountKey -ResourceGroupName $resourcegroupname `
