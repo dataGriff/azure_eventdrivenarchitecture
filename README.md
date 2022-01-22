@@ -1,10 +1,22 @@
-## Requirements
+# Description
+
+## Requirements & Dependencies
+
+### Tooling
 
 * [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli)
 * [Bicep VS Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)
 * [Bicep CLI](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#windows)
 * [Event Hub VS Code](https://marketplace.visualstudio.com/items?itemName=Summer.azure-event-hub-explorer)
+* [Powershell VS Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell)
 
+### Powershell Modules
+
+### Python Modules
+
+### Conventions
+
+* You will be requested to use your own **unique namespace** consistently throughout this course which represents how you distinguish your resources from others in Azure. Azure resources need to be globally unique so it is good to postfix with your own unique identifier for your assets. I use **dgrf** for my teaching and demos to represent datagriff and hope no one else uses it!
 
 ## Demo
 

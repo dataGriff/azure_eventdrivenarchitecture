@@ -1,7 +1,5 @@
 Import-Module Az.EventHub
 
-# $cosmossecretname = "cos-readwrite"
-
 function Connect-Azure {
     <#
     .SYNOPSIS
@@ -81,9 +79,9 @@ function Publish-KeyVault {
     .EXAMPLE
     $subscription = 'datagriff Teaching'
     $region = 'northeurope'
-    $resourcegroupname = 'dv-events-account-rg'
-    $keyvaultname = 'dv-account-kv-eun-griff'
-    $teamname = 'customer'
+    $resourcegroupname = 'dv-events-demo-rg'
+    $keyvaultname = 'dv-demo-kv-eun-dgrf'
+    $teamname = 'demo'
 
     Publish-KeyVault -subscription $subscription `
         -region $region `
@@ -109,12 +107,27 @@ function Publish-KeyVault {
 
     Write-Host("Start Publish-KeyVault...")
 
+    Write-Host("Check if resource group $resourcegroupname exists...")
+    if (-not(Get-AzResourceGroup -Name $resourcegroupname)) {
+        Write-Host("Resource group $resourcegroupname does not exist so deploy...")
+        New-AzResourceGroup -Name $resourcegroupname `
+            -Location $region `
+            -Tags @{team=$teamname}
+        Write-Host("Resource group $resourcegroupname deployed.")
+    }
+    else {
+        Write-Host("Resource group $resourcegroupname already exists.")
+        Write-Host("Updating resourcegroup $keyvaultname tags...")
+        Set-AzResourceGroup -Name $resourcegroupname `
+        -Tags @{team=$teamname}
+    }
+
     Write-Host("Check if key vault $keyvaultname exists...")
     if (-not(Get-AzKeyVault -VaultName $keyvaultname)) {
         Write-Host("Key vault $keyvaultname does not exist so deploy...")
         New-AzKeyVault -Name $keyvaultname `
             -ResourceGroupName $resourcegroupname `
-            -Location $region
+            -Location $region `
             -Tags @{team=$teamname}
         Write-Host("Key vault $keyvaultname deployed.")
     }
@@ -206,7 +219,7 @@ function Publish-KeyVaultEventHub {
         [ValidateSet("send", "listen")]
         [String]$sendlisten,
         [Parameter(Mandatory = $true)]
-        [ValidateSet("customer", "conversions","platform","product")]
+        [ValidateSet("customer", "conversions","platform","product","demo")]
         [String]$teamname
 
     )
@@ -318,7 +331,7 @@ function Publish-KeyVaultCosmos {
         [Parameter(Mandatory = $true)]
         [String]$target,
         [Parameter(Mandatory = $true)]
-        [ValidateSet("customer", "conversions","platform","product")]
+        [ValidateSet("customer", "conversions","platform","product","demo")]
         [String]$teamname
     )
 
@@ -332,6 +345,8 @@ function Publish-KeyVaultCosmos {
     Write-Host("Key Vault name is $keyvaultname.")
     $resourcegroupname = "$environment-events-$target-rg"
     Write-Host("Key Vault resource group is $resourcegroupname.")
+
+    Get-AzResourceGroup -Name $myResourceGroupName -ErrorVariable notPresent -ErrorAction SilentlyContinue
 
     $accountName = "$environment-$target-cosdb-$regionshortcode-$uniqueNamespace"
     Write-Host("Cosmos account name is $accountName.")
@@ -363,10 +378,3 @@ function Publish-KeyVaultCosmos {
     Write-Host("Completed Publish-KeyVaultCosmos.")
 
 }
-
-# $secretvalue = ConvertTo-SecureString $cosmoskey['Secondary SQL Connection String'] -AsPlainText -Force
-
-
-
-
-

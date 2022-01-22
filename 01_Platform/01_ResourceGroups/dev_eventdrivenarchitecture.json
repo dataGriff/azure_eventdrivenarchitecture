@@ -9,7 +9,7 @@
               "x": 0,
               "y": 0,
               "colSpan": 3,
-              "rowSpan": 8
+              "rowSpan": 5
             },
             "metadata": {
               "inputs": [],
@@ -213,6 +213,29 @@
           },
           "9": {
             "position": {
+              "x": 0,
+              "y": 5,
+              "colSpan": 3,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-demo-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-demo-rg/overview"
+            }
+          },
+          "10": {
+            "position": {
               "x": 3,
               "y": 6,
               "colSpan": 3,
@@ -234,7 +257,7 @@
               "deepLink": "#@griff182ukyahooco.onmicrosoft.com/resource/subscriptions/829dab70-6cf8-487b-b8ca-ec74ab3ffbd8/resourceGroups/dv-events-databricks-rg/overview"
             }
           },
-          "10": {
+          "11": {
             "position": {
               "x": 6,
               "y": 6,
