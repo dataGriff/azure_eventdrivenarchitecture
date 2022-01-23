@@ -1,8 +1,25 @@
+- [Description](#description)
+  - [Requirements & Dependencies](#requirements--dependencies)
+  - [Demo](#demo)
+  - [1. Create Resource Groups](#1-create-resource-groups)
+  - [2. Shared Platform](#2-shared-platform)
+  - [3. Schema](#3-schema)
+  - [4. Publishers](#4-publishers)
+  - [5. Consumers](#5-consumers)
+  - [6. Data Lake](#6-data-lake)
+  - [TODO](#todo)
+  - [Foibles](#foibles)
+
 # Description
+
+The goal of this repository is to create a complete event driven architecture on azure using appropriate design patterns and strategies.
+
+The fake organisation used in the demonstration, and how its team setup has been designed around its business function, can be found in the teamconfig solution [here](https://github.com/griff182uk/teamconfig). This is also in development but gives a good bedrock into how you can create an organisation configuration system using programmable Team APIs, informed by event storming and team topologies, influencing the architecture in this demonstration throughout.
 
 ## Requirements & Dependencies
 
 To see the tooling required and environment setup, including powershell modules, python libraries and how to setup your virtual environment, as well as required windows system environment variables, please see the [prerequisites documentation](Prerequisites.md). Setting this up in advance of you working through the examples will make your life a lot easier.
+
 ## Demo
 
 This demo will involve four teams:
