@@ -346,8 +346,6 @@ function Publish-KeyVaultCosmos {
     $resourcegroupname = "$environment-events-$target-rg"
     Write-Host("Key Vault resource group is $resourcegroupname.")
 
-    Get-AzResourceGroup -Name $myResourceGroupName -ErrorVariable notPresent -ErrorAction SilentlyContinue
-
     $accountName = "$environment-$target-cosdb-$regionshortcode-$uniqueNamespace"
     Write-Host("Cosmos account name is $accountName.")
 

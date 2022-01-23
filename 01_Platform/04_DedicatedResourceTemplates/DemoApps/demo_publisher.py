@@ -16,11 +16,14 @@ token_credential =  token_credential = DefaultAzureCredential()
 group_name = "myschemagroup"
 format = "Avro"
 event_hub_name = "demo"
+database_name = 'demo'
+container_name = 'demo'
 
 KVUri = f"https://dv-demo-kv-eun-{unique_namespace}.vault.azure.net"
 credential = DefaultAzureCredential()
 client = SecretClient(vault_url=KVUri, credential=credential)
 conn_eventhub_publish = client.get_secret("eh-demo-publish").value
+conn_cosmos = client.get_secret("cosdb-demo-conn").value
 
 def get_fakedata():
     faker = Faker()
@@ -78,37 +81,33 @@ eventhub_producer = EventHubProducerClient.from_connection_string(
 )
 schema_string = get_schema()
 
-# print("Create cosmos client...")
-# endpoint = "https://customer-cosdb-eun-griff2.documents.azure.com:443/"
-# key = "t84KrqZxKqb2NXm1aMdgftKgjRSrKGOH4VgfQrr2BlPnUV3P8PzwHWzbFc0mh84527TKcLyCiMuj8olPCXraAg=="
-# client = CosmosClient(endpoint, key)
-# print("Created cosmos client.")
+print("Create cosmos client...")
+client = CosmosClient.from_connection_string(conn_cosmos)
+print("Created cosmos client.")
 
-# print("Create database...")
-# database_name = 'customer'
-# database = client.create_database_if_not_exists(id=database_name)
-# print("Database created.")
+print("Create database...")
+database = client.create_database_if_not_exists(id=database_name)
+print("Database created.")
 
-# print("Create container...")
-# container_name = 'customer_created'
-# container = database.create_container_if_not_exists(
-#     id=container_name, 
-#     partition_key=PartitionKey(path="/id")
-# )
-# print("Container created.")
+print("Create container...")
+container = database.create_container_if_not_exists(
+    id=container_name, 
+    partition_key=PartitionKey(path="/id")
+)
+print("Container created.")
 
 n = 0
 max = 10
 if __name__ == '__main__':
     with eventhub_producer, avro_serializer:
         while(n < max):
-            # try:
-            #     container.create_item(body=data)
-            # except:
-            #     raise ValueError('ERROR: Customer was not created.')
-            # print('SUCCESS: Demo was created.')
-            print(f'Start sending event hub packet {n}')
             data = get_fakedata()
+            try:
+                container.create_item(body=data)
+            except:
+                raise ValueError('ERROR: Customer was not created.')
+            print('SUCCESS: Demo was created.')
+            print(f'Start sending event hub packet {n}')
             event_data_batch = eventhub_producer.create_batch()
             payload_bytes = avro_serializer.serialize(data, schema=schema_string)
             event_data_batch.add(EventData(body=payload_bytes))

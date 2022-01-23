@@ -29,7 +29,6 @@ New-AzResourceGroupDeployment -name $deploymentName `
     -eventhubname $eventHubName
 Write-Host "Deployed event hub and storage account."
 
-Write-Host "Completed import module from from $modulelocation."
 Write-Host "Deploying key vault and event hub secrets..."
     Publish-KeyVaultEventHub -subscription $subscription `
         -environment $environment `
@@ -41,3 +40,24 @@ Write-Host "Deploying key vault and event hub secrets..."
         -sendlisten $sendlisten `
         -teamname $teamname
 Write-Host "Deployed key vault and event hub secrets."
+
+Write-Host "Deploying cosmos store..."
+$deploymentName = "${eventHubName}CosmosDeployment"
+$resourceGroupname = "dv-events-demo-rg"
+$templateFile = "01_Platform\04_DedicatedResourceTemplates\Bicep\cosmos.bicep"
+New-AzResourceGroupDeployment -name $deploymentName `
+    -ResourceGroupName $resourceGroupname `
+    -TemplateFile $templateFile `
+    -namespace  $uniqueNamespace `
+    -target $target `
+    -teamname $teamname
+Write-Host "Deployed cosmos store."
+
+Write-Host "Deploying key vault and cosmos secrets..."
+Publish-KeyVaultCosmos -subscription $subscription `
+    -environment $environment `
+    -uniqueNamespace $uniqueNamespace `
+    -region $region `
+    -target $target `
+    -teamname $teamname
+Write-Host "Deployed key vault and cosmos secrets."

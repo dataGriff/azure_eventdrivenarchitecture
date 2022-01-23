@@ -1,7 +1,7 @@
 ## The following will remove all resource groups and resources created as part of this demo.
 ## You will be prompted with a y/n in the command prompt to confirm you want to proceed.
 
-$subscription = "datagriff Teaching"
+$subscription = [System.Environment]::GetEnvironmentVariable('AZURE_SUBSCRIPTION') 
 $environment = 'dv'
 
 $resourcegroups = @(
@@ -14,7 +14,8 @@ $resourcegroups = @(
     'events-product-rg',
     'events-leads-rg',
     'events-salesfiles-rg',
-    'events-sales-rg'
+    'events-sales-rg',
+    'events-demo-rg'
 )
 
 $confirmation = Read-Host "Are you Sure You Want To Proceed? (y/n)"
