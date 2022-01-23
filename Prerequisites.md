@@ -127,6 +127,8 @@ Like this in command line...
 "%AZURE_UNIQUE_NAMESPACE%"
 ```
 
+**Important Help** - When using the environment variables and switching languages, your values may get in a bit of a twist on occassion. If you do get any errors I recommend just killing all terminals, restarting visual studio code and starting from scratch.
+
 ### Create Application Registration and Add to Environment Variables
 
 We are going to be creating an application registration that we will use for the majority of our authentication against our new estate for the following exercises. We will also store these credentials in our system environment variables.
