@@ -12,14 +12,14 @@
 
 Please ensure you have the following tools installed on your machine.
 
-* [Visual Studio Code](https://code.visualstudio.com/)
-* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli)
-* [Bicep VS Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)
-* [Bicep CLI](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#windows)
-* [Event Hub VS Code](https://marketplace.visualstudio.com/items?itemName=Summer.azure-event-hub-explorer)
-* [Powershell VS Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell)
-* [Python](https://www.python.org/downloads/)
-    * Here is a good [tutorial](https://www.youtube.com/watch?v=QYTPpqPYaw0&t=14s) on how to install python along with spark and pyspark which is useful for data streaming pipelines.
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli)
+- [Bicep VS Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)
+- [Bicep CLI](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#windows)
+- [Event Hub VS Code](https://marketplace.visualstudio.com/items?itemName=Summer.azure-event-hub-explorer)
+- [Powershell VS Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell)
+- [Python](https://www.python.org/downloads/)
+  - Here is a good [tutorial](https://www.youtube.com/watch?v=QYTPpqPYaw0&t=14s) on how to install python along with spark and pyspark which is useful for data streaming pipelines.
 
 ### Create Local Virtual Python Environment
 
@@ -47,13 +47,15 @@ venv\scripts\deactivate
 
 ### Python Modules
 
-1. To complete all of the scenarios in this azure_eventdrivenarchitecture you need to activate your environment and install the following packages.
+To complete all of the scenarios in this azure_eventdrivenarchitecture you need to activate your environment and install the following packages.
+
+1. First activate your environment.
 
 ```py
 venv\scripts\activate
 ```
 
-Then
+2. Then pip install the required packages.
 
 ```py
 pip-install avro                       
@@ -68,6 +70,12 @@ pip-install pip-install azure-schemaregistry
 pip-install azure-schemaregistry-avroserializer
 pip-install azure-storage-blob
 pip-install Faker
+```
+
+3. You can confirm the packages you have installed by running the following.
+
+```cmd  
+pip list
 ```
 
 **Remember:** As mentioned above we are imitating a number of teams in this architecture and only creating one environment for all the packages for simplicity. In reality each team or implementation woud have only its own required libraries installed for its specific virtual environment.
@@ -126,7 +134,7 @@ We are going to be creating an application registration that we will use for the
 1. In the Azure Portal go into application registrations in Azure Active directory (you can also find a link to this on your dashboard in the markdown on the left).
 2. Create a new app registration called aprg-events-admin.
 
-![App Reg](../../Images/AppReg.PNG)
+![App Reg](/Images/AppReg.PNG)
 
 We are now going to store the credentials of the application registration created above in our local environment variables. These values will be used whenever we reference the below sections of code in our python scripts as per this [online documentation](https://docs.microsoft.com/en-us/python/api/overview/azure/identity-readme?view=azure-python#environment-variables).
 
@@ -142,4 +150,4 @@ token_credential = DefaultAzureCredential()
 4. Next we need to generate a secret from our application registration and add this to our environment variables.
 5. Once you have copied this value, paste it into a new local environment variable called AZURE_CLIENT_SECRET.
 
-![Environment Variables App Reg](../../Images/EnvironmentVariablesAppReg.PNG)
+![Environment Variables App Reg](/Images/EnvironmentVariablesAppReg.PNG)
