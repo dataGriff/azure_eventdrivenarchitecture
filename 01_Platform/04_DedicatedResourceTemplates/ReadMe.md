@@ -12,14 +12,14 @@ The deployment of these publisher assets, the event hub, the storage account con
 
 ### Quick Start Publisher Demo App
 
-Pre-requisite is you must have deployed the shared infrastructure as per the instructions [here](../02_SharedInfrastructure/ReadMe.md).
+Pre-requisite is you must have deployed the shared infrastructure as per the instructions [here](../02_SharedInfrastructure/ReadMe.md) and setup the schema registry group as per the instructions [here](../03_SchemaRegistry/ReadMe.md) with the name "myschemagroup".
 
 To deploy the dedicated app publisher integeation resources of the event hub, the key vault and the storage container into your skeleton platform for a demo application, run the following code in a Powershell terminal, replacing the top three parameters relevant to your environment. This will take a few minutes.
 
 ```ps1
-$uniqueNamespace = "dgrf"               # Represents the unique id you are applying to your resources to ensure they are globally unique
-$subscription = "dataGriff Teaching"    # Name of your azure subscription
-$region = "northeurope"                 # Region you are deploying your resources
+$uniqueNamespace = [System.Environment]::GetEnvironmentVariable('AZURE_UNIQUE_NAMESPACE')   # Ensure Resources globally unique
+$subscription = [System.Environment]::GetEnvironmentVariable('AZURE_SUBSCRIPTION')          # Name of your azure subscription
+$region = [System.Environment]::GetEnvironmentVariable('AZURE_REGION')                      # Region you are deploying your resources
 
 $eventHubName = "demo"
 $deploymentName = "${eventHubName}PublisherDeployment"
@@ -59,6 +59,11 @@ Write-Host "Deploying key vault and event hub secrets..."
 Write-Host "Deployed key vault and event hub secrets."
 ```
 
+Once the above is deployed you can then publish and capture some demo customer data using the python in [demo_publisher.py](./DemoApps/demo_publisher.py). Run this by starting your virtual environment (venv\scripts\activate) and running the following in the bash terminal with the python environment running.
+
+```bash
+demo_publisher.py
+```
 ## Consumer
 
 ### Quick Start Demo App Consumer
@@ -68,9 +73,9 @@ Pre-requisite is you must have deployed the publisher demo resources as per the 
 To deploy the dedicated app consumer integeation resources of the consumer group and key vault into your skeleton platform for a demo application, run the following code in a Powershell terminal, replacing the top three parameters relevant to your environment. This will take a few minutes.
 
 ```ps1
-$uniqueNamespace = "dgrf"               # Represents the unique id you are applying to your resources to ensure they are globally unique
-$subscription = "dataGriff Teaching"    # Name of your azure subscription
-$region = "northeurope"                 # Region you are deploying your resources
+$uniqueNamespace = [System.Environment]::GetEnvironmentVariable('AZURE_UNIQUE_NAMESPACE')   # Ensure Resources globally unique
+$subscription = [System.Environment]::GetEnvironmentVariable('AZURE_SUBSCRIPTION')          # Name of your azure subscription
+$region = [System.Environment]::GetEnvironmentVariable('AZURE_REGION')                      # Region you are deploying your resources
 
 $eventHubName = "demo"
 $deploymentName = "${eventHubName}PublisherDeployment"

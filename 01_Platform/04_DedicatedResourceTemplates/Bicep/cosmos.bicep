@@ -7,7 +7,7 @@
 param environment string = 'dv'
 
 @description('Unique postfix for your resources to ensure globally unique')
-param namespace string = 'griff'
+param namespace string
 
 @description('Location for the Cosmos DB account.')
 param location string = resourceGroup().location

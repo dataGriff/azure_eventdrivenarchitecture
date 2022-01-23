@@ -14,9 +14,29 @@
 
 ### Python Modules
 
-### Conventions
+### Setup Unique Namespace
 
-* You will be requested to use your own **unique namespace** consistently throughout this course which represents how you distinguish your resources from others in Azure. Azure resources need to be globally unique so it is good to postfix with your own unique identifier for your assets. I use **dgrf** for my teaching and demos to represent datagriff and hope no one else uses it!
+Throughout the course you will be appending a number of resources with your own unique namespace to ensure that they are globally unique. The code handles this by referencing an environment variable that you need to setup so that is consistent throughout.
+
+Open your system environment variables on your machine.
+
+Add a unique namespace for your azure resources. For example mine is "dgrf" as shown below.
+
+Once you have set your environment variable you will need to restart your IDE (Visual Studio Code) to pick up the new value.
+
+Like this in Powershell...
+
+```ps1
+[System.Environment]::GetEnvironmentVariable('AZURE_UNIQUE_NAMESPACE')
+```
+
+Like this in Python...
+
+```py
+unique_namespace = os.environ.get('AZURE_UNIQUE_NAMESPACE')
+```
+
+Using this consistently will result in your azure resources having a consistent postfix as shown below.
 
 ## Demo
 
