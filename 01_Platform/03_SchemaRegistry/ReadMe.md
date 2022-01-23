@@ -4,39 +4,12 @@ In this section we are just going to explore some registry concepts and implemen
 
 For this section you will need to make sure you have python installed as per the pre-requisites.
 
-**You must have completed [02_SharedPlatform](../02_SharedInfrastructure/ReadMe.md) before continuing with the below.**
-
-## Create an App Reg in Azure
-
-We are going to be creating an application registration that we will use for the majority of our authentication against our new estate for the following exercises. We will also store these credentials in local environment variables for easier local development too.
-
-1. In the Azure Portal go into application registrations in Azure Active directory (you can also find a link to this on your dashboard in the markdown on the left).
-2. Create a new app registration called aprg-events-admin.
-
-## Setup Local Environment Variables
-
-We are now going to store the credentials of the application registration created above in our local environment variables. These values will be used whenever we reference the below sections of code in our python scripts as per this [online documentation](https://docs.microsoft.com/en-us/python/api/overview/azure/identity-readme?view=azure-python#environment-variables).
-
-```py
-from azure.identity._credentials.default import DefaultAzureCredential
-...
-token_credential = DefaultAzureCredential()
-```
-
-1. Edit the environment variables for your account on your local machine.
-2. First add a variable for AZURE_CLIENT_ID from your new application registration.
-3. Then add a variable for AZURE_TENANT_ID from your new application registration.
-4. Next we need to generate a secret from our application registration and add this to our environment variables.
-5. Once you have copied this value, paste it into a new local environment variable called AZURE_CLIENT_SECRET.
-
-![Environment Variables](../../Images/EnvironmentVariables.PNG)
-
-## Grant the App Reg Permissions on Schema Registry
+**You must have completed [02_SharedPlatform](../02_SharedInfrastructure/ReadMe.md) and [prerequisites](../../Prerequisites.md) before continuing with the below.**
+## Grant the Admin App Reg Permissions on Schema Registry
 
 Might be a delay after added before works.
 
 ![Schema Reg Permissions](../../Images/AppRegAddingSchemaRegRole.PNG)
-
 
 ## Create a Python Environment
 
@@ -49,17 +22,10 @@ python -m venv venv
 
 **Important Note** : We will be using a single virtual environment for this entire implementation, but remember we are actually imitating a number of teams so the environment should actually be split per each teams implementation and what packages and dependencies they need along to carry out their function.
 
-3. Activate the python environment by running the following.
+1. Activate the python environment by running the following.
 
 ```py
 venv\scripts\activate
-```
-
-4. Install the packages required by running the following
-
-```py
-pip install azure-schemaregistry-avroserializer azure-identity
-pip install azure-schemaregistry azure-identity
 ```
 
 ## Create a Backward Compatible Schema Group and Schemas

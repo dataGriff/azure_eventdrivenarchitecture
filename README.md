@@ -2,42 +2,7 @@
 
 ## Requirements & Dependencies
 
-### Tooling
-
-* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli)
-* [Bicep VS Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)
-* [Bicep CLI](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#windows)
-* [Event Hub VS Code](https://marketplace.visualstudio.com/items?itemName=Summer.azure-event-hub-explorer)
-* [Powershell VS Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell)
-
-### Powershell Modules
-
-### Python Modules
-
-### Setup Unique Namespace
-
-Throughout the course you will be appending a number of resources with your own unique namespace to ensure that they are globally unique. The code handles this by referencing an environment variable that you need to setup so that is consistent throughout.
-
-Open your system environment variables on your machine.
-
-Add a unique namespace for your azure resources. For example mine is "dgrf" as shown below.
-
-Once you have set your environment variable you will need to restart your IDE (Visual Studio Code) to pick up the new value.
-
-Like this in Powershell...
-
-```ps1
-[System.Environment]::GetEnvironmentVariable('AZURE_UNIQUE_NAMESPACE')
-```
-
-Like this in Python...
-
-```py
-unique_namespace = os.environ.get('AZURE_UNIQUE_NAMESPACE')
-```
-
-Using this consistently will result in your azure resources having a consistent postfix as shown below.
-
+To see the tooling required and environment setup, including powershell modules, python libraries and how to setup your virtual environment, as well as required windows system environment variables, please see the [prerequisites documentation](Prerequisites.md). Setting this up in advance of you working through the examples will make your life a lot easier.
 ## Demo
 
 This demo will involve four teams:

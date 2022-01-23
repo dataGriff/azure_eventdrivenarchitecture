@@ -9,7 +9,7 @@ If you ever need to quickly cleanup the entire estate and remove all the resourc
 
 1. Open up the azure_eventdrivenarchitecture repo in visual studio code.
 
-2. Open up the Terminal by goig to view > terminal in the visual studio code menu.
+2. Open up the Terminal by going to view > terminal in the visual studio code menu.
 
 3. Ensure that command prompt is chosen in the right of the terminal.
 
@@ -21,16 +21,16 @@ If you ever need to quickly cleanup the entire estate and remove all the resourc
 az login
 ```
 
-5. Set the azure subscription you are going to be using by running the command below in the terminal, replacing {your subscription name} with your subscription name.
+5. Set the azure subscription you are going to be using by running the command below in the terminal. The %AZURE_SUBSCRIPTION% will come from the value you have placed in your environment variables as part of the pre-requisites.
 
 ```bash
-az account set --subscription "{your subscription name}"
+az account set --subscription "%AZURE_SUBSCRIPTION%"
 ```
 
-6. Deploy the resource groups for the architecture by running he command below in the terminal.
+6. Deploy the resource groups for the architecture by running he command below in the terminal. The %AZURE_REGION% will come from the value you have placed in your environment variables as part of the pre-requisites.
 
 ```bash
-az deployment sub create --name eventResourceGroups --location northeurope --template-file 01_Platform\01_ResourceGroups\resourcegroups.bicep
+az deployment sub create --name eventResourceGroups --location "%AZURE_REGION%" --template-file 01_Platform\01_ResourceGroups\resourcegroups.bicep
 ```
 
 7. To upload your dashboard overview of the architecture, go to the azure portal and choose dashboard from the left menu.
@@ -61,3 +61,5 @@ az deployment sub create --name eventResourceGroups --location northeurope --tem
 To confirm tags, click on a resource group and you should see the team tag at the top of the page.
 
 ![Resource Group Tagged](../../Images/ResourceGroupTagged.PNG)
+
+**Note:** You will also see a demo resource group tile that is currently empty. This is used as part of a quickstart demo and will only be short-lived and not part of the overall architecture, but it makes it easier to discover by being on the dashboard. 

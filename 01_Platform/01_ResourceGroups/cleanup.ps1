@@ -15,7 +15,8 @@ $resourcegroups = @(
     'events-leads-rg',
     'events-salesfiles-rg',
     'events-sales-rg',
-    'events-demo-rg'
+    'events-demop-rg',
+    'events-democ-rg'
 )
 
 $confirmation = Read-Host "Are you Sure You Want To Proceed? (y/n)"
