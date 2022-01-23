@@ -17,46 +17,7 @@ Pre-requisite is you must have deployed the shared infrastructure as per the ins
 To deploy the dedicated app publisher integeation resources of the event hub, the key vault and the storage container into your skeleton platform for a demo application, run the following code in a Powershell terminal, replacing the top three parameters relevant to your environment. This will take a few minutes.
 
 ```ps1
-$uniqueNamespace = [System.Environment]::GetEnvironmentVariable('AZURE_UNIQUE_NAMESPACE')   # Ensure Resources globally unique
-$subscription = [System.Environment]::GetEnvironmentVariable('AZURE_SUBSCRIPTION')          # Name of your azure subscription
-$region = [System.Environment]::GetEnvironmentVariable('AZURE_REGION')                      # Region you are deploying your resources
 
-$eventHubName = "demo"
-$deploymentName = "${eventHubName}PublisherDeployment"
-$resourceGroupname = "dv-events-broker-rg"
-$templateFile = "01_Platform\04_DedicatedResourceTemplates\Bicep\publisher.bicep"
-$environment = "dv"
-$eventhubnamespaceidentifier = "events001"
-$target = "demo"
-$sendlisten = 'send'
-$teamname = 'demo'
-
-Write-Host "Deploying event hub and storage account..."
-New-AzResourceGroupDeployment -name $deploymentName `
-    -ResourceGroupName $resourceGroupname `
-    -TemplateFile $templateFile `
-    -namespace  $uniqueNamespace `
-    -eventhubname $eventHubName
-Write-Host "Deployed event hub and storage account."
-
-Write-Host "Getting current drive location, assumes in root of azure_deventdrivenarchitecture repo..."
-$location = Get-Location
-$modulelocation = "$location\01_Platform\04_DedicatedResourceTemplates\Modules\DataGriffDeployment\DataGriffDeployment.psm1"
-Write-Host "Attempting to import module from $modulelocation..."
-Import-Module -Name $modulelocation
-Write-Host "Completed import module from from $modulelocation."
-
-Write-Host "Deploying key vault and event hub secrets..."
-    Publish-KeyVaultEventHub -subscription $subscription `
-        -environment $environment `
-        -uniqueNamespace $uniqueNamespace `
-        -region $region `
-        -eventhubname $eventhubname `
-        -eventhubnamespaceidentifier $eventhubnamespaceidentifier `
-        -target $target `
-        -sendlisten $sendlisten `
-        -teamname $teamname
-Write-Host "Deployed key vault and event hub secrets."
 ```
 
 Once the above is deployed you can then publish and capture some demo customer data using the python in [demo_publisher.py](./DemoApps/demo_publisher.py). Run this by starting your virtual environment (venv\scripts\activate) and running the following in the bash terminal with the python environment running.
@@ -73,48 +34,7 @@ Pre-requisite is you must have deployed the publisher demo resources as per the 
 To deploy the dedicated app consumer integeation resources of the consumer group and key vault into your skeleton platform for a demo application, run the following code in a Powershell terminal, replacing the top three parameters relevant to your environment. This will take a few minutes.
 
 ```ps1
-$uniqueNamespace = [System.Environment]::GetEnvironmentVariable('AZURE_UNIQUE_NAMESPACE')   # Ensure Resources globally unique
-$subscription = [System.Environment]::GetEnvironmentVariable('AZURE_SUBSCRIPTION')          # Name of your azure subscription
-$region = [System.Environment]::GetEnvironmentVariable('AZURE_REGION')                      # Region you are deploying your resources
 
-$eventHubName = "demo"
-$deploymentName = "${eventHubName}PublisherDeployment"
-$resourceGroupname = "dv-events-broker-rg"
-$templateFile = "01_Platform\04_DedicatedResourceTemplates\Bicep\consumer.bicep"
-$environment = "dv"
-$eventhubnamespaceidentifier = "events001"
-$target = "demo"
-$sendlisten = 'listen'
-$teamname = 'demo'
-
-Write-Host "Deploying event hub consumer group..."
-New-AzResourceGroupDeployment -name $deploymentName `
-    -ResourceGroupName $resourceGroupname `
-    -TemplateFile $templateFile `
-    -namespace  $uniqueNamespace `
-    -eventhubname $eventHubName `
-    -consumer $target `
-    -teamname $teamname
-Write-Host "Deployed event hub consumer group."
-
-Write-Host "Getting current drive location, assumes in root of azure_deventdrivenarchitecture repo..."
-$location = Get-Location
-$modulelocation = "$location\01_Platform\04_DedicatedResourceTemplates\Modules\DataGriffDeployment\DataGriffDeployment.psm1"
-Write-Host "Attempting to import module from $modulelocation..."
-Import-Module -Name $modulelocation
-Write-Host "Completed import module from from $modulelocation."
-
-Write-Host "Deploying key vault and event hub secrets..."
-    Publish-KeyVaultEventHub -subscription $subscription `
-        -environment $environment `
-        -uniqueNamespace $uniqueNamespace `
-        -region $region `
-        -eventhubname $eventhubname `
-        -eventhubnamespaceidentifier $eventhubnamespaceidentifier `
-        -target $target `
-        -sendlisten $sendlisten `
-        -teamname $teamname
-Write-Host "Deployed key vault and event hub secrets."
 ```
 
 # Quick Start Demo Data Stream

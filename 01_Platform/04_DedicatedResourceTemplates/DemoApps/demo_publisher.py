@@ -10,7 +10,6 @@ from azure.identity import DefaultAzureCredential
 from azure.cosmos import CosmosClient, PartitionKey
 from azure.keyvault.secrets import SecretClient
 
-## Setup Schema Registry Connection Details
 unique_namespace = os.environ.get('AZURE_UNIQUE_NAMESPACE')
 schema_registry_namespace = f"dv-schemaregistry-ehns-eun-{unique_namespace}.servicebus.windows.net"
 token_credential =  token_credential = DefaultAzureCredential()
@@ -114,6 +113,6 @@ if __name__ == '__main__':
             payload_bytes = avro_serializer.serialize(data, schema=schema_string)
             event_data_batch.add(EventData(body=payload_bytes))
             eventhub_producer.send_batch(event_data_batch)
-            print('Event hub packet {n} sent.')
+            print(f'Event hub packet {n} sent.')
             n+=1
 
