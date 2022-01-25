@@ -3,7 +3,7 @@
   - [Demo](#demo)
   - [1. Create Platform](#1-create-platform)
   - [2. Quick Start](#2-quick-start)
-  - [3. Create Accounts](#3-create-accounts03-accounts)
+  - [3. Create Accounts](#3-create-accounts)
   - [4. Configure Products](#4-configure-products)
   - [5. Generate Leads](#5-generate-leads)
   - [6. Confirm Sales](#6-confirm-sales)
@@ -50,7 +50,7 @@ This demo will involve four teams:
 
 ## 2. [Quick Start](/02_QuickStart)
 
-## 3. [Create Accounts](/03 Accounts)
+## 3. [Create Accounts](/03_Accounts)
 
 ## 4. [Configure Products](/04_Product)
 
