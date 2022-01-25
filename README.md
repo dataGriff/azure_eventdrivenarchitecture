@@ -2,13 +2,14 @@
   - [Requirements & Dependencies](#requirements--dependencies)
   - [Event Driven Dictionary](#event-driven-dictionary)
   - [Demo](#demo)
-  - [1. Create Platform](#1-create-platform)
-  - [2. Quick Start](#2-quick-start)
-  - [3. Create Accounts](#3-create-accounts)
-  - [4. Configure Products](#4-configure-products)
-  - [5. Generate Leads](#5-generate-leads)
-  - [6. Confirm Sales](#6-confirm-sales)
-  - [7. Data Pipelines](#7-data-pipelines)
+    - [Overview](#overview)
+    - [1. Create Platform](#1-create-platform)
+    - [2. Quick Start](#2-quick-start)
+    - [3. Create Accounts](#3-create-accounts)
+    - [4. Configure Products](#4-configure-products)
+    - [5. Generate Leads](#5-generate-leads)
+    - [6. Confirm Sales](#6-confirm-sales)
+    - [7. Data Pipelines](#7-data-pipelines)
   - [TODO](#todo)
   - [Foibles](#foibles)
 
@@ -26,44 +27,49 @@ To see the tooling required and environment setup, including powershell modules,
 
 It would also be a good idea for you to familiarise yourself with some of the terms and patterns found in the [event driven dictionary](/EventDrivenDictionary.md).
 
-## Demo
+## Demo 
 
-This demo will involve four teams:
+### Overview
+
+This demo will involve four teams derived from the [teamconfig](https://github.com/griff182uk/teamconfig) setup.
+**Important!** This is purely for demonstrative purposes and you should give appropriate time and consideration to your own organisational setup, using appropriate eventstorming, domain design and collaborative effort. 
 
 1. **Platform Team**
-* Provide a cloud infrastructure.
-* Provide shared infrastructure such as storage accounts and namespaces. 
-* Provide template deployment pipelines for integrating into shared infrastructure for event producers and event consumers.
+- Provide a cloud infrastructure.
+- Provide shared infrastructure such as storage accounts and namespaces.
+- Provide template deployment pipelines for integrating into shared infrastructure for event producers and event consumers.
 
 2. **Product Team**
-* Produce Customer Created Event
-* Subscribe to Lead Purchased Event
-* Produce Customer Purchased Event
+- Configure products resulting in product updated event.
 
-2. **Customer Team**
-* Produce Customer Created Event
-* Subscribe to Lead Purchased Event
-* Produce Customer Purchased Event
+3. **Customer Team**
+- Activates user accounts resulting in account activated event.
+- Deactivates user accounts resulting in account deactivated event.
+- Activates contact resulting contact activated event.
+- Deactivates contact resulting in contact deactivated event.
+- Generates a contact who has abandoned a quote resulting in a contact abandoned quote event.
+- Updates a contact with purchase details to create a contact purchased event.
+- Expires a contract for a contact to generate a contact product expired event. 
 
 1. **Conversions Team**
-* Produce Lead Generated Event
-* Subscribe to Sale Confirmed Event
-* Produce Lead Purchased Event
-* Produce Sale Confirmed Event
+* Provides users with a product to create lead generated event.
+* Fails a user lead to generate a lead failed event.
+* Receives sales files to raise a sales file received event.
+* Provides sale confirmation to raise a sale confirmed event.
 
-## 1. [Create Platform](/01_Platform)
+### 1. [Create Platform](/01_Platform)
 
-## 2. [Quick Start](/02_QuickStart)
+### 2. [Quick Start](/02_QuickStart)
 
-## 3. [Create Accounts](/03_Accounts)
+### 3. [Create Accounts](/03_Accounts)
 
-## 4. [Configure Products](/04_Product)
+### 4. [Configure Products](/04_Product)
 
-## 5. [Generate Leads](/05_Leads)
+### 5. [Generate Leads](/05_Leads)
 
-## 6. [Confirm Sales](/06_Sales)
+### 6. [Confirm Sales](/06_Sales)
 
-## 7. [Data Pipelines](/07_DataPipelines)
+### 7. [Data Pipelines](/07_DataPipelines)
 
 ## TODO
 
