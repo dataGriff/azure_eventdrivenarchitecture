@@ -1,5 +1,6 @@
 - [Description](#description)
   - [Requirements & Dependencies](#requirements--dependencies)
+  - [Event Driven Dictionary](#event-driven-dictionary)
   - [Demo](#demo)
   - [1. Create Platform](#1-create-platform)
   - [2. Quick Start](#2-quick-start)
@@ -20,6 +21,10 @@ The fake organisation used in the demonstration, and how its team setup has been
 ## Requirements & Dependencies
 
 To see the tooling required and environment setup, including powershell modules, python libraries and how to setup your virtual environment, as well as required windows system environment variables, please see the [prerequisites documentation](Prerequisites.md). Setting this up in advance of you working through the examples will make your life a lot easier.
+
+## Event Driven Dictionary
+
+It would also be a good idea for you to familiarise yourself with some of the terms and patterns found in the [event driven dictionary](/EventDrivenDictionary.md).
 
 ## Demo
 
