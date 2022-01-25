@@ -1,12 +1,13 @@
 - [Description](#description)
   - [Requirements & Dependencies](#requirements--dependencies)
   - [Demo](#demo)
-  - [1. Create Resource Groups](#1-create-resource-groups)
-  - [2. Shared Platform](#2-shared-platform)
-  - [3. Schema](#3-schema)
-  - [4. Publishers](#4-publishers)
-  - [5. Consumers](#5-consumers)
-  - [6. Data Lake](#6-data-lake)
+  - [1. Create Platform](#1-create-platform)
+  - [2. Quick Start](#2-quick-start)
+  - [3. Create Accounts](#3-create-accounts03-accounts)
+  - [4. Configure Products](#4-configure-products)
+  - [5. Generate Leads](#5-generate-leads)
+  - [6. Confirm Sales](#6-confirm-sales)
+  - [7. Data Pipelines](#7-data-pipelines)
   - [TODO](#todo)
   - [Foibles](#foibles)
 
@@ -45,25 +46,23 @@ This demo will involve four teams:
 * Produce Lead Purchased Event
 * Produce Sale Confirmed Event
 
-## 1. Create Resource Groups
+## 1. [Create Platform](/01_Platform)
 
-[Resource Groups](01_ResourceGroups/ReadMe.md)
-## 2. Shared Platform
+## 2. [Quick Start](/02_QuickStart)
 
-[Shared Platform](02_SharedPlatform/ReadMe.md)
-## 3. Schema 
+## 3. [Create Accounts](/03 Accounts)
 
-[SchemaRegistry](03_SchemaRegistry/ReadMe.md)
-## 4. Publishers
+## 4. [Configure Products](/04_Product)
 
-[Publishers](04_Publishers/ReadMe.md)
-## 5. Consumers
+## 5. [Generate Leads](/05_Leads)
 
-## 6. Data Lake
+## 6. [Confirm Sales](/06_Sales)
+
+## 7. [Data Pipelines](/07_DataPipelines)
 
 ## TODO
 
-* Format schemas as could events
+* Format schemas as cloud events
 * Convert deployments into yaml pipelines.
 * Perform same demo using confluent kafka instead of event hubs.
 * Possibly change leads into same as sales and take from files so don't do consumers too early.
