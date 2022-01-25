@@ -104,7 +104,7 @@ They are:
 3. Add the name of the azure subscription you are going to be using the AZURE_SUBSCRIPTION as the variable name. For example mine is "dataGriff teaching".
 4. Add the name of the azure subscription you are going to be using the AZURE_REGION variable name. For example mine is "northeurope".
 5. Your system environment variables should now look something like this.
-![Environment Variables](../../Images/EnvironmentVariables.PNG)
+![Environment Variables](/Images/EnvironmentVariables.PNG)
 6. Once you have set your environment variable you will need to restart your IDE (Visual Studio Code) to pick up the new values.
 
 Throughout the code these system variables will be referenced like the examples below.
