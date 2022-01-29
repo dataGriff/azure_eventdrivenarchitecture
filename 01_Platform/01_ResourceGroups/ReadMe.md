@@ -30,6 +30,12 @@ az account set --subscription "%AZURE_SUBSCRIPTION%"
 6. Deploy the resource groups for the architecture by running he command below in the terminal. The %AZURE_REGION% will come from the value you have placed in your environment variables as part of the pre-requisites.
 
 ```bash
+az policy assignment create --name 'deny-untagged-resource-groups' --display-name 'Require a tag and its value on resource groups Assignment' --scope "%AZURE_SUBSCRIPTION%" --policy '/providers/Microsoft.Authorization/policyDefinitions/8ce3da23-7156-49e4-b145-24f95f9dcb46' --parameters --tagName='team' -teamValue = ''
+```
+
+6. Deploy the resource groups for the architecture by running he command below in the terminal. The %AZURE_REGION% will come from the value you have placed in your environment variables as part of the pre-requisites.
+
+```bash
 az deployment sub create --name eventResourceGroups --location "%AZURE_REGION%" --template-file 01_Platform\01_ResourceGroups\resourcegroups.bicep
 ```
 

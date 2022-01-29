@@ -32,3 +32,7 @@
 * [Cosmos Change Feed Unsung Hero](https://devblogs.microsoft.com/cosmosdb/change-feed-unsung-hero-of-azure-cosmos-db/)
 * [PLSight Cosmos Microservices with Change Feed](https://www.pluralsight.com/courses/building-event-driven-microservices-azure-cosmos-db-change-feed)
 * [Outbox Pattern with Cosmos DB](https://docs.microsoft.com/en-us/azure/architecture/best-practices/transactional-outbox-cosmos)
+* [Policy with Bicep](https://andrewmatveychuk.com/how-to-deploy-azure-policy-with-bicep/)
+* [Required Tags](https://github.com/Trondheim-kommune/azure-policy-tagging/blob/main/reqtagnames.bicep)
+* [Policy Array Conditions](https://docs.microsoft.com/en-us/azure/governance/policy/how-to/author-policies-for-arrays#using-arrays-in-conditions)
+* [Azure Tagging Strategy Bicep](https://4bes.nl/2022/01/16/build-and-test-an-azure-tagging-strategy-in-bicep/)
