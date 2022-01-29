@@ -1,7 +1,10 @@
 - [Description](#description)
-  - [Requirements & Dependencies](#requirements--dependencies)
-  - [Event Driven Dictionary](#event-driven-dictionary)
+  - [Architecting the Business Processes & Organisation](#architecting-the-business-processes--organisation)
+  - [Desired Architectural Pattern](#desired-architectural-pattern)
+    - [Event Driven Dictionary](#event-driven-dictionary)
+  - [Platform Requirements](#platform-requirements)
   - [Demo](#demo)
+    - [Requirements & Dependencies](#requirements--dependencies)
     - [Overview](#overview)
     - [1. Create Platform](#1-create-platform)
     - [2. Quick Start](#2-quick-start)
@@ -17,22 +20,27 @@
 
 The goal of this repository is to create a complete event driven architecture on azure using appropriate design patterns and strategies.
 
+## Architecting the Business Processes & Organisation
+
 The fake organisation used in the demonstration, and how its team setup has been designed around its business function, can be found in the teamconfig solution [here](https://github.com/griff182uk/teamconfig). This is also in development but gives a good bedrock into how you can create an organisation configuration system using programmable Team APIs, informed by event storming and team topologies, influencing the architecture in this demonstration throughout.
 
-## Requirements & Dependencies
+## Desired Architectural Pattern
 
-To see the tooling required and environment setup, including powershell modules, python libraries and how to setup your virtual environment, as well as required windows system environment variables, please see the [prerequisites documentation](Prerequisites.md). Setting this up in advance of you working through the examples will make your life a lot easier.
-
-## Event Driven Dictionary
+### Event Driven Dictionary
 
 It would also be a good idea for you to familiarise yourself with some of the terms and patterns found in the [event driven dictionary](/EventDrivenDictionary.md).
 
-## Demo 
+## Platform Requirements
 
+## Demo
+
+### Requirements & Dependencies
+
+To see the tooling required and environment setup, including powershell modules, python libraries and how to setup your virtual environment, as well as required windows system environment variables, please see the [prerequisites documentation](Prerequisites.md). Setting this up in advance of you working through the examples will make your life a lot easier.
 ### Overview
 
 This demo will involve four teams derived from the [teamconfig](https://github.com/griff182uk/teamconfig) setup.
-**Important!** This is purely for demonstrative purposes and you should give appropriate time and consideration to your own organisational setup, using appropriate eventstorming, domain design and collaborative effort. 
+**Important!** This is purely for demonstrative purposes and you should give appropriate time and consideration to your own organisational setup, using appropriate eventstorming, domain design and collaborative effort.
 
 1. **Platform Team**
 - Provide a cloud infrastructure.

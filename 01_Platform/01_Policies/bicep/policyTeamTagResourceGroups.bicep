@@ -1,8 +1,8 @@
 targetScope = 'subscription'
 
-var policyName = 'deny-resource-tag-and-values'
-var policyDisplayName = 'Audit a tag and its value format on resources'
-var policyDescription = 'Audits existence of a tag and its value format. Does not apply to resource groups.'
+var policyName = 'deny-resource-group-tag-and-values'
+var policyDisplayName = 'Deny deployment of resource group if tag values are not in given list'
+var policyDescription = 'Deny deployment of resource group if tag values are not in given list'
 
 resource policy 'Microsoft.Authorization/policyDefinitions@2020-09-01' = {
   name: policyName
@@ -31,11 +31,18 @@ resource policy 'Microsoft.Authorization/policyDefinitions@2020-09-01' = {
         }
       }
     }
-
     policyRule: {
-      if: {
-        field: '[concat(\'tags[\', parameters(\'tagName\'), \']\')]' // No need to use an additional forward square bracket in the expressions as in ARM templates
-        notIn: '[parameters(\'tagValues\')]'
+      if:{
+      allOf: [
+          {
+            field: 'type'
+            equals:'Microsoft.Resources/subscriptions/resourceGroups'
+          }
+          {
+            field: '[concat(\'tags[\', parameters(\'tagName\'), \']\')]' // No need to use an additional forward square bracket in the expressions as in ARM templates
+            notIn: '[parameters(\'tagValues\')]'
+          }
+        ]
       }
       then: {
         effect: 'Deny'

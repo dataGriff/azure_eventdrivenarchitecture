@@ -1,0 +1,13 @@
+{
+  "tagName": {
+    "value": "team"
+  },
+  "tagValues": {
+    "value": [
+      "platform",
+      "customer",
+      "conversion",
+      "product"
+    ]
+  }
+}
