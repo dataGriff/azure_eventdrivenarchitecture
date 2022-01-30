@@ -63,19 +63,35 @@ It would also be a good idea for you to familiarise yourself with some of the te
 
 ### Cloud First
 
+Azure
+
 ### Uniform Interface
+
+Event hubs
 
 ### Schema Registry
 
+Azure schema registry
+
 ### Data Compliance
+
+Lifecyle policies and automated retention
 
 ### Efficient Data Transfer
 
+Adopt streaming technology
+
 ### Clear Resource Ownership
+
+Tagging and policies
 
 ### Independent Team Workloads and Deployment
 
+DevOps project per team
+
 ### Decentralised Security Management
+
+PIM, admin units, teams mapped to ad groups from offset
 
 ## Demo
 
