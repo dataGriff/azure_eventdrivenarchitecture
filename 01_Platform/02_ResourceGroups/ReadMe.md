@@ -30,7 +30,7 @@ az account set --subscription "%AZURE_SUBSCRIPTION%"
 6. Deploy the resource groups for the architecture by running he command below in the terminal. The %AZURE_REGION% will come from the value you have placed in your environment variables as part of the pre-requisites.
 
 ```bash
-az deployment sub create --name eventResourceGroups --location "%AZURE_REGION%" --template-file 01_Platform\01_ResourceGroups\resourcegroups.bicep
+az deployment sub create --name eventResourceGroups --location "%AZURE_REGION%" --template-file 01_Platform\02_ResourceGroups\bicep\resourcegroups.bicep
 ```
 
 7. To upload your dashboard overview of the architecture, go to the azure portal and choose dashboard from the left menu.
