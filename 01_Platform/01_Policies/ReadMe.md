@@ -1,6 +1,8 @@
 # Setup Policies
 
-In this section we will create [Azure policies](https://docs.microsoft.com/en-us/azure/governance/policy/overview) on our new estate to ensure that team tagging and resource location is in place appropriately from the offset. The team tagging is derived from the fake organisation at [teamconfig](https://github.com/griff182uk/teamconfig) and this team structure has been stored in the [allowedTeams.json](./allowedTeams.json) file for programmatic reference during this section. The team "demo" has been added to this list purely for the quickstart demo purpose as part of this workshop. 
+In this section we will create [Azure policies](https://docs.microsoft.com/en-us/azure/governance/policy/overview) on our new estate to ensure that team tagging and resource location is in place appropriately from the offset. The team tagging is derived from the fake organisation at [teamconfig](https://github.com/griff182uk/teamconfig) and this team structure has been stored in the [allowedTeams.json](./allowedTeams.json) file for programmatic reference during this section. The team "demo" has been added to this list purely for the quickstart demo purpose as part of this workshop.
+
+If you ever need to quickly cleanup the policies and assignments you have created, please use the script and instructions found [here](./cleanup.ps1).
 
 **You must have all the [pre-requisites](/Prerequisites.md) completed before carrying out the below.**
 

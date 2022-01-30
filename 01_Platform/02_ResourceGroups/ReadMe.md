@@ -5,7 +5,7 @@ The resource groups would normally be deployed by the respective teams (platform
 
 If you ever need to quickly cleanup the entire estate and remove all the resource groups and resource, please use the script and instructions found [here](./cleanup.ps1).
 
-**You must have all the pre-requisites completed before carrying out the below.**
+**You must have all the [pre-requisites](/Prerequisites.md) completed before carrying out the below.**
 
 1. Open up the azure_eventdrivenarchitecture repo in visual studio code.
 
@@ -33,17 +33,7 @@ az account set --subscription "%AZURE_SUBSCRIPTION%"
 az deployment sub create --name eventResourceGroups --location "%AZURE_REGION%" --template-file 01_Platform\02_ResourceGroups\bicep\resourcegroups.bicep
 ```
 
-7. To upload your dashboard overview of the architecture, go to the azure portal and choose dashboard from the left menu.
-
-![Dashboard](../../Images/Dashboard.PNG)
-
-8. Select new dashboard and then upload.
-
-![Dashboard](../../Images/DashboardUpload.PNG)
-
-9. Upload the 01_ResourceGroups\dv_eventdrivenarchitecture.json file from this repository.
-
-10. You should now see the empty resource group shell of the entire development (dv) estate. Confirm you can see the following resource groups and also the team name tags on each one.
+7. If you navigate to your dashboard now, created as part of your [pre-requisites](/Prerequisites.md), you should see all the resource groups present.
 
 * dv-events-schemaregistry-rg (team: platform)
 * dv-events-broker-rg (team: platform)
@@ -58,8 +48,8 @@ az deployment sub create --name eventResourceGroups --location "%AZURE_REGION%" 
 
 ![Dashboard](../../Images/DashboardUploaded.PNG)
 
-To confirm tags, click on a resource group and you should see the team tag at the top of the page.
+8. To confirm tags, click on a resource group and you should see the team tag at the top of the page.
 
 ![Resource Group Tagged](../../Images/ResourceGroupTagged.PNG)
 
-**Note:** You will also see a demo resource group tile that is currently empty. This is used as part of a quickstart demo and will only be short-lived and not part of the overall architecture, but it makes it easier to discover by being on the dashboard. 
+**Note:** You will also see a demo resource group tile that is currently empty. This is used as part of a quickstart demo and will only be short-lived and not part of the overall architecture, but it makes it easier to discover by being on the dashboard.

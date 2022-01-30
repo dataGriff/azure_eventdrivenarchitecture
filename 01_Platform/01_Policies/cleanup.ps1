@@ -1,4 +1,4 @@
-## The following will remove all resource groups and resources created as part of this demo.
+## The following will remove all policy assignments and policies created as part of this demo.
 ## You will be prompted with a y/n in the command prompt to confirm you want to proceed.
 
 $subscription = [System.Environment]::GetEnvironmentVariable('AZURE_SUBSCRIPTION') 
