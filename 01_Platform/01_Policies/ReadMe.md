@@ -128,7 +128,7 @@ $location = [System.Environment]::GetEnvironmentVariable("AZURE_REGION")
 New-AzSubscriptionDeployment `
   -Name eventPolicyResourceGroup `
   -Location $location  `
-  -TemplateFile 01_Platform\01_Policies\bicep\policyTeamTagResourceGroups.bicep
+  -TemplateFile 01_Platform\01_Policies\bicep\policyTagValueResourceGroups.bicep
 ```
 
 9. Assign the custom policy to ensure that resource groups have a valid team tag value, by highlighting the code below, press F1 and select or type **Powershell: Run Selection**.
@@ -162,7 +162,7 @@ $location = [System.Environment]::GetEnvironmentVariable("AZURE_REGION")
 New-AzSubscriptionDeployment `
   -Name eventPolicyResourceGroup `
   -Location $location  `
-  -TemplateFile 01_Platform\01_Policies\bicep\policyTeamTagResources.bicep
+  -TemplateFile 01_Platform\01_Policies\bicep\policyTagValueResources.bicep
 ```
 
 11. Assign the custom policy to ensure that resource groups have a valid team tag value, by highlighting the code below, press F1 and select or type **Powershell: Run Selection**.
