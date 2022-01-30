@@ -1,8 +1,18 @@
 - [Description](#description)
   - [Architecting the Business Processes & Organisation](#architecting-the-business-processes--organisation)
-  - [Desired Architectural Pattern](#desired-architectural-pattern)
-    - [Event Driven Dictionary](#event-driven-dictionary)
+  - [Architectural Mandate](#architectural-mandate)
+    - [Common Schema Standard](#common-schema-standard)
+    - [Common Schema Format](#common-schema-format)
+  - [Event Driven Dictionary](#event-driven-dictionary)
   - [Platform Requirements](#platform-requirements)
+    - [Cloud First](#cloud-first)
+    - [Uniform Interface](#uniform-interface)
+    - [Schema Registry](#schema-registry)
+    - [Data Compliance](#data-compliance)
+    - [Efficient Data Transfer](#efficient-data-transfer)
+    - [Clear Resource Ownership](#clear-resource-ownership)
+    - [Independent Team Workloads and Deployment](#independent-team-workloads-and-deployment)
+    - [Decentralised Security Management](#decentralised-security-management)
   - [Demo](#demo)
     - [Requirements & Dependencies](#requirements--dependencies)
     - [Overview](#overview)
@@ -24,13 +34,48 @@ The goal of this repository is to create a complete event driven architecture on
 
 The fake organisation used in the demonstration, and how its team setup has been designed around its business function, can be found in the teamconfig solution [here](https://github.com/griff182uk/teamconfig). This is also in development but gives a good bedrock into how you can create an organisation configuration system using programmable Team APIs, informed by event storming and team topologies, influencing the architecture in this demonstration throughout.
 
-## Desired Architectural Pattern
+## Architectural Mandate
 
-### Event Driven Dictionary
+Inspired by the [Jeff Benzos mandate](https://nordicapis.com/the-bezos-api-mandate-amazons-manifesto-for-externalization/) at Amazon, the architecture and organisationisational implementation must adhere to the following rules.
+
+1. Administration overhead must be kept to a minimum with a cloud-first approach and with PaaS or SaaS being preferable.
+1. All schemas for business facts should be externalised in a separate registry for ease of discoverability and to prevent coupling on local implementation schemas.  
+1. There should be a common data format, common schema standard and uniform interface for all business events to integrate on, with no exception.
+1. Data capture, storage and retention should be easily administered to enforce compliance rules easily.
+2. Data transfer should be made as quick and easy as possible without the need for complex watermarking.
+3. It is the responsibility of all of the event producers to make the data available, explicit with regards to business meaning, and discoverable, with no exception.
+4. Each resource should be owned by one team and there should be a one to one relationship betweem a team, a backlog,  a communications channel and a security grouping, establishing clear ownerhship and support networks.
+5. Teams can code their owns solutions as long as they integrate on the one common interface across the business and register their outputs in the schema registry.
+6. Teams are responsible for ensuring their solutions are production-ready and responsible for any production incidents. "You build it, you run it."
+7. Security access for those domain resources that are owned by a team, should be administered by the team.
+8. Each team should be able to manage their own workloads and deployment without the need for another team.
+9. Any team that does not make its business facts available in a decoupled, explicitly defined with a registered schema on a uniform interface, ~~will be fired~~ will be considered short-sighted and a bad neighbour.
+
+### Common Schema Standard
+
+### Common Schema Format
+
+## Event Driven Dictionary
 
 It would also be a good idea for you to familiarise yourself with some of the terms and patterns found in the [event driven dictionary](/EventDrivenDictionary.md).
 
 ## Platform Requirements
+
+### Cloud First
+
+### Uniform Interface
+
+### Schema Registry
+
+### Data Compliance
+
+### Efficient Data Transfer
+
+### Clear Resource Ownership
+
+### Independent Team Workloads and Deployment
+
+### Decentralised Security Management
 
 ## Demo
 
