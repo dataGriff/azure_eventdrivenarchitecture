@@ -2,6 +2,7 @@
 
 - [Prerequisites](#prerequisites)
   - [Tooling](#tooling)
+  - [Clone this Repo](#clone-this-repo)
   - [Create Local Virtual Python Environment](#create-local-virtual-python-environment)
   - [Python Modules](#python-modules)
   - [Powershell Modules](#powershell-modules)
@@ -9,6 +10,10 @@
   - [Create Application Registration and Add to Environment Variables](#create-application-registration-and-add-to-environment-variables)
 
 ### Tooling
+
+You will need to ensure you have an Azure account with a subscription that you can use. You could use your MSDN subscription if you have one or you can sign up for a free trial using the link below.
+
+- [Azure Subscription](https://azure.microsoft.com/en-gb/free/)
 
 Please ensure you have the following tools installed on your machine.
 
@@ -20,6 +25,10 @@ Please ensure you have the following tools installed on your machine.
 - [Powershell VS Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell)
 - [Python](https://www.python.org/downloads/)
   - Here is a good [tutorial](https://www.youtube.com/watch?v=QYTPpqPYaw0&t=14s) on how to install python along with spark and pyspark which is useful for data streaming pipelines.
+
+### Clone this Repo
+
+To utilise the code in this repo, clone it from gihub and then open it up in Visual Studio code.
 
 ### Create Local Virtual Python Environment
 
