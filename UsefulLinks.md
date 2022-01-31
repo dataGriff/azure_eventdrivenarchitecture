@@ -36,3 +36,6 @@
 * [Required Tags](https://github.com/Trondheim-kommune/azure-policy-tagging/blob/main/reqtagnames.bicep)
 * [Policy Array Conditions](https://docs.microsoft.com/en-us/azure/governance/policy/how-to/author-policies-for-arrays#using-arrays-in-conditions)
 * [Azure Tagging Strategy Bicep](https://4bes.nl/2022/01/16/build-and-test-an-azure-tagging-strategy-in-bicep/)
+* [Cloud Event Schema Standard](https://github.com/cloudevents/spec/blob/v1.0/spec.md)
+* [Why Use Avro for Streaming and Schema Registry](https://catherine-shen.medium.com/why-you-should-use-avro-and-schema-registry-for-your-streaming-application-2f24dcf017c8)
+* [Compare Avro Orc and Parquet](https://towardsdatascience.com/demystify-hadoop-data-formats-avro-orc-and-parquet-e428709cf3bb)
