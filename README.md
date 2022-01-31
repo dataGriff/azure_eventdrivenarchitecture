@@ -64,6 +64,8 @@ Avro appears to be the best choice for our event data due to its compatibility w
 
 ## Platform Requirements
 
+Based on the architectural mandate and patterns required, the platform team have landed on the following tooling.
+
 ### Cloud First
 
 There are a number of cloud vendors on offer, but as the platform team in this instance chose **[Microsoft Azure](https://azure.microsoft.com/en-gb/)**.
