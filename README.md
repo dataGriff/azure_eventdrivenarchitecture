@@ -47,13 +47,16 @@ Inspired by the [Jeff Benzos mandate](https://nordicapis.com/the-bezos-api-manda
 1. Data capture, storage and retention should be easily administered to enforce compliance rules easily.
 1. Data transfer should be made as quick and easy as possible without the need for complex watermarking.
 1. It is the responsibility of all of the event producers to make the data available, explicit with regards to business meaning, and discoverable, with no exception.
-1. Each resource should be owned by one team and there should be a one to one relationship betweem a team, a backlog,  a communications channel and a security grouping, establishing clear ownerhship and support networks.
-1. Teams can code their owns solutions as long as they integrate on the one common interface across the business and register their outputs in the schema registry.
-1. Teams are responsible for ensuring their solutions are production-ready and responsible for any production incidents. "You build it, you run it."
-1. Security access for those domain resources that are owned by a team, should be administered by the team.
-1. Each team should be able to manage their own workloads and deployment without the need for another team.
-1. Any team that does not make its business facts available in a decoupled, explicitly defined with a registered schema on a uniform interface, ~~will be fired~~ will be considered short-sighted and a bad neighbour.
-1. To preserve ordering we should aim to have an event hub per aggregate ([see here](https://www.confluent.io/en-gb/blog/put-several-event-types-kafka-topic/)).
+1. Event producer deployments should be coupled with its topic/event hub.
+2. Event consumer deployments should be coupled with its consumer group.
+3. Each resource should be owned by one team and there should be a one to one relationship betweem a team, a backlog,  a communications channel and a security grouping, establishing clear ownerhship and support networks.
+4. Teams can code their owns solutions as long as they integrate on the one common interface across the business and register their outputs in the schema registry.
+5. Teams are responsible for ensuring their solutions are production-ready and responsible for any production incidents. "You build it, you run it."
+6. Security access for those domain resources that are owned by a team, should be administered by the team.
+7. Each team should be able to manage their own workloads and deployment without the need for another team.
+8. 1. To preserve ordering we should aim to have an event hub per aggregate ([see here](https://www.confluent.io/en-gb/blog/put-several-event-types-kafka-topic/)).
+9. Any team that does not make its business facts available in a decoupled, explicitly defined with a registered schema on a uniform interface, ~~will be fired~~ will be considered short-sighted and a bad neighbour.
+
 
 ### Common Schema Standard
 
