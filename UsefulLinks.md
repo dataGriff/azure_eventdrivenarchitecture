@@ -39,3 +39,4 @@
 * [Cloud Event Schema Standard](https://github.com/cloudevents/spec/blob/v1.0/spec.md)
 * [Why Use Avro for Streaming and Schema Registry](https://catherine-shen.medium.com/why-you-should-use-avro-and-schema-registry-for-your-streaming-application-2f24dcf017c8)
 * [Compare Avro Orc and Parquet](https://towardsdatascience.com/demystify-hadoop-data-formats-avro-orc-and-parquet-e428709cf3bb)
+* [Multiple EVents Per Topic or Not](https://www.confluent.io/en-gb/blog/put-several-event-types-kafka-topic/)

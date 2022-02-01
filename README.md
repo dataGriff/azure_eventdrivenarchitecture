@@ -53,6 +53,7 @@ Inspired by the [Jeff Benzos mandate](https://nordicapis.com/the-bezos-api-manda
 1. Security access for those domain resources that are owned by a team, should be administered by the team.
 1. Each team should be able to manage their own workloads and deployment without the need for another team.
 1. Any team that does not make its business facts available in a decoupled, explicitly defined with a registered schema on a uniform interface, ~~will be fired~~ will be considered short-sighted and a bad neighbour.
+1. To preserve ordering we should aim to have an event hub per aggregate ([see here](https://www.confluent.io/en-gb/blog/put-several-event-types-kafka-topic/)).
 
 ### Common Schema Standard
 
