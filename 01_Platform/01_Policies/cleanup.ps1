@@ -32,7 +32,7 @@ if ($confirmation -eq 'y') {
         $assigned = Get-AzPolicyAssignment -Name $assignment -ErrorAction SilentlyContinue -ErrorVariable notPresent
         if($assigned){
             write-host("Removing assignment $assignment...")
-            $assigned | Remove-AzPolicyAssignment  -Force
+            $assigned | Remove-AzPolicyAssignment
             write-host("Removed assignment $assignment.")
         }
         else{
