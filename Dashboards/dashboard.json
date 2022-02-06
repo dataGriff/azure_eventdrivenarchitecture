@@ -9,7 +9,7 @@
               "x": 0,
               "y": 0,
               "colSpan": 3,
-              "rowSpan": 5
+              "rowSpan": 4
             },
             "metadata": {
               "inputs": [],
@@ -42,12 +42,12 @@
                 },
                 {
                   "name": "id",
-                  "value": "/subscriptions/{mysubcription}/resourceGroups/dv-events-account-rg",
+                  "value": "/subscriptions/{subscriptionId}/resourceGroups/dv-events-account-rg",
                   "isOptional": true
                 }
               ],
               "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
-              "deepLink": "#@{myprimarydomain}/resource/subscriptions/{mysubcription}/resourceGroups/dv-events-account-rg/overview"
+              "deepLink": "#@{primaryDomain}/resource/subscriptions/{subscriptionId}/resourceGroups/dv-events-account-rg/overview"
             }
           },
           "2": {
@@ -65,12 +65,12 @@
                 },
                 {
                   "name": "id",
-                  "value": "/subscriptions/{mysubcription}/resourceGroups/dv-events-product-rg",
+                  "value": "/subscriptions/{subscriptionId}/resourceGroups/dv-events-product-rg",
                   "isOptional": true
                 }
               ],
               "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
-              "deepLink": "#@{myprimarydomain}/resource/subscriptions/{mysubcription}/resourceGroups/dv-events-product-rg/overview"
+              "deepLink": "#@{primaryDomain}/resource/subscriptions/{subscriptionId}/resourceGroups/dv-events-product-rg/overview"
             }
           },
           "3": {
@@ -88,12 +88,12 @@
                 },
                 {
                   "name": "id",
-                  "value": "/subscriptions/{mysubcription}/resourceGroups/dv-events-salesfiles-rg",
+                  "value": "/subscriptions/{subscriptionId}/resourceGroups/dv-events-salesfiles-rg",
                   "isOptional": true
                 }
               ],
               "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
-              "deepLink": "#@{myprimarydomain}/resource/subscriptions/{mysubcription}/resourceGroups/dv-events-salesfiles-rg/overview"
+              "deepLink": "#@{primaryDomain}/resource/subscriptions/{subscriptionId}/resourceGroups/dv-events-salesfiles-rg/overview"
             }
           },
           "4": {
@@ -101,7 +101,7 @@
               "x": 9,
               "y": 0,
               "colSpan": 2,
-              "rowSpan": 8
+              "rowSpan": 2
             },
             "metadata": {
               "inputs": [
@@ -111,12 +111,12 @@
                 },
                 {
                   "name": "id",
-                  "value": "/subscriptions/{mysubcription}/resourceGroups/dv-events-schemaregistry-rg",
+                  "value": "/subscriptions/{subscriptionId}/resourceGroups/dv-events-sql-rg",
                   "isOptional": true
                 }
               ],
               "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
-              "deepLink": "#@{myprimarydomain}/resource/subscriptions/{mysubcription}/resourceGroups/dv-events-schemaregistry-rg/overview"
+              "deepLink": "#@{primaryDomain}/resource/subscriptions/{subscriptionId}/resourceGroups/dv-events-sql-rg/overview"
             }
           },
           "5": {
@@ -134,12 +134,12 @@
                 },
                 {
                   "name": "id",
-                  "value": "/subscriptions/{mysubcription}/resourceGroups/dv-events-contact-rg",
+                  "value": "/subscriptions/{subscriptionId}/resourceGroups/dv-events-contact-rg",
                   "isOptional": true
                 }
               ],
               "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
-              "deepLink": "#@{myprimarydomain}/resource/subscriptions/{mysubcription}/resourceGroups/dv-events-contact-rg/overview"
+              "deepLink": "#@{primaryDomain}/resource/subscriptions/{subscriptionId}/resourceGroups/dv-events-contact-rg/overview"
             }
           },
           "6": {
@@ -157,12 +157,12 @@
                 },
                 {
                   "name": "id",
-                  "value": "/subscriptions/{mysubcription}/resourceGroups/dv-events-leads-rg",
+                  "value": "/subscriptions/{subscriptionId}/resourceGroups/dv-events-leads-rg",
                   "isOptional": true
                 }
               ],
               "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
-              "deepLink": "#@{myprimarydomain}/resource/subscriptions/{mysubcription}/resourceGroups/dv-events-leads-rg/overview"
+              "deepLink": "#@{primaryDomain}/resource/subscriptions/{subscriptionId}/resourceGroups/dv-events-leads-rg/overview"
             }
           },
           "7": {
@@ -180,15 +180,61 @@
                 },
                 {
                   "name": "id",
-                  "value": "/subscriptions/{mysubcription}/resourceGroups/dv-events-sales-rg",
+                  "value": "/subscriptions/{subscriptionId}/resourceGroups/dv-events-sales-rg",
                   "isOptional": true
                 }
               ],
               "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
-              "deepLink": "#@{myprimarydomain}/resource/subscriptions/{mysubcription}/resourceGroups/dv-events-sales-rg/overview"
+              "deepLink": "#@{primaryDomain}/resource/subscriptions/{subscriptionId}/resourceGroups/dv-events-sales-rg/overview"
             }
           },
           "8": {
+            "position": {
+              "x": 9,
+              "y": 2,
+              "colSpan": 2,
+              "rowSpan": 6
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/{subscriptionId}/resourceGroups/dv-events-schemaregistry-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@{primaryDomain}/resource/subscriptions/{subscriptionId}/resourceGroups/dv-events-schemaregistry-rg/overview"
+            }
+          },
+          "9": {
+            "position": {
+              "x": 0,
+              "y": 4,
+              "colSpan": 3,
+              "rowSpan": 2
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/{subscriptionId}/resourceGroups/dv-events-demop-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@{primaryDomain}/resource/subscriptions/{subscriptionId}/resourceGroups/dv-events-demop-rg/overview"
+            }
+          },
+          "10": {
             "position": {
               "x": 3,
               "y": 4,
@@ -203,15 +249,38 @@
                 },
                 {
                   "name": "id",
-                  "value": "/subscriptions/{mysubcription}/resourceGroups/dv-events-broker-rg",
+                  "value": "/subscriptions/{subscriptionId}/resourceGroups/dv-events-broker-rg",
                   "isOptional": true
                 }
               ],
               "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
-              "deepLink": "#@{myprimarydomain}/resource/subscriptions/{mysubcription}/resourceGroups/dv-events-broker-rg/overview"
+              "deepLink": "#@{primaryDomain}/resource/subscriptions/{subscriptionId}/resourceGroups/dv-events-broker-rg/overview"
             }
           },
-          "9": {
+          "11": {
+            "position": {
+              "x": 0,
+              "y": 6,
+              "colSpan": 3,
+              "rowSpan": 2
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceGroup",
+                  "isOptional": true
+                },
+                {
+                  "name": "id",
+                  "value": "/subscriptions/{subscriptionId}/resourceGroups/dv-events-democ-rg",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
+              "deepLink": "#@{primaryDomain}/resource/subscriptions/{subscriptionId}/resourceGroups/dv-events-democ-rg/overview"
+            }
+          },
+          "12": {
             "position": {
               "x": 3,
               "y": 6,
@@ -226,15 +295,15 @@
                 },
                 {
                   "name": "id",
-                  "value": "/subscriptions/{mysubcription}/resourceGroups/dv-events-databricks-rg",
+                  "value": "/subscriptions/{subscriptionId}/resourceGroups/dv-events-databricks-rg",
                   "isOptional": true
                 }
               ],
               "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
-              "deepLink": "#@{myprimarydomain}/resource/subscriptions/{mysubcription}/resourceGroups/dv-events-databricks-rg/overview"
+              "deepLink": "#@{primaryDomain}/resource/subscriptions/{subscriptionId}/resourceGroups/dv-events-databricks-rg/overview"
             }
           },
-          "10": {
+          "13": {
             "position": {
               "x": 6,
               "y": 6,
@@ -249,12 +318,12 @@
                 },
                 {
                   "name": "id",
-                  "value": "/subscriptions/{mysubcription}/resourceGroups/dv-events-lake-rg",
+                  "value": "/subscriptions/{subscriptionId}/resourceGroups/dv-events-lake-rg",
                   "isOptional": true
                 }
               ],
               "type": "Extension/HubsExtension/PartType/ResourceGroupMapPinnedPart",
-              "deepLink": "#@{myprimarydomain}/resource/subscriptions/{mysubcription}/resourceGroups/dv-events-lake-rg/overview"
+              "deepLink": "#@{primaryDomain}/resource/subscriptions/{subscriptionId}/resourceGroups/dv-events-lake-rg/overview"
             }
           }
         }

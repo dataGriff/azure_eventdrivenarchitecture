@@ -171,3 +171,22 @@ token_credential = DefaultAzureCredential()
 
 ## Create Azure Dashboard
 
+1. Copy and pase the [dashboard.json](./Dashboards/dashboard.json) file and call it mydashboard.json. This will be your own copy of an Azure dashboard that will make it easier to navigate all the resources in this course.
+
+2. Find and replace the {primaryDomain} text pattern in mydashboard.json with your Azure primary domain. You can get this from Azure Active directory blade in the portal. If you are unsure where to find Azure Active directory, just type "Azure Active Directory" into the search bar at the top of the portal.
+
+![Primary Azure Domain](/Images/ActiveDirectoryPrimaryDomain.PNG)
+
+3. Find and replace the {primaryDomain} text pattern in mydashboard.json with your Azure primary domain. You can get this from the subscription blade in the portal. If you are unsure where to find your subscription, just type "subscription" into the search bar at the top of the portal and then select your subscription.
+
+![Subscription Id](/Images/SubscriptionId.PNG)
+
+4. Upload your dashboard to the portal by selecting dashboard from the left hand menu and then select new dashboard and upload. Choose your mydashboard.json file.
+
+![Dashboard](/Images/Dashboard.PNG)
+
+![Dashboard Upload](/Images/DashboardUpload.PNG)
+
+5. Your dashboard should look something like the below as the resource groups and resources have not been deployed yet.
+
+![Dashboard Uploaded](/Images/DashboardUploaded.PNG)
