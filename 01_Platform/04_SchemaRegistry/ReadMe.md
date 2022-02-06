@@ -1,32 +1,36 @@
 # Experiment with Schema Registry
 
+- [Experiment with Schema Registry](#experiment-with-schema-registry)
+  - [Grant the Admin App Reg Permissions on Schema Registry](#grant-the-admin-app-reg-permissions-on-schema-registry)
+  - [Actovate your Python Environment](#actovate-your-python-environment)
+  - [Create a Backward Compatible Schema Group and Schemas](#create-a-backward-compatible-schema-group-and-schemas)
+  - [Create a Forward Compatible Schema Group and Schemas](#create-a-forward-compatible-schema-group-and-schemas)
+
 In this section we are just going to explore some registry concepts and implementation before we carry on as the value stream teams using our new shared components of the event driven architecture!
 
-For this section you will need to make sure you have python installed as per the pre-requisites.
-
 **You must have completed [02_SharedPlatform](../02_SharedInfrastructure/ReadMe.md) and [prerequisites](/Prerequisites.md) before continuing with the below.**
+
 ## Grant the Admin App Reg Permissions on Schema Registry
 
-Might be a delay after added before works.
+1. Navigate to the dv-events-schema-registry resource group.
+   
+2. Click on the event hub namespace dv-events-schemaregistry-eun-{youruniquenamespace}.
+
+3. Click on access control add your aprg-events-admin to the schema registry contributor role.
 
 ![Schema Reg Permissions](../../Images/AppRegAddingSchemaRegRole.PNG)
 
-## Create a Python Environment
+## Actovate your Python Environment
 
 1. Open your Visual Studio code terminal.
-2. Run the following to create a virtual environment called venv.
 
-```py
-python -m venv venv
-```
-
-**Important Note** : We will be using a single virtual environment for this entire implementation, but remember we are actually imitating a number of teams so the environment should actually be split per each teams implementation and what packages and dependencies they need along to carry out their function.
-
-1. Activate the python environment by running the following.
+2. Activate the python environment by running the following.
 
 ```py
 venv\scripts\activate
 ```
+
+**Important Note** : We will be using a single virtual environment for this entire implementation, but remember we are actually imitating a number of teams so the environment should actually be split per each teams implementation and what packages and dependencies they need along to carry out their function.
 
 ## Create a Backward Compatible Schema Group and Schemas
 
@@ -48,8 +52,8 @@ We are first going to demonstrate a backward compatible schema in the schema reg
 4. Look at the code in this file [register_schemas_backward](./register_schemas_backward.py). This is going to upload the schemas present in the script and there are comments on why some will succed and some will not based on backward compatible schemas as per the schema registry [documentation](https://docs.microsoft.com/en-us/azure/event-hubs/schema-registry-overview#backward-compatibility).
 5. Now execute the below in the terminal, replacing {youruniquenamespace} with your unique value first.
 
-```
-01_Platform\03_SchemaRegistry\register_schemas_backward.py dv-schemaregistry-ehns-eun-{youruniquenamespace}.servicebus.windows.net
+```bash
+01_Platform\04_SchemaRegistry\register_schemas_backward.py
 ```
 
 1. We will see in the terminal output that schema attempts 1, 2 and 4 were able to be uploaded bu schemas 3 and 5 were not.
@@ -83,7 +87,7 @@ We are now going to demonstrate a forward compatible schema in the schema regist
 5. Now execute the below in the terminal.
 
 ```
-01_Platform\03_SchemaRegistry\register_schemas_forward.py dv-schemaregistry-ehns-eun-{youruniquenamespace}.servicebus.windows.net
+01_Platform\04_SchemaRegistry\register_schemas_forward.py
 ```
 
 1. We will see in the terminal output that schema attempts 1, 2 and 3 were able to be uploaded but schemas 4 and 5 were not.

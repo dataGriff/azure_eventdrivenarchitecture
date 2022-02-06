@@ -53,4 +53,4 @@ az deployment sub create --name eventResourceGroups --location "%AZURE_REGION%" 
 
 ![Resource Group Tagged](../../Images/ResourceGroupTagged.PNG)
 
-**Note:** You will also see a demo resource group tile that is currently empty. This is used as part of a quickstart demo and will only be short-lived and not part of the overall architecture, but it makes it easier to discover by being on the dashboard.
+**Note:** You will also see a democ and demop resource group tile that is currently empty. This is used as part of a quickstart demo and will only be short-lived and not part of the overall architecture, but it makes it easier to discover by being on the dashboard.
