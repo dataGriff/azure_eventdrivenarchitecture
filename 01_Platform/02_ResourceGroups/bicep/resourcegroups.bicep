@@ -44,6 +44,14 @@ resource resourceGroup4 'Microsoft.Resources/resourceGroups@2021-01-01' = {
 }
 
 resource resourceGroup5 'Microsoft.Resources/resourceGroups@2021-01-01' = {
+  name: '${environment}-events-sql-rg'
+  location: location
+  tags:  {
+    'team' : 'platform'
+  }
+}
+
+resource resourceGroup6 'Microsoft.Resources/resourceGroups@2021-01-01' = {
   name: '${environment}-events-account-rg'
   location: location
   tags:  {
@@ -51,7 +59,7 @@ resource resourceGroup5 'Microsoft.Resources/resourceGroups@2021-01-01' = {
   }
 }
 
-resource resourceGroup6 'Microsoft.Resources/resourceGroups@2021-01-01' = {
+resource resourceGroup7 'Microsoft.Resources/resourceGroups@2021-01-01' = {
   name: '${environment}-events-contact-rg'
   location: location
   tags:  {
@@ -59,7 +67,7 @@ resource resourceGroup6 'Microsoft.Resources/resourceGroups@2021-01-01' = {
   }
 }
 
-resource resourceGroup7 'Microsoft.Resources/resourceGroups@2021-01-01' = {
+resource resourceGroup8 'Microsoft.Resources/resourceGroups@2021-01-01' = {
   name: '${environment}-events-product-rg'
   location: location
   tags:  {
@@ -67,7 +75,7 @@ resource resourceGroup7 'Microsoft.Resources/resourceGroups@2021-01-01' = {
   }
 }
 
-resource resourceGroup8 'Microsoft.Resources/resourceGroups@2021-01-01' = {
+resource resourceGroup9 'Microsoft.Resources/resourceGroups@2021-01-01' = {
   name: '${environment}-events-leads-rg'
   location: location
   tags:  {
@@ -75,7 +83,7 @@ resource resourceGroup8 'Microsoft.Resources/resourceGroups@2021-01-01' = {
   }
 }
 
-resource resourceGroup9 'Microsoft.Resources/resourceGroups@2021-01-01' = {
+resource resourceGroup10 'Microsoft.Resources/resourceGroups@2021-01-01' = {
   name: '${environment}-events-salesfiles-rg'
   location: location
   tags:  {
@@ -83,7 +91,7 @@ resource resourceGroup9 'Microsoft.Resources/resourceGroups@2021-01-01' = {
   }
 }
 
-resource resourceGroup10 'Microsoft.Resources/resourceGroups@2021-01-01' = {
+resource resourceGroup11 'Microsoft.Resources/resourceGroups@2021-01-01' = {
   name: '${environment}-events-sales-rg'
   location: location
   tags:  {

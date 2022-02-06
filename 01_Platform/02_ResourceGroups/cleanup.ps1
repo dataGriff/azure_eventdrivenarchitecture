@@ -9,6 +9,7 @@ $resourcegroups = @(
     'events-schemaregistry-rg',
     'events-lake-rg',
     'events-databricks-rg',
+    'events-sql-rg',
     'events-account-rg',
     'events-contact-rg',
     'events-product-rg',
@@ -16,7 +17,8 @@ $resourcegroups = @(
     'events-salesfiles-rg',
     'events-sales-rg',
     'events-demop-rg',
-    'events-democ-rg'
+    'events-democ-rg',
+    'events-demo-rg'
 )
 
 $confirmation = Read-Host "Are you Sure You Want To Proceed? (y/n)"

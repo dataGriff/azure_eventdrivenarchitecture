@@ -48,12 +48,19 @@ az deployment group create --name "lakeDeployment" --resource-group "dv-events-l
 ```
 
 1. Deploy the **databricks** shared infrastructure by running the following command in the terminal. The %AZURE_UNIQUE_NAMESPACE% will come from the value you have placed in your environment variables as part of the pre-requisites.
-Once deployed confirm you can see the data lake storage account **dv-events-dbw-eun-"%AZURE_UNIQUE_NAMESPACE%"** in the portal in the **dv-events-databricks-rg** resource group. You should also the resource is tagged with team: platform.
+Once deployed confirm you can see the databricks workspace **dv-events-dbw-eun-"%AZURE_UNIQUE_NAMESPACE%"** in the portal in the **dv-events-databricks-rg** resource group. You should also the resource is tagged with team: platform.
 
 ```bash
 az deployment group create --name "databricksDeployment" --resource-group "dv-events-databricks-rg" --template-file "01_Platform\03_SharedInfrastructure\bicep\databricks.bicep" --parameters namespace="%AZURE_UNIQUE_NAMESPACE%"
 ```
 
-10. You have now played the role of the platform team and deployed all the shared assets for the business value teams to utilize.
+1. Deploy the **sql** shared infrastructure by running the following command in the terminal. The %AZURE_UNIQUE_NAMESPACE% will come from the value you have placed in your environment variables as part of the pre-requisites.
+Once deployed confirm you can see the sql server **dv-events-sql-eun-"%AZURE_UNIQUE_NAMESPACE%"** in the portal in the **dv-events-sql-rg** resource group. You should also the resource is tagged with team: platform.
+
+```bash
+az deployment group create --name "databricksDeployment" --resource-group "dv-events-sql-rg" --template-file "01_Platform\03_SharedInfrastructure\bicep\sqlserver.bicep" --parameters namespace="%AZURE_UNIQUE_NAMESPACE%" --parameters namespace="%AZURE_UNIQUE_NAMESPACE%" clientIpAddress="%MY_IP%" sqlAdministratorLoginPassword="%EXAMPLE_PASSWORD%"
+```
+
+1.  You have now played the role of the platform team and deployed all the shared assets for the business value teams to utilize.
 
 ![Dashboard Shared Platform](../../Images/DashboardSharedPlatform.PNG)

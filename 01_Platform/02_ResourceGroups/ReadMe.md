@@ -39,6 +39,7 @@ az deployment sub create --name eventResourceGroups --location "%AZURE_REGION%" 
 * dv-events-broker-rg (team: platform)
 * dv-events-databricks-rg (team: platform)
 * dv-events-lake-rg (team: platform)
+* dv-events-sql-rg (team: platform)
 * dv-events-product-rg (team: product)
 * dv-events-account-rg (team: customer)
 * dv-events-contact-rg (team: customer)

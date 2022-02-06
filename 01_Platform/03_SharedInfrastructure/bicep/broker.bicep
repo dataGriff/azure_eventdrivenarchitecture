@@ -11,6 +11,9 @@ param environment string = 'dv'
 @description('Unique postfix for your resources to ensure globally unique')
 param namespace string
 
+@description('Location of the resources')
+param location string = resourceGroup().location
+
 @description('Short region name')
 param locationshortcode string = 'eun'
 
@@ -28,7 +31,7 @@ var daysToRestoreContainer = daysToCoolData
 
 resource eventHubNamespace 'Microsoft.EventHub/namespaces@2021-01-01-preview' = {
   name: '${environment}-events001-ehns-${locationshortcode}-${namespace}'
-  location: resourceGroup().location
+  location: location
   sku: {
     name: 'Standard'
     tier: 'Standard'
@@ -67,7 +70,7 @@ resource listen 'Microsoft.EventHub/namespaces/authorizationRules@2021-06-01-pre
 
 resource eventstorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   name: '${environment}events001sa${locationshortcode}${namespace}'
-  location: resourceGroup().location
+  location: location
   kind: 'StorageV2'
   sku: {
     name: 'Standard_LRS'
