@@ -44,10 +44,19 @@ resource sqlServer 'Microsoft.Sql/servers@2019-06-01-preview' = {
   }
 }
 
-resource fwRule 'Microsoft.Sql/servers/firewallRules@2015-05-01-preview' = {
+resource fwRule1 'Microsoft.Sql/servers/firewallRules@2015-05-01-preview' = {
     name: '${sqlServer.name}/clientAllow'
     properties: {
         startIpAddress: clientIpAddress
         endIpAddress: clientIpAddress
     }
 }
+
+resource fwRule2 'Microsoft.Sql/servers/firewallRules@2015-05-01-preview' = {
+  name: '${sqlServer.name}/AllowAllWindowsAzureIps'
+  properties: {
+      startIpAddress: '0.0.0.0'
+      endIpAddress: '0.0.0.0'
+  }
+}
+
