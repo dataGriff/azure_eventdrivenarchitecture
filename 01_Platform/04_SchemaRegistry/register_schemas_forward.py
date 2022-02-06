@@ -1,8 +1,9 @@
 from azure.identity._credentials.default import DefaultAzureCredential
 from schemaregister import *
-import sys
+import os
 
-fully_qualified_namespace = sys.argv[1].replace("'", "")
+unique_namespace = os.environ.get('AZURE_UNIQUE_NAMESPACE')
+fully_qualified_namespace = f"dv-schemaregistry-ehns-eun-{unique_namespace}.servicebus.windows.net"
 
 print(f'Schemas to be uploaded to namespace {fully_qualified_namespace}...')
 
