@@ -5,7 +5,7 @@ $region = [System.Environment]::GetEnvironmentVariable('AZURE_REGION')          
 $eventHubName = "demo"
 $deploymentName = "${eventHubName}PublisherDeployment"
 $resourceGroupname = "dv-events-broker-rg"
-$templateFile = "01_Platform\04_DedicatedResourceTemplates\Bicep\consumer.bicep"
+$templateFile = "01_Platform\05_DedicatedResourceTemplates\Bicep\consumer.bicep"
 $environment = "dv"
 $eventhubnamespaceidentifier = "events001"
 $target = "demo"
@@ -15,7 +15,7 @@ $teamname = 'demo'
 Write-Host "Import module for Powershell deployment..."
 Write-Host "Getting current drive location, assumes in root of azure_deventdrivenarchitecture repo..."
 $location = Get-Location
-$modulelocation = "$location\01_Platform\04_DedicatedResourceTemplates\Modules\DataGriffDeployment\DataGriffDeployment.psm1"
+$modulelocation = "$location\01_Platform\05_DedicatedResourceTemplates\Modules\DataGriffDeployment\DataGriffDeployment.psm1"
 Write-Host "Attempting to import module from $modulelocation..."
 Import-Module -Name $modulelocation
 Write-Host "Completed import module from from $modulelocation."

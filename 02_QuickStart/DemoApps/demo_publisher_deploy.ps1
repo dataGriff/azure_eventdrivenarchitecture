@@ -8,7 +8,7 @@ $region = [System.Environment]::GetEnvironmentVariable('AZURE_REGION')          
 
 $deploymentName = "${eventHubName}PublisherDeployment"
 $resourceGroupname = "dv-events-broker-rg"
-$templateFile = "01_Platform\04_DedicatedResourceTemplates\Bicep\publisher.bicep"
+$templateFile = "01_Platform\05_DedicatedResourceTemplates\Bicep\publisher.bicep"
 $environment = "dv"
 $eventhubnamespaceidentifier = "events001"
 $sendlisten = 'send'
@@ -16,7 +16,7 @@ $sendlisten = 'send'
 Write-Host "Import module for Powershell deployment..."
 Write-Host "Getting current drive location, assumes in root of azure_deventdrivenarchitecture repo..."
 $location = Get-Location
-$modulelocation = "$location\01_Platform\04_DedicatedResourceTemplates\Modules\DataGriffDeployment\DataGriffDeployment.psm1"
+$modulelocation = "$location\01_Platform\05_DedicatedResourceTemplates\Modules\DataGriffDeployment\DataGriffDeployment.psm1"
 Write-Host "Attempting to import module from $modulelocation..."
 Import-Module -Name $modulelocation
 Write-Host "Completed import module from from $modulelocation."
@@ -44,7 +44,7 @@ Write-Host "Deployed key vault and event hub secrets."
 Write-Host "Deploying cosmos store..."
 $deploymentName = "${eventHubName}CosmosDeployment"
 $resourceGroupname = "dv-events-demo-rg"
-$templateFile = "01_Platform\04_DedicatedResourceTemplates\Bicep\cosmos.bicep"
+$templateFile = "01_Platform\05_DedicatedResourceTemplates\Bicep\cosmos.bicep"
 New-AzResourceGroupDeployment -name $deploymentName `
     -ResourceGroupName $resourceGroupname `
     -TemplateFile $templateFile `
