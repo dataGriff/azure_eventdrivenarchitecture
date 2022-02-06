@@ -23,7 +23,7 @@ param daysToArchiveData int = 5
 @description('Short region name')
 param daysToCoolData int = 3
 
-var daysToRestoreFiles = daysToDeleteData - 1
+var daysToRestoreFiles = daysToCoolData - 1
 var daysToRestoreContainer = daysToCoolData
 
 resource eventHubNamespace 'Microsoft.EventHub/namespaces@2021-01-01-preview' = {
