@@ -66,19 +66,19 @@ venv\scripts\activate
 
 2. Then pip install the required packages.
 
-```py
-pip-install avro                       
-pip-install azure-common            
-pip-install azure-core           
-pip-install azure-cosmos             
-pip-install azure-eventhub        
-pip-install azure-functions         
-pip-install azure-identity            
-pip-install azure-keyvault-secrets  
-pip-install pip-install azure-schemaregistry         
-pip-install azure-schemaregistry-avroserializer
-pip-install azure-storage-blob
-pip-install Faker
+```bash
+pip install avro                       
+pip install azure-common            
+pip install azure-core           
+pip install azure-cosmos             
+pip install azure-eventhub        
+pip install azure-functions         
+pip install azure-identity            
+pip install azure-keyvault-secrets  
+pip install pip install azure-schemaregistry         
+pip install azure-schemaregistry-avroserializer
+pip install azure-storage-blob
+pip install Faker
 ```
 
 3. You can confirm the packages you have installed by running the following.
