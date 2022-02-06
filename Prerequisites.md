@@ -173,6 +173,8 @@ token_credential = DefaultAzureCredential()
 
 1. Copy and pase the [dashboard.json](./Dashboards/dashboard.json) file and call it mydashboard.json. This will be your own copy of an Azure dashboard that will make it easier to navigate all the resources in this course.
 
+![Primary Azure Domain](/Images/mydashboard.PNG)
+
 2. Find and replace the {primaryDomain} text pattern in mydashboard.json with your Azure primary domain. You can get this from Azure Active directory blade in the portal. If you are unsure where to find Azure Active directory, just type "Azure Active Directory" into the search bar at the top of the portal.
 
 ![Primary Azure Domain](/Images/ActiveDirectoryPrimaryDomain.PNG)
