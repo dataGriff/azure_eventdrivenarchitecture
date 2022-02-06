@@ -1,4 +1,5 @@
 $eventHubName = "demo"
+$eventhubcaptureseconds = 60
 $teamname = 'demo'
 $target = "demo"
 
@@ -26,7 +27,8 @@ New-AzResourceGroupDeployment -name $deploymentName `
     -ResourceGroupName $resourceGroupname `
     -TemplateFile $templateFile `
     -namespace  $uniqueNamespace `
-    -eventhubname $eventHubName
+    -eventhubname $eventHubName `
+    -eventhubcaptureseconds $eventhubcaptureseconds
 Write-Host "Deployed event hub and storage account."
 
 Write-Host "Deploying key vault and event hub secrets..."
