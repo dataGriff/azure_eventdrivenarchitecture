@@ -116,8 +116,20 @@ function Get-DgAzureResourceName {
     .DESCRIPTION
     Returns a resource name meeting naming standards.
 
-    .PARAMETER Subscription
-    Name of Azure subscription to connect to.
+    .PARAMETER uniqueNamespace
+    The unique namespace string you add to your azure resources to ensure they meet naming standards.
+
+    .PARAMETER resourceType
+    The type of resource you want to create a name for which maps to azure resource providers e.g. eventhub, storage. sql.
+
+    .PARAMETER environment
+    The environment the resource will belong to.
+
+    .PARAMETER region
+    The name of the Azure region.
+
+    .PARAMETER service
+    The name of the service the resource is for. This will be its purpose and specific to your use case. 
 
     .EXAMPLE
     $uniqueNamespace = [System.Environment]::GetEnvironmentVariable('AZURE_UNIQUE_NAMESPACE')
@@ -172,4 +184,59 @@ function Get-DgAzureResourceName {
              
     return $resourceName
 }
+
+function Get-DgAzureResourceGroupName {
+    <#
+    .SYNOPSIS
+    Returns a resource name meeting naming standards.
+
+    .DESCRIPTION
+    Returns a resource name meeting naming standards.
+
+    .PARAMETER environment
+    The environment the resource will belong to.
+
+    .PARAMETER serviceGroup
+    The group of services being provided e.g. broker, account, datalake.
+
+    .PARAMETER serviceFamily
+    This is an optional parameter if you wanted resource groups to belong to a particular family of resource groups. 
+    For example in this training I have the word "events" in the resource groups to make them easier to identify in a mixed resource subscription.
+
+    .EXAMPLE
+    $environment = 'dv'
+    $serviceGroup = 'broker'
+    $serviceFamily = 'events'
+    Get-DgAzureResourceGroupName -environment $environment `
+    -serviceGroup $serviceGroup `
+    -serviceFamily $serviceFamily
+
+    $environment = 'qa'
+    $serviceGroup = 'account'
+    Get-DgAzureResourceGroupName -environment $environment `
+    -serviceGroup $serviceGroup 
+#>
+    [CmdletBinding()]
+    param (
+        [ValidateSet("dv","qa","lv")]
+        [Parameter(Mandatory = $true)]
+        [String]$environment,
+        [Parameter(Mandatory = $true)]
+        [String]$serviceGroup,
+        [Parameter(Mandatory = $false)]
+        [String]$serviceFamily = ""
+    )
+    Write-Host("Start Get-DgAzureResourceGroupName...")
+
+    if($serviceFamily){
+        $serviceFamily = "-$serviceFamily"
+    }
+
+    $resourceGroupName = "$environment$serviceFamily-$serviceGroup-rg"
+
+    Write-Host("Completed Get-DgAzureResourceGroupName.")
+             
+    return $resourceGroupName
+}
+
 
