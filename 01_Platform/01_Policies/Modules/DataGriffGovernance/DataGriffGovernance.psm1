@@ -1,35 +1,12 @@
-function Connect-Azure {
-    <#
-    .SYNOPSIS
-    Connects to Azure subscription.
+Write-Host "Import module for Powershell deployment..."
+Write-Host "Getting current drive location, assumes in root of azure_deventdrivenarchitecture repo..."
+$location = Get-Location
+$modulelocation = "$location\01_Platform\00_Modules\Modules\DataGriffAzure\DataGriffAzure.psm1"
+Write-Host "Attempting to import module from $modulelocation..."
+Import-Module -Name $modulelocation
+Write-Host "Completed import module from from $modulelocation."
 
-    .DESCRIPTION
-    Connects to Azure subscription.
-
-    .PARAMETER SUbscription
-    Name of Azure subscription to connect to.
-
-    .EXAMPLE
-    $subscription = 'dataGriff Teaching'
-    Connect-Azure -subscription $subscription
-
-#>
-    [CmdletBinding()]
-    param (
-        [Parameter(Mandatory = $true)]
-        [String]$subscription
-    )
-    Write-Host("Start Connect-Azure...")
-
-    if ([string]::IsNullOrEmpty($(Get-AzContext).Account)) {    
-        Connect-AzAccount
-    }
-    Set-AzContext -Subscription $subscription
-
-    Write-Host("Completed Connect-Azure.")
-}
-
-function Publish-Assignment {
+function Publish-AgAzureAssignment {
     <#
     .SYNOPSIS
     Assigns a built-in or custom policy in Azure.
@@ -37,14 +14,14 @@ function Publish-Assignment {
     .DESCRIPTION
     Assigns a built-in or custom policy in Azure.
 
-    .PARAMETER subscription
-    Name of Azure subscription.
-
-    .PARAMETER subscription
-    Name of Azure subscription.
+    .PARAMETER assignmentScope
+    Scope of assignement e.g. subscription, resource group, management group.
 
     .PARAMETER assignmentName
     Name of policy assignment.
+
+    .PARAMETER builtIn
+    Whether the policy is builtin (true) or custom (false).
 
     .PARAMETER policyDisplayName
     The display name of the policy to be assigned.
@@ -56,8 +33,10 @@ function Publish-Assignment {
     Hash table of non compliance message.
 
     .EXAMPLE
+    $subscriptionId = (Get-AzSubscription -SubscriptionName $subscription).id
+    $assignmentScope = "/subscriptions/${subscriptionId}"
+    $assignmentScope = [System.Environment]::GetEnvironmentVariable("AZURE_SUBSCRIPTION") 
     $assignmentName = "RestrictResourceGroupLocationPolicyAssignment"
-    $subscription = [System.Environment]::GetEnvironmentVariable("AZURE_SUBSCRIPTION") 
     $policyDisplayName = "Allowed locations for resource groups"
     $Locations = Get-AzLocation | where {($_.displayname -like "*europe") -or ($_.displayname -like "uk*")}
     $policyParameters = @{"listOfAllowedLocations"=($Locations.location)}
@@ -65,7 +44,7 @@ function Publish-Assignment {
     $policyParametersString = $policyParametersString.Substring(0,$policyParametersString.Length-1)
     $NonComplianceMessage = @{Message="Resource group location must be in [$policyParametersString]."}
 
-    Publish-Assignment -subscription $subscription `
+    Publish-Assignment -assignmentScope $assignmentScope `
         -assignmentName $assignmentName `
         -policyDisplayName $policyDisplayName `
         -policyParameters $policyParameters `
@@ -75,7 +54,7 @@ function Publish-Assignment {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
-        [String]$subscription,
+        [String]$assignmentScope,
         [Parameter(Mandatory = $true)]
         [String]$assignmentName,
         [Parameter(Mandatory = $false)]
@@ -88,10 +67,7 @@ function Publish-Assignment {
         [Hashtable]$NonComplianceMessage
     )
 
-    Write-Host("Start Publish-Assignment..")
-
-    $subscriptionId = (Get-AzSubscription -SubscriptionName $subscription).id
-    $assignmentScope = "/subscriptions/${subscriptionId}"
+    Write-Host("Start Publish-AgAzureAssignment...")
 
     if($builtin)
     {
@@ -119,5 +95,5 @@ function Publish-Assignment {
       write-host "Updated policy assignment $assignmentName."
     }
 
-    Write-Host("End Publish-Assignment.")
+    Write-Host("End Publish-AgAzureAssignment...")
 }

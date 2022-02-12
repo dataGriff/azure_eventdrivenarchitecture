@@ -36,8 +36,11 @@ Write-Host "Completed import module from from $modulelocation."
 5. Assign the built-in policy to ensure only appropriate locations are allowed for resource groups, by highlighting the code below, press F1 and select or type **Powershell: Run Selection**.
 
 ```ps1
-  $assignmentName = "RestrictResourceGroupLocationPolicyAssignment"
   $subscription = [System.Environment]::GetEnvironmentVariable("AZURE_SUBSCRIPTION") 
+  Set-AzContext -Subscription $subscription
+  $subscriptionId = (Get-AzSubscription -SubscriptionName $subscription).id
+  $assignmentScope = "/subscriptions/${subscriptionId}"
+  $assignmentName = "RestrictResourceGroupLocationPolicyAssignment"
   $policyDisplayName = "Allowed locations for resource groups"
   $Locations = Get-AzLocation | where {($_.displayname -like "*europe") -or ($_.displayname -like "uk*")}
   $policyParameters = @{"listOfAllowedLocations"=($Locations.location)}
@@ -45,7 +48,7 @@ Write-Host "Completed import module from from $modulelocation."
   $policyParametersString = $policyParametersString.Substring(0,$policyParametersString.Length-1)
   $NonComplianceMessage = @{Message="Resource group location must be in [$policyParametersString]."}
 
-  Publish-Assignment -subscription $subscription `
+  Publish-AgAzureAssignment -assignmentScope $assignmentScope `
       -assignmentName $assignmentName `
       -policyDisplayName $policyDisplayName `
       -policyParameters $policyParameters `
@@ -55,8 +58,11 @@ Write-Host "Completed import module from from $modulelocation."
 6. Assign the built-in policy to ensure only appropriate locations are allowed for resources, by highlighting the code below, press F1 and select or type **Powershell: Run Selection**.
 
 ```ps1
-  $assignmentName = "RestrictResourceLocationPolicyAssignment"
   $subscription = [System.Environment]::GetEnvironmentVariable("AZURE_SUBSCRIPTION") 
+  Set-AzContext -Subscription $subscription
+  $subscriptionId = (Get-AzSubscription -SubscriptionName $subscription).id
+  $assignmentScope = "/subscriptions/${subscriptionId}"
+  $assignmentName = "RestrictResourceLocationPolicyAssignment"
   $policyDisplayName = "Allowed locations"
   $Locations = Get-AzLocation | where {($_.displayname -like "*europe") -or ($_.displayname -like "uk*")}
   $policyParameters = @{"listOfAllowedLocations"=($Locations.location)}
@@ -64,7 +70,7 @@ Write-Host "Completed import module from from $modulelocation."
   $policyParametersString = $policyParametersString.Substring(0,$policyParametersString.Length-1)
   $NonComplianceMessage = @{Message="Resource location must be in [$policyParametersString]."}
 
-  Publish-Assignment -subscription $subscription `
+  Publish-AgAzureAssignment -assignmentScope $assignmentScope `
       -assignmentName $assignmentName `
       -policyDisplayName $policyDisplayName `
       -policyParameters $policyParameters `
@@ -74,37 +80,43 @@ Write-Host "Completed import module from from $modulelocation."
 7. Assign the built-in policy to ensure that resource groups have to have a team tag, by highlighting the code below, press F1 and select or type **Powershell: Run Selection**.
 
 ```ps1
-$tagName = "team"
-$assignmentName = "TeamTagRequiredResourceGroupPolicyAssignment"
-$subscription = [System.Environment]::GetEnvironmentVariable("AZURE_SUBSCRIPTION") 
-$policyDisplayName = "Require a tag on resource groups"
-$Locations = Get-AzLocation | where {($_.displayname -like "*europe") -or ($_.displayname -like "uk*")}
-$policyParameters = @{"tagName"=$tagName}
-$NonComplianceMessage = @{Message="Resource group must have a team tag."}
+  $subscription = [System.Environment]::GetEnvironmentVariable("AZURE_SUBSCRIPTION") 
+  Set-AzContext -Subscription $subscription
+  $subscriptionId = (Get-AzSubscription -SubscriptionName $subscription).id
+  $assignmentScope = "/subscriptions/${subscriptionId}"
+  $tagName = "team"
+  $assignmentName = "TeamTagRequiredResourceGroupPolicyAssignment"
+  $policyDisplayName = "Require a tag on resource groups"
+  $Locations = Get-AzLocation | where {($_.displayname -like "*europe") -or ($_.displayname -like "uk*")}
+  $policyParameters = @{"tagName"=$tagName}
+  $NonComplianceMessage = @{Message="Resource group must have a team tag."}
 
-Publish-Assignment -subscription $subscription `
-    -assignmentName $assignmentName `
-    -policyDisplayName $policyDisplayName `
-    -policyParameters $policyParameters `
-    -NonComplianceMessage $NonComplianceMessage
+  Publish-AgAzureAssignment -assignmentScope $assignmentScope `
+      -assignmentName $assignmentName `
+      -policyDisplayName $policyDisplayName `
+      -policyParameters $policyParameters `
+      -NonComplianceMessage $NonComplianceMessage
 ```
 
 8. Assign the built-in policy to ensure that resources have to have a team tag, by highlighting the code below, press F1 and select or type **Powershell: Run Selection**.
 
 ```ps1
-$tagName = "team"
-$assignmentName = "TeamTagRequiredResourcePolicyAssignment"
-$subscription = [System.Environment]::GetEnvironmentVariable("AZURE_SUBSCRIPTION") 
-$policyDisplayName = "Require a tag on resources"
-$Locations = Get-AzLocation | where {($_.displayname -like "*europe") -or ($_.displayname -like "uk*")}
-$policyParameters = @{"tagName"=$tagName}
-$NonComplianceMessage = @{Message="Resources must have a team tag."}
+  $subscription = [System.Environment]::GetEnvironmentVariable("AZURE_SUBSCRIPTION") 
+  Set-AzContext -Subscription $subscription
+  $subscriptionId = (Get-AzSubscription -SubscriptionName $subscription).id
+  $assignmentScope = "/subscriptions/${subscriptionId}"
+  $tagName = "team"
+  $assignmentName = "TeamTagRequiredResourcePolicyAssignment"
+  $policyDisplayName = "Require a tag on resources"
+  $Locations = Get-AzLocation | where {($_.displayname -like "*europe") -or ($_.displayname -like "uk*")}
+  $policyParameters = @{"tagName"=$tagName}
+  $NonComplianceMessage = @{Message="Resources must have a team tag."}
 
-Publish-Assignment -subscription $subscription `
-    -assignmentName $assignmentName `
-    -policyDisplayName $policyDisplayName `
-    -policyParameters $policyParameters `
-    -NonComplianceMessage $NonComplianceMessage
+  Publish-AgAzureAssignment -assignmentScope $assignmentScope `
+      -assignmentName $assignmentName `
+      -policyDisplayName $policyDisplayName `
+      -policyParameters $policyParameters `
+      -NonComplianceMessage $NonComplianceMessage
 ```
 
 9. Create a custom policy to ensure that resource group team tag values are from an appropriate list, by highlighting the code below, press F1 and select or type **Powershell: Run Selection**.
@@ -125,9 +137,9 @@ $subscription = [System.Environment]::GetEnvironmentVariable("AZURE_SUBSCRIPTION
 $subscriptionId = (Get-AzSubscription -SubscriptionName $subscription).id
 $assignmentScope = "/subscriptions/${subscriptionId}"
 $Policy = Get-AzPolicyDefinition -Custom | Where-Object {$_.Properties.DisplayName -eq "Deny deployment of resource group if tag values are not in given list"}
-$teamValues = (Get-Content 01_Platform\01_Policies\AllowedTeams.json | ConvertFrom-Json).tagValues.value
-$teamValues = $teamValues  -replace " ",","
-$NonComplianceMessage = @{Message="Resources group must have a team tag value in $teamValues."}
+$teamValues = (Get-Content 01_Platform\01_Policies\AllowedTeams.json | ConvertFrom-Json).tagValues.value 
+$teamValuesMessage = $teamValues  -replace " ",","
+$NonComplianceMessage = @{Message="Resources group must have a team tag value in $teamValuesMessage."}
 
 if (-Not (Get-AzPolicyAssignment -Name $assignmentName -ErrorAction SilentlyContinue))
 {
