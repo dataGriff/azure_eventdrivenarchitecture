@@ -15,15 +15,15 @@ schema_registry_namespace = f"dv-schemaregistry-ehns-eun-{unique_namespace}.serv
 token_credential =  token_credential = DefaultAzureCredential()
 group_name = "myschemagroup"
 format = "Avro"
-event_hub_name = "demo"
-database_name = 'demo'
-container_name = 'demo'
+event_hub_name = "demop"
+database_name = event_hub_name
+container_name = event_hub_name
 
-KVUri = f"https://dv-demo-kv-eun-{unique_namespace}.vault.azure.net"
+KVUri = f"https://dv-{event_hub_name}-kv-eun-{unique_namespace}.vault.azure.net"
 credential = DefaultAzureCredential()
 client = SecretClient(vault_url=KVUri, credential=credential)
-conn_eventhub_publish = client.get_secret("eh-demo-publish").value
-conn_cosmos = client.get_secret("cosdb-demo-conn").value
+conn_eventhub_publish = client.get_secret(f"eh-{event_hub_name}-publish").value
+conn_cosmos = client.get_secret(f"cosdb-{event_hub_name}-conn").value
 
 def get_fakedata():
     faker = Faker()

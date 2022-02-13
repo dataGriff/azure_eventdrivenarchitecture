@@ -58,7 +58,7 @@ az deployment group create --name "databricksDeployment" --resource-group "dv-ev
 Once deployed confirm you can see the sql server **dv-events-sql-eun-"%AZURE_UNIQUE_NAMESPACE%"** in the portal in the **dv-events-sql-rg** resource group. You should also the resource is tagged with team: platform.
 
 ```bash
-az deployment group create --name "databricksDeployment" --resource-group "dv-events-sql-rg" --template-file "01_Platform\03_SharedInfrastructure\bicep\sqlserver.bicep" --parameters namespace="%AZURE_UNIQUE_NAMESPACE%" --parameters namespace="%AZURE_UNIQUE_NAMESPACE%" clientIpAddress="%MY_IP%" sqlAdministratorLoginPassword="%EXAMPLE_PASSWORD%"
+az deployment group create --name "sqlDeployment" --resource-group "dv-events-sql-rg" --template-file "01_Platform\03_SharedInfrastructure\bicep\sqlserver.bicep" --parameters namespace="%AZURE_UNIQUE_NAMESPACE%" --parameters namespace="%AZURE_UNIQUE_NAMESPACE%" clientIpAddress="%MY_IP%" sqlAdministratorLoginPassword="%EXAMPLE_PASSWORD%"
 ```
 
 1.  You have now played the role of the platform team and deployed all the shared assets for the business value teams to utilize.

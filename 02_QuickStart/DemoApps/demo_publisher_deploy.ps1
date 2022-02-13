@@ -1,7 +1,7 @@
-$eventHubName = "demo"
+$eventHubName = "demop"
 $eventhubcaptureseconds = 60
-$teamname = 'demo'
-$target = "demo"
+$teamname = 'demop'
+$target = $eventHubName
 
 $uniqueNamespace = [System.Environment]::GetEnvironmentVariable('AZURE_UNIQUE_NAMESPACE')   # Ensure Resources globally unique
 $subscription = [System.Environment]::GetEnvironmentVariable('AZURE_SUBSCRIPTION')          # Name of your azure subscription
@@ -45,7 +45,7 @@ Write-Host "Deployed key vault and event hub secrets."
 
 Write-Host "Deploying cosmos store..."
 $deploymentName = "${eventHubName}CosmosDeployment"
-$resourceGroupname = "dv-events-demo-rg"
+$resourceGroupname = "dv-events-demop-rg"
 $templateFile = "01_Platform\05_DedicatedResourceTemplates\Bicep\cosmos.bicep"
 New-AzResourceGroupDeployment -name $deploymentName `
     -ResourceGroupName $resourceGroupname `

@@ -219,7 +219,7 @@ function Publish-KeyVaultEventHub {
         [ValidateSet("send", "listen")]
         [String]$sendlisten,
         [Parameter(Mandatory = $true)]
-        [ValidateSet("customer", "conversions","platform","product","demo")]
+        [ValidateSet("customer", "conversions","platform","product","demo","demop","democ")]
         [String]$teamname
 
     )
@@ -331,7 +331,7 @@ function Publish-KeyVaultCosmos {
         [Parameter(Mandatory = $true)]
         [String]$target,
         [Parameter(Mandatory = $true)]
-        [ValidateSet("customer", "conversions","platform","product","demo")]
+        [ValidateSet("customer", "conversions","platform","product","demo","democ","demop")]
         [String]$teamname
     )
 

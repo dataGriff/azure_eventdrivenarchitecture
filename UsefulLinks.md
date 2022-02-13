@@ -40,3 +40,6 @@
 * [Why Use Avro for Streaming and Schema Registry](https://catherine-shen.medium.com/why-you-should-use-avro-and-schema-registry-for-your-streaming-application-2f24dcf017c8)
 * [Compare Avro Orc and Parquet](https://towardsdatascience.com/demystify-hadoop-data-formats-avro-orc-and-parquet-e428709cf3bb)
 * [Multiple EVents Per Topic or Not](https://www.confluent.io/en-gb/blog/put-several-event-types-kafka-topic/)
+* [ADF Capture](https://www.mikestephenson.me/2021/08/09/trying-out-event-hub-capture-to-synapse-part-2/)
+* [.Net Quick Start](https://docs.microsoft.com/en-us/azure/event-hubs/schema-registry-dotnet-send-receive-quickstart)
+* [Avro Tools Nuget](https://www.nuget.org/packages/Apache.Avro.Tools/)
