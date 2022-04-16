@@ -5,7 +5,7 @@ resources:
     - repository: templates
       type: github
       name: griff182uk/azure_eventdrivenarchitecture
-      endpoint: DevOps - Deploy
+      endpoint: griff182uk
 
 jobs:
 - template: azure-pipelines.yml@templates  # Template reference
