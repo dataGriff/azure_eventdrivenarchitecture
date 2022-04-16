@@ -6,7 +6,7 @@ name: Deploy Bicep files
 variables:
   vmImageName: 'ubuntu-latest'
 
-  azureServiceConnection: 'DevOps - Dev'
+  azureServiceConnection: 'DevOps - Deploy'
   resourceGroupName: 'dv-events01-broker-rg'
   location: 'inlineScript'
   templateFile: '01_Platform/03_SharedInfrastructure/bicep/broker.bicep'
