@@ -7,7 +7,7 @@ variables:
   vmImageName: 'ubuntu-latest'
 
   azureServiceConnection: 'DevOps - Deploy'
-  resourceGroupName: 'dv-events01-broker-rg'
+  resourceGroupName: 'dv-events002-broker-rg'
   location: 'northeurope'
   templateFile: '01_Platform/03_SharedInfrastructure/bicep/broker.bicep'
 pool:
@@ -22,4 +22,4 @@ steps:
     inlineScript: |
       az --version
       az group create --name $(resourceGroupName) --location $(location)
-      az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile) --parameters namespace="dgrf"
+      az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile) --parameters namespace="dgrf"  eventhubnamespace="events002"
