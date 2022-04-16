@@ -22,4 +22,4 @@ steps:
     inlineScript: |
       az --version
       az group create --name $(resourceGroupName) --location $(location)
-      az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile)
+      az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile) --parameters namespace="dgrf"
