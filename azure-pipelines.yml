@@ -1,0 +1,25 @@
+trigger:
+- main
+
+name: Deploy Bicep files
+
+variables:
+  vmImageName: 'ubuntu-latest'
+
+  azureServiceConnection: 'DevOps - Deploy'
+  resourceGroupName: 'dv-events01-broker-rg'
+  location: 'northeurope'
+  templateFile: '01_Platform/03_SharedInfrastructure/bicep/broker.bicep'
+pool:
+  vmImage: $(vmImageName)
+
+steps:
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: $(azureServiceConnection)
+    scriptType: bash
+    scriptLocation: inlineScript
+    inlineScript: |
+      az --version
+      az group create --name $(resourceGroupName) --location $(location)
+      az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile) --parameters namespace="dgrf"
