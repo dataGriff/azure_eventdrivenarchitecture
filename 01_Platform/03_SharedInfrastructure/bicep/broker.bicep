@@ -9,7 +9,10 @@ targetScope = 'resourceGroup'
 param environment string = 'dv'
 
 @description('Unique postfix for your resources to ensure globally unique')
-param namespace string
+param namespace string = 'dgrf'
+
+@description('Unique resource identifier for your event hub namespace')
+param eventhubnamespace string = 'events001'
 
 @description('Location of the resources')
 param location string = resourceGroup().location
@@ -30,7 +33,7 @@ var daysToRestoreFiles = daysToCoolData - 1
 var daysToRestoreContainer = daysToCoolData
 
 resource eventHubNamespace 'Microsoft.EventHub/namespaces@2021-01-01-preview' = {
-  name: '${environment}-events001-ehns-${locationshortcode}-${namespace}'
+  name: '${environment}-${eventhubnamespace}-ehns-${locationshortcode}-${namespace}'
   location: location
   sku: {
     name: 'Standard'
@@ -69,7 +72,7 @@ resource listen 'Microsoft.EventHub/namespaces/authorizationRules@2021-06-01-pre
 }
 
 resource eventstorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
-  name: '${environment}events001sa${locationshortcode}${namespace}'
+  name: '${environment}${eventhubnamespace}sa${locationshortcode}${namespace}'
   location: location
   kind: 'StorageV2'
   sku: {
