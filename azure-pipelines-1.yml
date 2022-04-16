@@ -1,0 +1,10 @@
+# Repo: Contoso/LinuxProduct
+# File: azure-pipelines.yml
+resources:
+  repositories:
+    - repository: templates
+      type: github
+      name: griff182uk/azure_eventdrivenarchitecture
+
+jobs:
+- template: azure-pipelines.yml@templates  # Template reference
